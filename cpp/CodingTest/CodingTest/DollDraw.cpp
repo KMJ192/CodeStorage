@@ -36,8 +36,6 @@ int solution(vector<vector<int>> board, vector<int> move) {
     return answer;
 }
 
-
-
 int main() {
 
     vector<vector<int>> board = {
