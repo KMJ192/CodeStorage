@@ -1,4 +1,4 @@
-//solution : https://blog.naver.com/myeongjun222
+//solution : https://programmers.co.kr/learn/courses/30/lessons/64061
 
 #include<iostream>
 #include<vector>
