@@ -1,4 +1,4 @@
-//¹®Á¦ https://blog.naver.com/myeongjun222
+//solution : https://blog.naver.com/myeongjun222
 
 #include<iostream>
 #include<vector>
