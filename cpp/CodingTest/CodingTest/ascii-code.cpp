@@ -4,14 +4,14 @@
 
 using namespace std;
 
+int solution(char a) {
+	return static_cast<int>(a);
+}
+
 int main() {
-
 	char a;
-
-	printf("ют╥б : ");
 	cin >> a;
-	cout << static_cast<int>(a);
-
+	cout << solution(a);
 
 	return 0;
 }
