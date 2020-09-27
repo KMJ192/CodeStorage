@@ -25,6 +25,9 @@
     <Filter Include="소스 파일\Programmers\SummerWinterCoding%282018%29">
       <UniqueIdentifier>{9f3b37e4-523b-45b9-8de0-eab71a238ee6}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\Stack_Queue">
+      <UniqueIdentifier>{781bc9de-a5ae-4997-88bb-3c8df6877179}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="DollDraw.cpp">
@@ -44,6 +47,9 @@
     </ClCompile>
     <ClCompile Include="Budget.cpp">
       <Filter>소스 파일\Programmers\SummerWinterCoding%282018%29</Filter>
+    </ClCompile>
+    <ClCompile Include="StockPrice.cpp">
+      <Filter>소스 파일\Stack_Queue</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
