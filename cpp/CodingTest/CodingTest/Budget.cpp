@@ -32,7 +32,7 @@ int solution(vector<int> d, int budget) {
     int all = 0;
 
     //1. sorting
-
+    sort(d);
 
     //2. 최대 지원 가능 부서 갯수 생성
 
