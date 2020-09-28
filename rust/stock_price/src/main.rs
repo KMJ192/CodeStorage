@@ -1,3 +1,4 @@
+
 fn solution(prices : Vec<i32>) -> Vec<i32>{
 
     let mut answer :Vec<i32> = Vec::new();
@@ -20,6 +21,7 @@ fn solution(prices : Vec<i32>) -> Vec<i32>{
 }
 
 fn main() {
+    
     let mut prices : Vec<i32> = Vec::new();
 
     prices = [1, 2, 3, 2, 3].to_vec();
