@@ -28,6 +28,9 @@
     <Filter Include="소스 파일\Stack_Queue">
       <UniqueIdentifier>{781bc9de-a5ae-4997-88bb-3c8df6877179}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\완전탐색">
+      <UniqueIdentifier>{2a7547c1-0ef4-40f5-8b24-7c45d2eeede1}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="DollDraw.cpp">
@@ -53,6 +56,9 @@
     </ClCompile>
     <ClCompile Include="FunctionDev.cpp">
       <Filter>소스 파일\Stack_Queue</Filter>
+    </ClCompile>
+    <ClCompile Include="PracticeTest.cpp">
+      <Filter>소스 파일\완전탐색</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
