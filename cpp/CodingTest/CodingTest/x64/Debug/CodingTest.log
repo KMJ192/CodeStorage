@@ -1,3 +1,2 @@
-﻿  FunctionDev.cpp
-C:\develop\CodingTestTraining\cpp\CodingTest\CodingTest\FunctionDev.cpp(16,32): warning C4267: '=': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-  CodingTest.vcxproj -> C:\develop\CodingTestTraining\cpp\CodingTest\x64\Debug\CodingTest.exe
+﻿  PracticeTest.cpp
+  CodingTest.vcxproj -> D:\develop\CodingTestTraining\CodingTestTraining\cpp\CodingTest\x64\Debug\CodingTest.exe
