@@ -60,5 +60,8 @@
     <ClCompile Include="PracticeTest.cpp">
       <Filter>소스 파일\완전탐색</Filter>
     </ClCompile>
+    <ClCompile Include="TestTask.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

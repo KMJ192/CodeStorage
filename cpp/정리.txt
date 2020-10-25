@@ -1,0 +1,9 @@
+C++ algorithm head의 sort함수
+
+1. vector내 최대값
+	vector<int> vec = {1,2,3,4,5};
+	int max = *max_element(vec.begin(), vec.end());
+
+2. vector내 최소값
+	vector<int> vec = {1,2,3,4,5};
+	int min = *min_element(vec.begin(), vec.end());
