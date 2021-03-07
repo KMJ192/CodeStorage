@@ -1,0 +1,9 @@
+cpp/CodingTest/.vs
+cpp/CodingTest/Debug
+cpp/CodingTest/x64
+cpp/CodingTest/Debug
+cpp/CodingTest/CodingTest/Debug
+cpp/CodingTest/CodingTest/x64
+cpp/CodingTest/CodingTest/*.vcsproj
+cpp/CodingTest/CodingTest/*.vcsproj.*
+
