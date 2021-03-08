@@ -5,25 +5,24 @@
 //
 //입력
 //첫째 줄에 숫자의 개수 N(1 ≤ N ≤ 100)이 주어진다.둘째 줄에 숫자 N개가 공백없이 주어진다.
-
+#define _CRT_SECURE_NO_WARNINGS // scanf 보안 경고로 인한 컴파일 에러 방지
 #include<iostream>
 
 using namespace std;
 
 int main() {
 
-	int count, all = 0;
-	int input;
+	int count = 0, hap = 0;
+	char input[100];
 
-	cin >> count;
-	cin >> input;
+	scanf("%d", &count);
+	scanf("%s", input);
 
 	for (int i = 0; i < count; i++) {
-		all += input % 10;
-		input /= 10;
+		hap += input[i] - '0';
 	}
 
-	cout << all;
+	printf("%d", hap);
 
 	return 0;
 }

@@ -19,12 +19,6 @@
     <Filter Include="소스 파일\String">
       <UniqueIdentifier>{b027043c-82bb-4541-b3d9-b54c899efa17}</UniqueIdentifier>
     </Filter>
-    <Filter Include="소스 파일\Programmers">
-      <UniqueIdentifier>{d3ee30e4-6eb6-4736-8459-fe9a03263857}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="소스 파일\Programmers\SummerWinterCoding%282018%29">
-      <UniqueIdentifier>{9f3b37e4-523b-45b9-8de0-eab71a238ee6}</UniqueIdentifier>
-    </Filter>
     <Filter Include="소스 파일\Stack_Queue">
       <UniqueIdentifier>{781bc9de-a5ae-4997-88bb-3c8df6877179}</UniqueIdentifier>
     </Filter>
@@ -34,8 +28,11 @@
     <Filter Include="소스 파일\탐욕법">
       <UniqueIdentifier>{e3286bdc-8631-4000-83d3-1f9de7c6c4cf}</UniqueIdentifier>
     </Filter>
-    <Filter Include="소스 파일\Programmers\2021Kakao상반기">
-      <UniqueIdentifier>{30cdd83f-8371-405d-8484-f2fa7f9098f9}</UniqueIdentifier>
+    <Filter Include="소스 파일\프로그래머스">
+      <UniqueIdentifier>{3fa7ef99-b028-4bae-b3c5-85b23584b12a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\프로그래머스\Level1">
+      <UniqueIdentifier>{999ac083-3287-47f9-b804-762b26da260e}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -50,12 +47,6 @@
     </ClCompile>
     <ClCompile Include="SumOfNumber.cpp">
       <Filter>소스 파일\String</Filter>
-    </ClCompile>
-    <ClCompile Include="CharPosition.cpp">
-      <Filter>소스 파일\String</Filter>
-    </ClCompile>
-    <ClCompile Include="Budget.cpp">
-      <Filter>소스 파일\Programmers\SummerWinterCoding%282018%29</Filter>
     </ClCompile>
     <ClCompile Include="StockPrice.cpp">
       <Filter>소스 파일\Stack_Queue</Filter>
@@ -75,8 +66,17 @@
     <ClCompile Include="picnic.cpp">
       <Filter>소스 파일\완전탐색</Filter>
     </ClCompile>
-    <ClCompile Include="MenuRenewal.cpp">
-      <Filter>소스 파일\Programmers\2021Kakao상반기</Filter>
+    <ClCompile Include="크레인인형뽑기게임.cpp">
+      <Filter>소스 파일\프로그래머스\Level1</Filter>
+    </ClCompile>
+    <ClCompile Include="모의고사.cpp">
+      <Filter>소스 파일\프로그래머스\Level1</Filter>
+    </ClCompile>
+    <ClCompile Include="두개뽑아서더하기.cpp">
+      <Filter>소스 파일\프로그래머스\Level1</Filter>
+    </ClCompile>
+    <ClCompile Include="게임판덮기.cpp">
+      <Filter>소스 파일\완전탐색</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
