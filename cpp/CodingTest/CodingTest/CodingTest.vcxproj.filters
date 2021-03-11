@@ -34,6 +34,9 @@
     <Filter Include="소스 파일\프로그래머스\Level1">
       <UniqueIdentifier>{999ac083-3287-47f9-b804-762b26da260e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\Hash">
+      <UniqueIdentifier>{0a966644-e4b6-43e0-85a4-133292b83a70}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="DollDraw.cpp">
@@ -77,6 +80,12 @@
     </ClCompile>
     <ClCompile Include="게임판덮기.cpp">
       <Filter>소스 파일\완전탐색</Filter>
+    </ClCompile>
+    <ClCompile Include="완주하지못한선수.cpp">
+      <Filter>소스 파일\Hash</Filter>
+    </ClCompile>
+    <ClCompile Include="전화번호목록.cpp">
+      <Filter>소스 파일\Hash</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
