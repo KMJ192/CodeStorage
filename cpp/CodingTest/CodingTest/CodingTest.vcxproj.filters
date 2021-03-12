@@ -87,6 +87,9 @@
     <ClCompile Include="전화번호목록.cpp">
       <Filter>소스 파일\Hash</Filter>
     </ClCompile>
+    <ClCompile Include="다리를지나는트럭.cpp">
+      <Filter>소스 파일\Stack_Queue</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="default.h">
