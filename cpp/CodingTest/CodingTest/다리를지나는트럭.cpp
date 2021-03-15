@@ -1,45 +1,46 @@
 #include<iostream>
-#include <queue>
-#include <vector>
+#include<queue>
+#include<vector>
 
 using namespace std;
 
-//큐를 사용하는 과정으로 수정
 int solution(int bridge_length, int weight, vector<int> truck_weights) {
-    queue<int> bridge; //다리 생성
-    int inputed = 0; //입력된 원소의 합을 저장
-    int count = 0; //시간을 저장
-    int iter = 0; //원소의 index를 저장
+    int time = 0, total_weight = 0, entered = 0, cCount = 0;
+    bool swi = false;
+    queue<pair<int, int>> info;
 
     while (1) {
-        //다리 길이보다 queue의 길이가 길어졌을 경우 POP
-        if (bridge.size() > bridge_length) {
-            inputed -= bridge.front();
-            bridge.pop();
-        }
-        //loop 탈출 조건
-        if (iter >= truck_weights.size() && inputed == 0) {
-            break;
-        }
-        //조건 > 입력된 원소의 총합이 적재하중보다 클경우 0을 push/아닐경우 배열의 원소를 push
-        count++;
-        inputed += truck_weights[iter];
-        if (inputed > weight) {
-            bridge.push(0);
-            inputed -= truck_weights[iter];
+        if (swi == true) {
+            swi = false;
         }
         else {
-            if (iter < truck_weights.size()) {
-                bridge.push(truck_weights[iter]);
-                iter++;
+            time++;
+        }
+        if (time != 1) {
+            if (time == info.front().second) {
+                info.pop();
+                total_weight -= truck_weights[cCount];
+                cCount++;
             }
-            else {
-                bridge.push(0);
+        }
+
+        if (truck_weights.size() > entered) {
+            if ((total_weight + truck_weights[entered]) > weight) {
+                time = info.front().second;
+                swi = true;
+                continue;
             }
+            info.push(make_pair(time, time + bridge_length));
+            total_weight += truck_weights[entered];
+            entered++;
+        }
+
+        if (info.empty()) {
+            break;
         }
     }
 
-    return count;
+    return time;
 }
 
 int main() {
@@ -48,11 +49,10 @@ int main() {
     cin.tie(NULL);
     cout.tie(NULL);
 
-    vector<int> truck_weight = { 7,4,5,6 };
-    //vector<int> truck_weight = { 10 };
     //vector<int> truck_weight = { 10,10,10,10,10,10,10,10,10,10 };
+    vector<int> truck_weight = { 7, 4, 5, 6 };
+    //vector<int> truck_weight = { 10 };
     cout << solution(2, 10, truck_weight);
-    //cout << solution(100, 100, truck_weight);
 
     return 0;
 }
