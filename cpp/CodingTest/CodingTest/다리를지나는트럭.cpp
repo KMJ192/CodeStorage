@@ -7,7 +7,8 @@ using namespace std;
 int solution(int bridge_length, int weight, vector<int> truck_weights) {
     int time = 0, total_weight = 0, entered = 0, cCount = 0;
     bool swi = false;
-    queue<pair<int, int>> info;
+    //queue<pair<int, int>> info;
+    queue<int> info;
 
     while (1) {
         if (swi == true) {
@@ -17,7 +18,8 @@ int solution(int bridge_length, int weight, vector<int> truck_weights) {
             time++;
         }
         if (time != 1) {
-            if (time == info.front().second) {
+            //if (time == info.front().second) {
+            if(time == info.front()){
                 info.pop();
                 total_weight -= truck_weights[cCount];
                 cCount++;
@@ -26,11 +28,13 @@ int solution(int bridge_length, int weight, vector<int> truck_weights) {
 
         if (truck_weights.size() > entered) {
             if ((total_weight + truck_weights[entered]) > weight) {
-                time = info.front().second;
+                //time = info.front().second;
+                time = info.front();
                 swi = true;
                 continue;
             }
-            info.push(make_pair(time, time + bridge_length));
+            //info.push(make_pair(time, time + bridge_length));
+            info.push(time + bridge_length);
             total_weight += truck_weights[entered];
             entered++;
         }
