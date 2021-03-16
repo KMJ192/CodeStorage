@@ -37,6 +37,9 @@
     <Filter Include="소스 파일\Hash">
       <UniqueIdentifier>{0a966644-e4b6-43e0-85a4-133292b83a70}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\Heap">
+      <UniqueIdentifier>{d4da8cf4-bef4-41da-9272-0ff330ffc75b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="DollDraw.cpp">
@@ -89,6 +92,9 @@
     </ClCompile>
     <ClCompile Include="다리를지나는트럭.cpp">
       <Filter>소스 파일\Stack_Queue</Filter>
+    </ClCompile>
+    <ClCompile Include="더맵게.cpp">
+      <Filter>소스 파일\Heap</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
