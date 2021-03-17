@@ -13,64 +13,70 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="소스 파일\202008">
-      <UniqueIdentifier>{068ddbb0-30a5-420a-8949-c207973b4307}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="소스 파일\String">
-      <UniqueIdentifier>{b027043c-82bb-4541-b3d9-b54c899efa17}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="소스 파일\Stack_Queue">
-      <UniqueIdentifier>{781bc9de-a5ae-4997-88bb-3c8df6877179}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="소스 파일\완전탐색">
-      <UniqueIdentifier>{2a7547c1-0ef4-40f5-8b24-7c45d2eeede1}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="소스 파일\탐욕법">
-      <UniqueIdentifier>{e3286bdc-8631-4000-83d3-1f9de7c6c4cf}</UniqueIdentifier>
-    </Filter>
     <Filter Include="소스 파일\프로그래머스">
       <UniqueIdentifier>{3fa7ef99-b028-4bae-b3c5-85b23584b12a}</UniqueIdentifier>
     </Filter>
     <Filter Include="소스 파일\프로그래머스\Level1">
       <UniqueIdentifier>{999ac083-3287-47f9-b804-762b26da260e}</UniqueIdentifier>
     </Filter>
-    <Filter Include="소스 파일\Hash">
+    <Filter Include="소스 파일\backjun">
+      <UniqueIdentifier>{f110444b-a728-4e82-ba07-2abf7c0ebfb1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\프로그래머스\Hash">
       <UniqueIdentifier>{0a966644-e4b6-43e0-85a4-133292b83a70}</UniqueIdentifier>
     </Filter>
-    <Filter Include="소스 파일\Heap">
+    <Filter Include="소스 파일\프로그래머스\Heap">
       <UniqueIdentifier>{d4da8cf4-bef4-41da-9272-0ff330ffc75b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\프로그래머스\탐욕법">
+      <UniqueIdentifier>{e3286bdc-8631-4000-83d3-1f9de7c6c4cf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\프로그래머스\Stack_Queue">
+      <UniqueIdentifier>{781bc9de-a5ae-4997-88bb-3c8df6877179}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\프로그래머스\완전탐색">
+      <UniqueIdentifier>{2a7547c1-0ef4-40f5-8b24-7c45d2eeede1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\backjun\String">
+      <UniqueIdentifier>{b027043c-82bb-4541-b3d9-b54c899efa17}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\프로그래머스\202008">
+      <UniqueIdentifier>{068ddbb0-30a5-420a-8949-c207973b4307}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\backjun\BFSDFS">
+      <UniqueIdentifier>{90eb40dc-1b56-41cf-9e3d-543e622deae2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\프로그래머스\DynamicProgramming">
+      <UniqueIdentifier>{7abdf12e-e855-49e5-ac40-a05ece6c0798}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="DollDraw.cpp">
-      <Filter>소스 파일\202008</Filter>
+      <Filter>소스 파일\프로그래머스\202008</Filter>
     </ClCompile>
     <ClCompile Include="ChatRoom.cpp">
-      <Filter>소스 파일\202008</Filter>
+      <Filter>소스 파일\프로그래머스\202008</Filter>
     </ClCompile>
     <ClCompile Include="ascii-code.cpp">
-      <Filter>소스 파일\String</Filter>
+      <Filter>소스 파일\backjun\String</Filter>
     </ClCompile>
     <ClCompile Include="SumOfNumber.cpp">
-      <Filter>소스 파일\String</Filter>
+      <Filter>소스 파일\backjun\String</Filter>
     </ClCompile>
     <ClCompile Include="StockPrice.cpp">
-      <Filter>소스 파일\Stack_Queue</Filter>
+      <Filter>소스 파일\프로그래머스\Stack_Queue</Filter>
     </ClCompile>
     <ClCompile Include="FunctionDev.cpp">
-      <Filter>소스 파일\Stack_Queue</Filter>
+      <Filter>소스 파일\프로그래머스\Stack_Queue</Filter>
     </ClCompile>
     <ClCompile Include="PracticeTest.cpp">
-      <Filter>소스 파일\완전탐색</Filter>
+      <Filter>소스 파일\프로그래머스\완전탐색</Filter>
     </ClCompile>
     <ClCompile Include="TestTask.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="GymSuit.cpp">
-      <Filter>소스 파일\탐욕법</Filter>
-    </ClCompile>
-    <ClCompile Include="picnic.cpp">
-      <Filter>소스 파일\완전탐색</Filter>
+      <Filter>소스 파일\프로그래머스\탐욕법</Filter>
     </ClCompile>
     <ClCompile Include="크레인인형뽑기게임.cpp">
       <Filter>소스 파일\프로그래머스\Level1</Filter>
@@ -81,20 +87,29 @@
     <ClCompile Include="두개뽑아서더하기.cpp">
       <Filter>소스 파일\프로그래머스\Level1</Filter>
     </ClCompile>
-    <ClCompile Include="게임판덮기.cpp">
-      <Filter>소스 파일\완전탐색</Filter>
-    </ClCompile>
     <ClCompile Include="완주하지못한선수.cpp">
-      <Filter>소스 파일\Hash</Filter>
+      <Filter>소스 파일\프로그래머스\Hash</Filter>
     </ClCompile>
     <ClCompile Include="전화번호목록.cpp">
-      <Filter>소스 파일\Hash</Filter>
+      <Filter>소스 파일\프로그래머스\Hash</Filter>
     </ClCompile>
     <ClCompile Include="다리를지나는트럭.cpp">
-      <Filter>소스 파일\Stack_Queue</Filter>
+      <Filter>소스 파일\프로그래머스\Stack_Queue</Filter>
     </ClCompile>
     <ClCompile Include="더맵게.cpp">
-      <Filter>소스 파일\Heap</Filter>
+      <Filter>소스 파일\프로그래머스\Heap</Filter>
+    </ClCompile>
+    <ClCompile Include="picnic.cpp">
+      <Filter>소스 파일\backjun</Filter>
+    </ClCompile>
+    <ClCompile Include="게임판덮기.cpp">
+      <Filter>소스 파일\backjun</Filter>
+    </ClCompile>
+    <ClCompile Include="DFS와BFS.cpp">
+      <Filter>소스 파일\backjun\BFSDFS</Filter>
+    </ClCompile>
+    <ClCompile Include="N으로표현.cpp">
+      <Filter>소스 파일\프로그래머스\DynamicProgramming</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
