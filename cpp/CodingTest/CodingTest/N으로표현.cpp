@@ -1,78 +1,46 @@
 #include<iostream>
-#include <string>
-#include<vector>
+#include <algorithm>
 
 using namespace std;
 
-int global_n;
-int global_number;
-int tmp = 0;
-string gUnit;
+int answer = 9;
 
-vector<string> Combination(int number){
-    vector<string> com;
-    if(number == 1){
-            com.push_back("+");
-            com.push_back("-");
-            com.push_back("*");
-            com.push_back("/");
+void dfs(int N, int number, int count, int currentNumber) {
+    cout << count << ", " << currentNumber << endl;
+    //일정횟수 이상갔다면 리턴
+    if (count >= 9)        return;
+    //현재수가 number와 같다면 작은횟수를 answer에 저장후 리턴
+    if (currentNumber == number) {
+        answer = min(answer, count);
+        return;
     }
-    else if (number == 2) {
-        com.push_back("+-");
-        com.push_back("+*");
-        com.push_back("+/");
-        com.push_back("-*");
-        com.push_back("-/");
-        com.push_back("*/");
-    }
-    else if (number == 3) {
-        com.push_back("+-*");
-        com.push_back("+-/");
-        com.push_back("-*/");
-    }
-    else {
-        com.push_back("+-*/");
-    }
-    return com;
-}
-
-//첫번째 Parameter => 이어붙일 숫자최소 단위
-//두번째 Parameter => 사칙연산 조합 단위
-//세번째 Parameter => 사칙연산 종류
-void Bfs(int n, int number, string s) {
-    cout << n << ", " << number << ", " << s << endl;
-    vector<string> unit;
-    for (int i = n; i <= 8; i++) {
-        for (int j = 1; j <= 4; j++) {
-            unit = Combination(j);
-            for (int n = 0; n < unit.size(); n++) {
-                Bfs(i, j, unit[n]);
-            }
-        }
+    int tempNumber = 0;
+    //최대 N의 사용횟수는 9번까지이므로 이때까지 반복
+    for (int i = 0; i + count < 9; i++) {
+        //N부터 NN,NNN,NNNN .....
+        tempNumber = tempNumber * 10 + N;
+        //더하기 빼기 곱하기 나누기 dfs 사용
+        dfs(N, number, count + 1 + i, currentNumber + tempNumber);
+        dfs(N, number, count + 1 + i, currentNumber - tempNumber);
+        dfs(N, number, count + 1 + i, currentNumber * tempNumber);
+        dfs(N, number, count + 1 + i, currentNumber / tempNumber);
     }
 }
 
-
-//1개일때 총 8조각
-//
-int solution(int n, int number) {
-    int answer = -1;
-    if (n == number) return 1;
-
-    global_n = n;
-    global_number = number;
-    Bfs(1, 0, ""); // 숫자 최소단위와 사칙연산조합단위, 사칙연산 종류
+int solution(int N, int number) {
+    dfs(N, number, 0, 0);
+    //answer가 9라는 뜻은 number와 맞는 경우가 없었던 것이므로 -1 리턴
+    if (answer == 9)    return -1;
     return answer;
 }
 
 int main() {
 
-    solution(5, 12);
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    cout.tie(NULL);
 
-    //string test = "1234";
-    //int nTest = stoi(test);
-    //nTest++;
-    //cout << nTest;
+    cout << solution(5, 12) << endl;
 
     return 0;
 }
