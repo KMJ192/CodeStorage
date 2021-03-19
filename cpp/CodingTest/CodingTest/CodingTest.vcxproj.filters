@@ -49,6 +49,9 @@
     <Filter Include="소스 파일\프로그래머스\DynamicProgramming">
       <UniqueIdentifier>{7abdf12e-e855-49e5-ac40-a05ece6c0798}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\프로그래머스\Sort">
+      <UniqueIdentifier>{7f38530b-0b02-4ad0-82e6-155cfa93f531}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="DollDraw.cpp">
@@ -110,6 +113,12 @@
     </ClCompile>
     <ClCompile Include="N으로표현.cpp">
       <Filter>소스 파일\프로그래머스\DynamicProgramming</Filter>
+    </ClCompile>
+    <ClCompile Include="K번째수.cpp">
+      <Filter>소스 파일\프로그래머스\Sort</Filter>
+    </ClCompile>
+    <ClCompile Include="큰수만들기.cpp">
+      <Filter>소스 파일\프로그래머스\탐욕법</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
