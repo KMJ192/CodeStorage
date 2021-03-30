@@ -120,6 +120,9 @@
     <ClCompile Include="큰수만들기.cpp">
       <Filter>소스 파일\프로그래머스\탐욕법</Filter>
     </ClCompile>
+    <ClCompile Include="조이스틱.cpp">
+      <Filter>소스 파일\프로그래머스\탐욕법</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="default.h">
