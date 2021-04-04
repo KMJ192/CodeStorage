@@ -52,6 +52,12 @@
     <Filter Include="소스 파일\프로그래머스\Sort">
       <UniqueIdentifier>{7f38530b-0b02-4ad0-82e6-155cfa93f531}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\leetCode">
+      <UniqueIdentifier>{14ef010c-a7db-46fd-aba5-6c59df9ca403}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\leetCode\HashTable">
+      <UniqueIdentifier>{eb43f171-5137-4bc6-914b-6abe367761ca}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="DollDraw.cpp">
@@ -122,6 +128,24 @@
     </ClCompile>
     <ClCompile Include="조이스틱.cpp">
       <Filter>소스 파일\프로그래머스\탐욕법</Filter>
+    </ClCompile>
+    <ClCompile Include="DesignHashSet.cpp">
+      <Filter>소스 파일\leetCode\HashTable</Filter>
+    </ClCompile>
+    <ClCompile Include="HMNASTCN.cpp">
+      <Filter>소스 파일\leetCode\HashTable</Filter>
+    </ClCompile>
+    <ClCompile Include="JewelsAnsStones.cpp">
+      <Filter>소스 파일\leetCode\HashTable</Filter>
+    </ClCompile>
+    <ClCompile Include="NumberOfGoodPairs.cpp">
+      <Filter>소스 파일\leetCode\HashTable</Filter>
+    </ClCompile>
+    <ClCompile Include="SumOfUniqueElements.cpp">
+      <Filter>소스 파일\leetCode\HashTable</Filter>
+    </ClCompile>
+    <ClCompile Include="N-RepeatedElementInSize2NArray.cpp">
+      <Filter>소스 파일\leetCode\HashTable</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
