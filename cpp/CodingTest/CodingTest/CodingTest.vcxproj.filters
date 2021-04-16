@@ -67,6 +67,9 @@
     <Filter Include="소스 파일\프로그래머스\월간코딩테스트\시즌2">
       <UniqueIdentifier>{b73c1bf8-19fd-4e67-bb4a-50e5a5a87d96}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\practice">
+      <UniqueIdentifier>{cbfa3f70-b4db-48a1-ba93-9cfde5c35450}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="DollDraw.cpp">
