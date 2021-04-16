@@ -189,6 +189,27 @@
     <ClCompile Include="문제2.cpp">
       <Filter>소스 파일\프로그래머스\월간코딩테스트\시즌2</Filter>
     </ClCompile>
+    <ClCompile Include="비밀번호찾기.cpp">
+      <Filter>소스 파일\backjun\HashTable</Filter>
+    </ClCompile>
+    <ClCompile Include="계단오르기.cpp">
+      <Filter>소스 파일\backjun\BFSDFS</Filter>
+    </ClCompile>
+    <ClCompile Include="1로만들기.cpp">
+      <Filter>소스 파일\backjun\BFSDFS</Filter>
+    </ClCompile>
+    <ClCompile Include="생태학.cpp">
+      <Filter>소스 파일\backjun\HashTable</Filter>
+    </ClCompile>
+    <ClCompile Include="카드놓기.cpp">
+      <Filter>소스 파일\backjun\HashTable</Filter>
+    </ClCompile>
+    <ClCompile Include="좋다.cpp">
+      <Filter>소스 파일\backjun\HashTable</Filter>
+    </ClCompile>
+    <ClCompile Include="놀라운문자열.cpp">
+      <Filter>소스 파일\backjun\HashTable</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="default.h">
