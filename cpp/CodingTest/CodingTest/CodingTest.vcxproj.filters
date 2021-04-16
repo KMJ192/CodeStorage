@@ -213,6 +213,12 @@
     <ClCompile Include="놀라운문자열.cpp">
       <Filter>소스 파일\backjun\HashTable</Filter>
     </ClCompile>
+    <ClCompile Include="비밀번호.c">
+      <Filter>소스 파일\practice</Filter>
+    </ClCompile>
+    <ClCompile Include="수찾기.cpp">
+      <Filter>소스 파일\backjun\HashTable</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="default.h">
