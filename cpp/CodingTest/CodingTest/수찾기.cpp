@@ -1,6 +1,6 @@
 #include<iostream>
 #include<vector>
-#include<map>
+#include<set>
 
 using namespace std;
 
@@ -47,13 +47,13 @@ int main() {
 	cin.tie(NULL);
 	cout.tie(NULL);
 
-	map<int, int> tmp1;
+	set<int> tmp1;
 	vector<int> tmp2;
 	int n, m, tmp;
 	cin >> n;
 	for (int i = 0; i < n; i++) {
 		cin >> tmp;
-		tmp1[tmp] = 0;
+		tmp1.insert(tmp);
 	}
 	cin >> m;
 	for (int i = 0; i < m; i++) {

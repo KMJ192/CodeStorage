@@ -54,7 +54,8 @@ void hash_table_lookup(char* ad) {
 
 //main함수!
 int main() {
-    int N, M;
+    int N = 0;
+    int M;
     scanf("%d %d", &N, &M);
 
     //insert될 site 구조체 배열 선언

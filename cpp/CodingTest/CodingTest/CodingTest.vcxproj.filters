@@ -70,6 +70,9 @@
     <Filter Include="소스 파일\practice">
       <UniqueIdentifier>{cbfa3f70-b4db-48a1-ba93-9cfde5c35450}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\leetCode\BFSDFS">
+      <UniqueIdentifier>{d9217616-e60f-4062-a507-c2d0737c9e5b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="DollDraw.cpp">
@@ -218,6 +221,12 @@
     </ClCompile>
     <ClCompile Include="수찾기.cpp">
       <Filter>소스 파일\backjun\HashTable</Filter>
+    </ClCompile>
+    <ClCompile Include="MaximumDepthofN-aryTree.cpp">
+      <Filter>소스 파일\leetCode\BFSDFS</Filter>
+    </ClCompile>
+    <ClCompile Include="SymmetricTree.cpp">
+      <Filter>소스 파일\leetCode\BFSDFS</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
