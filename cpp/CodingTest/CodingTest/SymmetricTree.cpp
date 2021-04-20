@@ -1,9 +1,9 @@
 #include<iostream>
 #include<queue>
+#include<string>
+#include<vector>
 
 using namespace std;
-
-#define MAX_SIZE 100
 
 //Definition for a binary tree node.
 struct TreeNode {
@@ -15,76 +15,96 @@ struct TreeNode {
     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
 };
 
-//노드별로 위치값 계산하기
-//root node를 기준으로 좌우의 값 계산
-
-//root 노드 기준으로 좌측/우측 나누기
-// Binary Tree Structure
-//        1
-//    2       2
-//  3  4   4  3
-
 class Solution {
 private:
-    bool visited[MAX_SIZE];
+    queue<TreeNode*> q;
+    vector<string> v;
 public:
     bool isSymmetric(TreeNode* root) {
-
-        //전위 탐색
-        //1234243
-        preOrder(root);
-        cout << endl;
-        //중위 탐색
-        //2341243
-        inOrder(root);
-        cout << endl;
-        //후위 탐색
-        //2342431
-        postOrder(root);
-        cout << endl;
+        
+        bfs(root);
 
         return false;
     }
+    //Breadth First Search
+    void bfs(TreeNode* root) {
+        TreeNode* tmp;
+        int startPnt = 0;
 
-    //깊이 우선 탐색
-    //재귀호출로 탐색
-    void preOrder(TreeNode* root) {
-        cout << root->val << "\n";
-        if (root->left != NULL) {
-            preOrder(root->left); 
+        //root노드 방문
+        tmp = root;
+        q.push(tmp);
+        //v.push_back(tmp->val);
+
+        //vector로 mirror 구현
+        while (!q.empty()) {
+            tmp = q.front();
+            int front = q.front()->val;
+            
+            q.pop();
+            if (tmp->left != nullptr) {
+                q.push(tmp->left);
+                v.push_back(to_string(tmp->left->val));
+            }
+            else {
+                v.push_back("null");
+            }
+            if (tmp->right != nullptr){
+                q.push(tmp->right);
+                v.push_back(to_string(tmp->right->val));
+            }
+            else {
+                v.push_back("null");
+            }
         }
-        if (root->right != NULL) {
-            preOrder(root->right);
+
+        for (int i = 0; i < v.size(); i++) {
+            cout << v[i] << "\n";
         }
-    }
-    void inOrder(TreeNode* root) {
-        if (root->left != NULL) {
-            preOrder(root->left); 
+
+        int cnt = 2, tmp1 = 1;
+        int size = 0;
+        while (size < v.size()) {
+            if (tmp1 == 1) {
+                if (size >= cnt * tmp1) {
+                    tmp1 += size - 1;
+                    cnt *= cnt;
+                    cout << "\n";
+                }
+            }
+            else {
+                if (size >= cnt + tmp1) {
+                    tmp1 += size - 1;
+                    cnt *= cnt;
+                    cout << "\n";
+                }
+            }
+            cout << cnt << "\n";
+            //cout << v[size] << "\n";
+            size++;
         }
-        cout << root->val << "\n";
-        if (root->right != NULL) {
-            preOrder(root->right);
-        }
-    }
-    void postOrder(TreeNode* root) {
-        if (root->left != NULL) {
-            preOrder(root->left);
-        }
-        if (root->right != NULL) {
-            preOrder(root->right);
-        }
-        cout << root->val << "\n";
+
+        delete tmp;
     }
 };
 
 
 int main() {
     //root노드
+    TreeNode* tmp = new TreeNode(5);
+    tmp->left = new TreeNode(6);
+    tmp->right = new TreeNode(7);
+
     TreeNode* root = new TreeNode(1);
 
     root->left = new TreeNode(2);
     root->left->left = new TreeNode(3);
     root->left->right = new TreeNode(4);
+
+    root->left->left->left = tmp;
+    root->left->left->right = tmp;
+    root->left->right->left = tmp;
+    root->left->right->right = tmp;
 
     root->right = new TreeNode(2);
     root->right->left = new TreeNode(4);
