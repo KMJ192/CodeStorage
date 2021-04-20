@@ -22,26 +22,17 @@ private:
 public:
     bool isSymmetric(TreeNode* root) {
         
-        bfs(root);
-
-        return false;
-    }
-    //Breadth First Search
-    void bfs(TreeNode* root) {
         TreeNode* tmp;
         int startPnt = 0;
 
-        //root노드 방문
         tmp = root;
         q.push(tmp);
-        //v.push_back(tmp->val);
-
-        //vector로 mirror 구현
+        v.push_back(to_string(tmp->val));
         while (!q.empty()) {
             tmp = q.front();
-            int front = q.front()->val;
-            
+            //int front = q.front()->val;
             q.pop();
+            //cout << front << "\n";
             if (tmp->left != nullptr) {
                 q.push(tmp->left);
                 v.push_back(to_string(tmp->left->val));
@@ -49,7 +40,7 @@ public:
             else {
                 v.push_back("null");
             }
-            if (tmp->right != nullptr){
+            if (tmp->right != nullptr) {
                 q.push(tmp->right);
                 v.push_back(to_string(tmp->right->val));
             }
@@ -57,61 +48,61 @@ public:
                 v.push_back("null");
             }
         }
-
         for (int i = 0; i < v.size(); i++) {
-            cout << v[i] << "\n";
+            cout << v[i] << endl;
         }
 
-        int cnt = 2, tmp1 = 1;
-        int size = 0;
-        while (size < v.size()) {
-            if (tmp1 == 1) {
-                if (size >= cnt * tmp1) {
-                    tmp1 += size - 1;
-                    cnt *= cnt;
-                    cout << "\n";
+        int cnt = 2;
+        int pos = 1;
+        vector<string> test;
+        for (int i = 1; i < v.size(); i++) {
+            if (i == pos) {
+                test.clear();
+                //pos에 다음 포지션 입력
+                if (cnt == 2) {
+                    pos = cnt + 1;
+                    cnt *= 2;
+                }
+                else {
+                    pos = cnt + pos;
+                    cnt *= 2;
+                }
+
+                //다음을 가리키고 있는 위치값이 v보다 클 경우 종료
+                if (pos > v.size() - 1) {
+                    break;
+                }
+
+                for (int j = i; j < pos; j++) {
+                    test.push_back(v[j]);
+                }
+                for (int j = 0; j < test.size() / 2; j++) {
+                    cout << test[j] << test[test.size() - 1 - j] << endl;
+                    if (test[j] != test[test.size() - 1 - j]) {
+                        return false;
+                    }
                 }
             }
-            else {
-                if (size >= cnt + tmp1) {
-                    tmp1 += size - 1;
-                    cnt *= cnt;
-                    cout << "\n";
-                }
-            }
-            cout << cnt << "\n";
-            //cout << v[size] << "\n";
-            size++;
         }
 
         delete tmp;
+        return true;
     }
 };
 
 
 int main() {
     //root노드
-    TreeNode* tmp = new TreeNode(5);
-    tmp->left = new TreeNode(6);
-    tmp->right = new TreeNode(7);
-
     TreeNode* root = new TreeNode(1);
 
     root->left = new TreeNode(2);
-    root->left->left = new TreeNode(3);
-    root->left->right = new TreeNode(4);
-
-    root->left->left->left = tmp;
-    root->left->left->right = tmp;
-    root->left->right->left = tmp;
-    root->left->right->right = tmp;
-
     root->right = new TreeNode(2);
-    root->right->left = new TreeNode(4);
-    root->right->right= new TreeNode(3);
+
+    root->left->right = new TreeNode(3);
+    root->right->left= new TreeNode(3);
 
     Solution s;
-    s.isSymmetric(root);
+    cout << s.isSymmetric(root) << endl;
 
     delete root;
 
