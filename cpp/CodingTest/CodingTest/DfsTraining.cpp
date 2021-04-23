@@ -32,6 +32,7 @@ struct TreeNode {
 vector<char> b;
 bool lLast = false; //왼쪽 가장자리의 마지막 node임을 구분
 bool posFirst = false; //bottom 가장자리의 첫번째 node임을 구분
+bool toggle = false;//왼쪽node일때 false, 오른쪽 node일때 true
 
 void first(TreeNode* root) {
     //left가장자리 탐색
@@ -40,7 +41,10 @@ void first(TreeNode* root) {
 
     if (root->left != NULL) first(root->left);
     else {
-        if (root->right != NULL) first(root->right);
+        if (root->right != NULL) {
+            toggle = true;
+            first(root->right);
+        }
         else {
             if (lLast == false) {
                 //현재 노드의 left/right가 모두 null이므로
@@ -55,6 +59,7 @@ void first(TreeNode* root) {
     else {
         if (root->left == NULL) {
             if (posFirst == true) posFirst = false;
+            else if(toggle == true) toggle = false;
             else cout << root->val << " ";
         }
     }
@@ -101,7 +106,7 @@ int main() {
     root->right->right->left = new TreeNode('n');
     root->right->right->right = new TreeNode('o');
     root->left->right->left->left = new TreeNode('p');
-    root->right->left->left->left = new TreeNode('q');
+    root->right->left->left->right = new TreeNode('q');
 
     run(root);
 
