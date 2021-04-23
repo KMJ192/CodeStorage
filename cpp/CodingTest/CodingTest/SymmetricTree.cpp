@@ -30,9 +30,7 @@ public:
         v.push_back(to_string(tmp->val));
         while (!q.empty()) {
             tmp = q.front();
-            //int front = q.front()->val;
             q.pop();
-            //cout << front << "\n";
             if (tmp->left != nullptr) {
                 q.push(tmp->left);
                 v.push_back(to_string(tmp->left->val));
@@ -47,9 +45,6 @@ public:
             else {
                 v.push_back("null");
             }
-        }
-        for (int i = 0; i < v.size(); i++) {
-            cout << v[i] << endl;
         }
 
         int cnt = 2;
