@@ -18,73 +18,111 @@ struct TreeNode {
 class Solution {
 private:
     queue<TreeNode*> q;
-    vector<TreeNode*> compare;
+    vector<pair<TreeNode*, int>> compare;
     vector<int> v;
 public:
     Solution() {}
     ~Solution() {}
 
-    int commonLevel(TreeNode* node) {
-        int cnt = 0;
-        if (node->left) {
-            compare.push_back(node->left);
-            cnt++;
-        }
-        if (node->right) {
-            compare.push_back(node->left);
-            cnt++;
-        }
-    }
-
     bool isSymmetric(TreeNode* root) {
+        if (root == nullptr) return true;
+        else if (root->left == nullptr || root->right == nullptr) return false;
+
         TreeNode* tmp;
         tmp = root;
-        q.push(tmp);
-        compare.push_back(tmp);
-        while (!q.empty()) {            
-            int lCnt = 0;
+
+        int line = 0, count = 0;
+        q.push(tmp); 
+        compare.push_back(pair<TreeNode*, int>(tmp, 2));
+        while (!q.empty()) {
             tmp = q.front();
+            //cout << tmp->val << endl;
             q.pop();
+
             if (tmp->left != nullptr) {
-                lCnt++;
+                count = 0;
                 q.push(tmp->left);
-                compare.push_back(tmp->left);
-            }
-            if (tmp->right != nullptr) {
-                lCnt++;
-                q.push(tmp->right);
-                compare.push_back(tmp->right);
-            }
-            v.push_back(lCnt);
-        }
-        int next = 0;
-        int init = 0;
-        int cnt = 0;
-        bool toggle = false;
-        for (int i = 0; i < compare.size(); i++) {
-            if (toggle == false) {
-                init = next = v[i] + i;
-                toggle = true;
-                cnt = 0;
+                if (tmp->left->left != nullptr) {
+                    count++;
+                }
+                if (tmp->left->right != nullptr) {
+                    count++;
+                }
+                compare.push_back(pair<TreeNode*, int>(tmp->left, count));
             }
             else {
-                cnt += v[i];
+                compare.push_back(pair<TreeNode*, int>(new TreeNode(-1), 0));
             }
-            cout << compare[i]->val << " ";
-            cout << v[i] << endl;
-            if (next == i) {
-                cout << "test" << endl;
-                toggle = false;
-                cout << "간선의 수 : " << cnt << endl;
+
+            if (tmp->right != nullptr) {
+                count = 0;
+                q.push(tmp->right);
+                if (tmp->right->left != nullptr) {
+                    count++;
+                }
+                if (tmp->right->right != nullptr) {
+                    count++;
+                }
+                compare.push_back(pair<TreeNode*, int>(tmp->right, count));
+            }
+            else {
+                compare.push_back(pair<TreeNode*, int>(new TreeNode(-1), 0));
             }
         }
-        
+
+        line = 0;
+        count = 0;
+        cout << compare[0].first->val << ", " << compare[0].second << endl;
+        cout << endl;
+        int test = compare[0].second;
+        int nodeCnt = 0, nodeCntTmp = 0;
+        int brunch = 0;
+        for (int i = 1; i < compare.size(); i++) {
+            if (nodeCnt == nodeCntTmp + nodeCntTmp) {
+                cout << endl;
+                count = 0;
+                brunch = 0;
+            }
+            if (compare[i].second != -1) {
+                
+            }
+            cout << compare[i].first->val << ", " << compare[i].second << endl;
+
+            count++;
+        }
+
+        int test2 = 0, test3 = 0;
+        for (int i = 1; i < compare.size(); i++) {
+            if (count == line) {
+                if (i == 1) {
+                    count = 0;
+                    line = test;
+                    test = 0;
+                    test += compare[i].second;
+                    cout << endl;
+                }
+                if (test2 + test2 == test3) {
+                    test3 = 0;
+                    count = 0;
+                    line = test;
+                    test2 = line;
+                    test = 0;
+                    test += compare[i].second;
+                    cout << endl;
+                }
+            }
+            else{
+                if (compare[i].first->val != -1) test += compare[i].second;
+            }
+            cout << compare[i].first->val << ", " << compare[i].second << endl;
+            if (compare[i].first->val != -1) count++;
+            test3++;
+        }
 
         delete tmp;
         return true;
     }
 };
-
 
 int main() {
     //root노드
@@ -117,6 +155,11 @@ int main() {
     root->right->right->left->left->right->left = new TreeNode(0);
     root->right->right->left->left->right->right = new TreeNode(9);
 
+    //TreeNode* root = new TreeNode(1);
+    //root->left = new TreeNode(2);
+    //root->right = new TreeNode(2);
+    //root->left->right = new TreeNode(3);
+    //root->right->right = new TreeNode(3);
 
     Solution s;
     s.isSymmetric(root);
