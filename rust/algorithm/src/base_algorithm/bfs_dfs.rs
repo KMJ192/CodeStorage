@@ -15,8 +15,11 @@ impl TreeNode {
     }
   }
 }
+struct Solution;
+
 use std::rc::Rc;
 use std::cell::RefCell;
+
 impl Solution {
     pub fn is_symmetric(root: Option<Rc<RefCell<TreeNode>>>) -> bool {
         
@@ -32,6 +35,9 @@ fn dfs(){
 
 }
 pub fn run(){
-    let test = TreeNode{val : 2, left : None, right: None};
-    println!("{:?}", test);
+    let root = TreeNode{val : 1, left : None, right: None};
+    //root.left = TreeNode{val : 2, left : None, right: None};
+    
+    println!("{:?}", root);
+    //Solution::is_symmetric();
 }
