@@ -15,11 +15,11 @@ impl TreeNode {
     }
   }
 }
-struct Solution;
 
-use std::rc::Rc;
+use std::rc::Rc; //Reference Counting
 use std::cell::RefCell;
 
+struct Solution;
 impl Solution {
     pub fn is_symmetric(root: Option<Rc<RefCell<TreeNode>>>) -> bool {
         
@@ -34,10 +34,41 @@ fn bfs(){
 fn dfs(){
 
 }
-pub fn run(){
-    let root = TreeNode{val : 1, left : None, right: None};
-    //root.left = TreeNode{val : 2, left : None, right: None};
+
+use std::io;
+use std::str::FromStr;
+
+pub fn run(){ 
+    //let mut root : TreeNode= TreeNode{val : 1, left : None, right: None};
+    let mut root : TreeNode;
+    let mut tmp : Rc<RefCell<TreeNode>>;
+    //root node 입력
+    // root = TreeNode{val : 2, left : None, right : None};
+    // tmp = Rc::new(RefCell::new(TreeNode{val : 3, left : None, right: None}));
+    // root.left = Some(tmp);
+    // tmp = Rc::new(RefCell::new(TreeNode{val : 3, left : None, right: None}));
+    // root.right = Some(tmp);
+    // println!("{:#?}", root.left);
     
-    println!("{:?}", root);
+    //직접 넣자
+    //*를 입력할 때 까지 반복
+    //left, right를 각각 입력
+    loop{
+      let mut node_val = String::new();
+      io::stdin().read_line(&mut node_val).expect("error");
+      if node_val == "*"{
+        break;
+      }
+      let test : i32 = node_val.parse::<i32>().unwrap();
+      //let test : i32 = FromStr::from_str(node_val).unwrap();
+      println!("{}", test);
+  
+    }
+    // tmp = Rc::new(RefCell::new(TreeNode{val : 4, left : None, right: None}));
+    // root.left = Some(tmp);
+    // tmp = Rc::new(RefCell::new(TreeNode{val : 4, left : None, right: None}));
+    // root.right = Some(tmp);
+    
+    //println!("{:#?}", root);
     //Solution::is_symmetric();
-}
+  }
