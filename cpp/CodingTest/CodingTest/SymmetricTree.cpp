@@ -1,6 +1,5 @@
 #include<iostream>
 #include<queue>
-#include<string>
 #include<vector>
 
 using namespace std;
@@ -8,17 +7,29 @@ using namespace std;
 //Definition for a binary tree node.
 struct TreeNode {
     int val;
-    TreeNode *left;
-    TreeNode *right;
+    TreeNode* left;
+    TreeNode* right;
     TreeNode() : val(0), left(nullptr), right(nullptr) {}
     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
-    TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
+    TreeNode(int x, TreeNode* left, TreeNode* right) : val(x), left(left), right(right) {}
 };
 
+//Input: (ex) : [2, 3, 3, 4, null, nul, 4, null, 5, 5, null, null, 6, 6, null, 7, 8, 8, 7, 9, 0, 0, 1, 1, 0, 0, 9]
+//Output: true
+//Constraints :
+// 1) The number of nodes in the tree is in the ragne[1, 1000]
+// 2) -100 <= Node.val <= 100
+//Edge Case :
+// 1) tree == null
+//brute force : naive
+//  BFS풀이
+//  time : 
+//  space
+//code :
 class Solution {
 private:
     queue<TreeNode*> q;
-    vector<pair<TreeNode*, int>> compare;
+    vector<TreeNode*> compare;
     vector<int> v;
 public:
     Solution() {}
@@ -26,101 +37,58 @@ public:
 
     bool isSymmetric(TreeNode* root) {
         if (root == nullptr) return true;
+        else if (root->left == nullptr && root->right == nullptr) return true;
         else if (root->left == nullptr || root->right == nullptr) return false;
 
         TreeNode* tmp;
         tmp = root;
 
-        int line = 0, count = 0;
-        q.push(tmp); 
-        compare.push_back(pair<TreeNode*, int>(tmp, 2));
+        //BFS풀이를 위한 q
+        q.push(tmp);
+        //모든 node를 push할 compare vector
+        //null일 경우 -1을 저장하고 null이 아니면 tree의 value를 저장
+        compare.push_back(tmp);
         while (!q.empty()) {
             tmp = q.front();
-            //cout << tmp->val << endl;
             q.pop();
-
             if (tmp->left != nullptr) {
-                count = 0;
                 q.push(tmp->left);
-                if (tmp->left->left != nullptr) {
-                    count++;
-                }
-                if (tmp->left->right != nullptr) {
-                    count++;
-                }
-                compare.push_back(pair<TreeNode*, int>(tmp->left, count));
+                compare.push_back(tmp->left);
             }
-            else {
-                compare.push_back(pair<TreeNode*, int>(new TreeNode(-1), 0));
-            }
-
+            else compare.push_back(new TreeNode(-1));
             if (tmp->right != nullptr) {
-                count = 0;
                 q.push(tmp->right);
-                if (tmp->right->left != nullptr) {
-                    count++;
-                }
-                if (tmp->right->right != nullptr) {
-                    count++;
-                }
-                compare.push_back(pair<TreeNode*, int>(tmp->right, count));
+                compare.push_back(tmp->right);
             }
-            else {
-                compare.push_back(pair<TreeNode*, int>(new TreeNode(-1), 0));
-            }
+            else compare.push_back(new TreeNode(-1));
         }
-
-        line = 0;
-        count = 0;
-        cout << compare[0].first->val << ", " << compare[0].second << endl;
-        cout << endl;
-        int test = compare[0].second;
-        int nodeCnt = 0, nodeCntTmp = 0;
-        int brunch = 0;
+        //보장되는 반복횟수 저장(node하나에 2번의 반복문을 보장하여야 함.)
+        int loopGuarantee = 2; 
+        int node = 0, count = 0;
+        cout << compare[0]->val << endl;
         for (int i = 1; i < compare.size(); i++) {
-            if (nodeCnt == nodeCntTmp + nodeCntTmp) {
+            count++; //반복횟수를 센다
+            v.push_back(compare[i]->val);
+            if (compare[i]->val != -1) node++; //해당 node가 null이 아닐 경우 node를 카운팅한다(반복문을 보장하기 위함)
+            if (count == loopGuarantee) { 
+                loopGuarantee = node * 2; //node의 갯수 * 2 만큼 다음 반복을 보장하기위함
+                count = 0;                         //count와 node의 갯수를 초기화 시킴(다음 level을 가리키기 위함)
+                node = 0;
+                for (int j = 0; j < v.size() / 2; j++) {
+                    cout << v[j] << ", " << v[v.size() - j - 1] << endl;
+                    if (v[j] != v[v.size() - j - 1]) return false; //벡터의 n번째와 벡터의 크기 - n 번째 값을 비교하여 틀릴 경우 false를 반환
+                }
+                //for (int j = 0; j < v.size(); j++) {
+                //    cout << v[j] << " ";
+                //    //if (v[j] != v[v.size() - j - 1]) return false; //벡터의 n번째와 벡터의 크기 - n 번째 값을 비교하여 틀릴 경우 false를 반환
+                //}
                 cout << endl;
-                count = 0;
-                brunch = 0;
+                v.clear();
             }
-            if (compare[i].second != -1) {
-                
-            }
-            cout << compare[i].first->val << ", " << compare[i].second << endl;
-
-            count++;
-        }
-
-        int test2 = 0, test3 = 0;
-        for (int i = 1; i < compare.size(); i++) {
-            if (count == line) {
-                if (i == 1) {
-                    count = 0;
-                    line = test;
-                    test = 0;
-                    test += compare[i].second;
-                    cout << endl;
-                }
-                if (test2 + test2 == test3) {
-                    test3 = 0;
-                    count = 0;
-                    line = test;
-                    test2 = line;
-                    test = 0;
-                    test += compare[i].second;
-                    cout << endl;
-                }
-            }
-            else{
-                if (compare[i].first->val != -1) test += compare[i].second;
-            }
-            cout << compare[i].first->val << ", " << compare[i].second << endl;
-            if (compare[i].first->val != -1) count++;
-            test3++;
         }
 
         delete tmp;
-        return true;
+        return true; //모든 노드가 일치하였기 때문에 true반환
     }
 };
 
@@ -133,7 +101,7 @@ int main() {
 
     root->left->left = new TreeNode(4);
     root->right->right = new TreeNode(4);
-    
+
     root->left->left->right = new TreeNode(5);
     root->right->right->left = new TreeNode(5);
 
@@ -155,34 +123,16 @@ int main() {
     root->right->right->left->left->right->left = new TreeNode(0);
     root->right->right->left->left->right->right = new TreeNode(9);
 
-    //TreeNode* root = new TreeNode(1);
-    //root->left = new TreeNode(2);
-    //root->right = new TreeNode(2);
-    //root->left->right = new TreeNode(3);
-    //root->right->right = new TreeNode(3);
+    /*TreeNode* root = new TreeNode(1);
+    root->left = new TreeNode(2);
+    root->right = new TreeNode(2);
+    root->left->right = new TreeNode(3);
+    root->right->right = new TreeNode(3);*/
 
     Solution s;
-    s.isSymmetric(root);
+    cout << s.isSymmetric(root);
 
     delete root;
 
     return 0;
 }
-
-//Input: 
-//Output: return value
-//Constraints :
-// 1) num of nodes,
-// 2) node value = pos or neg
-//Edge Case :
-// 1) tree == = null, return root;
-//
-//brute force : naive
-//  DFS or BFS or iteratively or recursive
-//  time, space
-//optimal solution
-//  algorithmand Data structure
-//  time, space
-//
-//code :
-//  function
