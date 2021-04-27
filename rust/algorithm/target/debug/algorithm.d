@@ -1,1 +1,1 @@
-D:\develop\CodingTestTraining\rust\algorithm\target\debug\algorithm.exe: D:\develop\CodingTestTraining\rust\algorithm\src\base_algorithm\bfs_dfs.rs D:\develop\CodingTestTraining\rust\algorithm\src\main.rs
+D:\develop\CodingTestTraining\rust\algorithm\target\debug\algorithm.exe: D:\develop\CodingTestTraining\rust\algorithm\src\leet_code\bfs_dfs\NumberOfProvinces.rs D:\develop\CodingTestTraining\rust\algorithm\src\main.rs

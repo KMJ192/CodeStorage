@@ -240,6 +240,12 @@
     <ClCompile Include="DfsTraining.cpp">
       <Filter>소스 파일\leetCode\BFSDFS</Filter>
     </ClCompile>
+    <ClCompile Include="NumberOfProvinces.cpp">
+      <Filter>소스 파일\leetCode\BFSDFS</Filter>
+    </ClCompile>
+    <ClCompile Include="TopologySort.cpp">
+      <Filter>소스 파일\leetCode\BFSDFS</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="default.h">
