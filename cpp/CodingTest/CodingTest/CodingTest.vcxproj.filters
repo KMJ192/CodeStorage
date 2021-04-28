@@ -246,6 +246,12 @@
     <ClCompile Include="TopologySort.cpp">
       <Filter>소스 파일\leetCode\BFSDFS</Filter>
     </ClCompile>
+    <ClCompile Include="RottingOranges.cpp">
+      <Filter>소스 파일\leetCode\BFSDFS</Filter>
+    </ClCompile>
+    <ClCompile Include="CourseSchedule.cpp">
+      <Filter>소스 파일\leetCode\BFSDFS</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="default.h">
