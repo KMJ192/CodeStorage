@@ -1,49 +1,40 @@
-#[derive(Debug, PartialEq, Eq)]
-pub struct TreeNode {
-  pub val: i32,
-  pub left: Option<Rc<RefCell<TreeNode>>>,
-  pub right: Option<Rc<RefCell<TreeNode>>>,
+
+
+fn bfs(){
+
 }
 
-impl TreeNode {
-  #[inline]
-  pub fn new(val: i32) -> Self {
-    TreeNode {
-      val,
-      left: None,
-      right: None
-    }
-  }
+fn dfs(){
+
 }
 
-use std::rc::Rc; //Reference Counting
-use std::cell::RefCell;
+use std::io;
 
-struct Solution;
-impl Solution {
-    pub fn is_symmetric(root: Option<Rc<RefCell<TreeNode>>>) -> bool {
-        
-        true
-    }
-}
+pub fn run(){
+  let test = [
+    [1, 1]
+  ];
+  let mut graph : Vec<Vec<i32>> = Vec::new();
+  let mut str = String::new();
+  //정점의 개수, 간선의 개수, 정점의 번호
+  io::stdin().read_line(&mut str).expect("error");
+  let n : i32 = str.parse::<i32>().unwrap();
 
-enum List{
-  Cons(i32, Rc<List>),
-  Nil,
-}
-use List::{Cons, Nil};
+  str = "".to_string();
+  io::stdin().read_line(&mut str).expect("error");
+  let m : i32 = str.parse::<i32>().unwrap();
 
-pub fn run(){ 
-  //let mut root : Option<Rc<RefCell<TreeNode>>>;
-  //let mut tmp : Rc<RefCell<TreeNode>>;
-  //root node 입력
-  //tmp = Rc::new(RefCell::new(TreeNode{val : 1, left : None, right: None}));
-  //Solution::is_symmetric();
+  str = "".to_string();
+  io::stdin().read_line(&mut str).expect("error");
+  let v : i32 = str.parse::<i32>().unwrap();
 
-  let a = Rc::new(Cons(5, Rc::new(Cons(10, Rc::new(Nil)))));
-  println!("{}", Rc::strong_count(&a));
-  let b = Cons(3, Rc::clone(&a));
-  println!("{}", Rc::strong_count(&a));
-  let c = Cons(2, Rc::clone(&a));
-  println!("{}", Rc::strong_count(&a));
+    for i in 0..m {
+      str = "".to_string();
+      io::stdin().read_line(&mut str).expect("error");
+      let x : i32 = str.parse::<i32>().unwrap();
+      str = "".to_string();
+      io::stdin().read_line(&mut str).expect("error");
+      let y : i32 = str.parse::<i32>().unwrap();
+
+    }    
 }
