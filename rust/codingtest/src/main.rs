@@ -2,12 +2,15 @@
 //#[path="./turret/turret.rs"] mod turret;
 //#[path="./backjun/dfs_bfs.rs"] mod dfs_bfs;
 //#[path="./base_algorithm/bfs_dfs.rs"] mod bfs_dfs;
-#[path="./leet_code/bfs_dfs/NumberOfProvinces.rs"] mod nop;
+//#[path="./leet_code/bfs_dfs/NumberOfProvinces.rs"] mod nop;
+#[path="./leet_code/bfs_dfs/RottingOranges.rs"] mod ro;
+
 
 fn main() {
     //다른 디렉토리의 function 읽기
     //calltest::test();
     //turret::turret();
     //bfs_dfs::run();
-    nop::run();
+    //nop::run();
+    ro::run();
 }
