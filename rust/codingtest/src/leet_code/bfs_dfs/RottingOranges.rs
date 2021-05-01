@@ -1,61 +1,64 @@
+use std::collections::VecDeque;
+
 struct Solution;
 
-
-
 impl Solution {
-    pub fn oranges_rotting(grid: Vec<Vec<i32>>) -> i32 {
-        use std::collections::VecDeque;
-        let mut q = VecDeque::<(i32, i32)>::new();
-        println!("최초 상태");
+    pub fn oranges_rotting(mut grid: Vec<Vec<i32>>) -> i32 {
+        let mut q : VecDeque<(i32, i32)> = VecDeque::new();
+        let mut _loop : i32 = 0;
+        //println!("0 번째");
         for i in 0..grid.len(){
             for j in 0..grid[i].len(){
-                print!("{} ", grid[i][j]);
+                //print!("{} ", grid[i][j]);
                 if grid[i][j] == 2{
                     q.push_back((i as i32, j as i32));
+                    _loop += 1;
                 }
             }
-            println!();
+            //println!();
         }
-        println!("{:?}", q.front());
-        //let min : i32 = 0;
-        // while !q.is_empty() {
-        //     println!("{}번째", min + 1);
-        //     let _loop : usize = q.len();
-        //     grid = Self::change(&grid, (q.front().0, q.front().1 ));
-        // }
-        1
-    }
-    fn change(grid : &mut Vec<Vec<i32>>, pos : (usize, usize)) -> &mut Vec<Vec<i32>> {
-        if pos.0 > 0{
-            if grid[pos.0 - 1][pos.1] == 1 {
-                grid[pos.0 - 1][pos.1] = 2;
-
+        let mut min : i32 = 0;
+        while !q.is_empty() {
+            let mut tmp  = vec![];
+            //println!("{} 번째", min + 1);
+            while let Some(p) = q.pop_front() {
+                let t = [p.0 as usize, p.1 as usize];
+                if t[0] > 0 && grid[t[0] - 1][t[1]] == 1{
+                    grid[t[0] - 1][t[1]] = 2;
+                    tmp.push((p.0 - 1, p.1));
+                }
+                if t[0] < grid.len() - 1 && grid[t[0] + 1][t[1]] == 1{
+                    grid[t[0] + 1][t[1]] = 2;
+                    tmp.push((p.0 + 1, p.1));
+                }
+                if t[1] > 0 && grid[t[0]][t[1] - 1] == 1{
+                    grid[t[0]][t[1] - 1] = 2;
+                    tmp.push((p.0, p.1 - 1));
+                }
+                if t[1] < grid[t[0]].len() - 1 && grid[t[0]][t[1] + 1] == 1{
+                    grid[t[0]][t[1] + 1] = 2;
+                    tmp.push((p.0, p.1 + 1));
+                }
+            };
+            if !tmp.is_empty() {
+                min += 1;
+                //println!("{:?}", tmp);
+                for p in tmp{
+                    q.push_back(p)
+                }
             }
         }
-        if pos.0 < grid.len() - 1{
-            if grid[pos.0 + 1][pos.1] == 1 {
-                grid[pos.0 + 1][pos.1] = 2;
-
+        for i in 0..grid.len() {
+            for j in 0..grid[i].len(){
+                if grid[i][j] == 1 {
+                    return -1
+                }
             }
         }
-        if pos.1 > 0 {
-            if grid[pos.0][pos.1 - 1] == 1 {
-                grid[pos.0][pos.1 - 1] = 2;
-
-            }
-        }
-        if pos.1 < grid.len() - 1{
-            if grid[pos.0][pos.1 + 1] == 1 {
-                grid[pos.0][pos.1 + 1] = 2;
-
-            }
-        }
-        grid
+        min
     }
 }
 pub fn run(){
-    // let tuple_of_tuples = (1u8, 2u16, 2u32);
-    // println!("tuple of tuples: {}", tuple_of_tuples.0);
 
     let grid: Vec<Vec<i32>> = vec![
         vec![2, 1, 1],
@@ -63,5 +66,5 @@ pub fn run(){
         vec![0, 1, 1]
     ];
 
-    Solution::oranges_rotting(grid);
+    println!("{}", Solution::oranges_rotting(grid));
 }
