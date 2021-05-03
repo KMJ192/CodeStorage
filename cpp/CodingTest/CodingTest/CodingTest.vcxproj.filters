@@ -255,6 +255,9 @@
     <ClCompile Include="CourseSchedule.cpp">
       <Filter>소스 파일\leetCode\BFSDFS</Filter>
     </ClCompile>
+    <ClCompile Include="Trie.cpp">
+      <Filter>소스 파일\leetCode\Trie</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="default.h">
