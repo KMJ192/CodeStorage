@@ -36,7 +36,6 @@ public:
         auto it = priority.begin();
         dfs(numCourses, prerequisites, priority);
 
-
         return answer;
     }
 };

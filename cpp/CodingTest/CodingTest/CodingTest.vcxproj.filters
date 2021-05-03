@@ -73,6 +73,9 @@
     <Filter Include="소스 파일\leetCode\BFSDFS">
       <UniqueIdentifier>{d9217616-e60f-4062-a507-c2d0737c9e5b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\leetCode\Trie">
+      <UniqueIdentifier>{92bbfbf1-7cd7-427c-9ed7-c51cdbe83dcf}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="DollDraw.cpp">
