@@ -43,6 +43,6 @@ export const buildTrie = (words : Array<string>) => {
     for(let i = 0; i < words.length; i++){
         dictionary.insert(words[i]);
     }
-    console.log(dictionary.startsWith("app"));
-    console.log(dictionary.search("apple"));
+    dictionary.startsWith("appd");
+    //console.log(dictionary.search("apple"));
 }
