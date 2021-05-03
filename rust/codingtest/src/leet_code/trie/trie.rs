@@ -1,32 +1,75 @@
-//trie는 tree의 한 종류이다
-//보통 Prefix tree digital search tree, retrieval tree라고도 부른다.
-//트리의 루트에서부터 자식들을 따라가면서 생성된 문자열들이 trie자료구조에 저장되어나감
 use std::collections::HashMap;
 
-#[derive(Default)]
-struct Trie {
+#[derive(Debug)]
+struct Node{
     is_word: bool,
-    children: [Option<Box<Trie>>; 26],
+    next: HashMap<char, Node>
 }
-
-impl Trie {
-    //data구조 초기화
-    fn new() -> Self{
-        Default::default()
-    }
-    fn add_word(&mut self, word : String){
-        let mut cur = self;
-        for c in word.chars(){
-            match &cur.children[c as usize - 'a' as usize] {
-                None => cur.children[c as usize - 'a' as usize] = Some(Box::new(Trie::new())),
-                Some(n) => ()
-            }
-            cur = cur.children[c as usize - 'a' as usize].as_mut().unwrap();
+impl Node{
+    fn new() -> Self {
+        Node {
+            is_word: false,
+            next: HashMap::new()
         }
-        cur.is_word = true;
+    }
+}
+#[derive(Debug)]
+struct Trie {
+    root: Node
+}
+impl Trie {
+    fn moving<T>(t : T) -> T{
+        t
+    }
+    fn new() -> Self {
+        Trie{ root: Node::new() }
+    }
+    fn insert(&mut self, word: String) {
+        let mut current = &mut self.root;
+        for w in word.chars(){
+            current = Trie::moving(current).next.entry(w).or_insert(Node::new());
+        }
+        if !current.is_word{
+            current.is_word = true;
+        }
+    }
+    fn search(&mut self, word: String) -> bool {
+        let mut current = &mut self.root;
+        for w in word.chars(){
+            if let Some(_) = current.next.get(&w){
+                current = Trie::moving(current).next.entry(w).or_insert(Node::new());
+            }else{
+                return false;
+            }
+        }
+        current.is_word
+    }
+    fn starts_with(&mut self, prefix: String) -> bool {
+        let mut current = &mut self.root;
+        for w in prefix.chars(){
+            if let Some(_) = current.next.get(&w){
+                current = Trie::moving(current).next.entry(w).or_insert(Node::new());
+            }else{
+                return false;
+            }
+        }
+        true
     }
 }
 
 pub fn run(){
-
+    let mut obj = Trie::new();
+    obj.insert("apple".parse().unwrap());
+    obj.insert("cat".parse().unwrap());
+    obj.insert("dog".parse().unwrap());
+    obj.insert("boat".parse().unwrap());
+    obj.insert("plane".parse().unwrap());
+    obj.insert("bottle".parse().unwrap());
+    obj.insert("note".parse().unwrap());
+    obj.insert("compiler".parse().unwrap());
+    // let ret_2: bool = obj.search("apple".parse().unwrap());
+    // let ret_3: bool = obj.starts_with("app".parse().unwrap());
+    // println!("{:?}", ret_2);
+    // println!("{:?}", ret_3);
+    println!("{:#?}", obj);
 }
