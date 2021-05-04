@@ -1,7 +1,8 @@
 "use strict";
 exports.__esModule = true;
-var trie_1 = require("./leetCode/dfs_bfs/trie");
+var WordSearchII_1 = require("./leetCode/trie/WordSearchII/WordSearchII");
 function main() {
-    trie_1.buildTrie(["apple", "cat", "dog", "boat", "plane", "bottle", "note", "compiler"]);
+    //buildTrie(["apple", "cat", "dog", "boat", "plane", "bottle", "note", "compiler"]);
+    WordSearchII_1["default"]();
 }
 main();
