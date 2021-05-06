@@ -1,97 +1,86 @@
-use std::collections::HashMap;
+// use std::collections::HashMap;
+//
+// #[derive(Default)]
+// #[derive(Debug)]
+// struct Trie{
+//     is_end: bool,
+//     pos_x : i32,
+//     pos_y : i32,
+//     next : HashMap<char, Trie>
+// }
+// impl Trie{
+//     fn new() -> Self{
+//         Default::default()
+//     }
+//     fn insert(&mut self, word: String){
+//         let mut curr = self;
+//         for c in word.chars(){
+//             curr = curr.next.entry(c).or_insert(Trie::new());
+//         }
+//         curr.is_end = true;
+//     }
+// }
+
+#[derive(Default)]
+struct Position{
+    x : usize,
+    y : usize,
+    visited : [usize; 26]
+}
+impl Position{
+    fn new() -> Self{
+        Default::default()
+    }
+}
+
 struct Solution;
 
-#[derive(Debug)]
-struct Trie {
-    root: Node
-}
-impl Trie {
-    fn moving<T>(t : T) -> T{
-        t
-    }
-    fn new() -> Self {
-        Trie{ root: Node::new() }
-    }
-    fn insert(&mut self, word: String) {
-        let mut current = &mut self.root;
-        for w in word.chars(){
-            current = Trie::moving(current).next.entry(w).or_insert(Node::new());
-        }
-        if !current.is_word{
-            current.is_word = true;
-        }
-    }
-    fn search(&mut self, word: String) -> bool {
-        let mut current = &mut self.root;
-        for w in word.chars(){
-            if let Some(_) = current.next.get(&w){
-                current = Trie::moving(current).next.entry(w).or_insert(Node::new());
-            }else{
-                return false;
-            }
-        }
-        current.is_word
-    }
-    fn starts_with(&mut self, prefix: String) -> bool {
-        let mut current = &mut self.root;
-        for w in prefix.chars(){
-            if let Some(_) = current.next.get(&w){
-                current = Trie::moving(current).next.entry(w).or_insert(Node::new());
-            }else{
-                return false;
-            }
-        }
-        true
-    }
-}
-
+use std::collections::VecDeque;
 impl Solution {
     pub fn find_words(board: Vec<Vec<char>>, words: Vec<String>) -> Vec<String> {
         let mut answer : Vec<String> = Vec::new();
-        let mut words : Vec<String> = Vec::new();
-        let mut tmp = String::from("");
-
-        for i in 0..board.len(){
-            tmp = "".parse().unwrap();
-            for j in board[i].iter(){
-                tmp += &*j.to_string();
+        let mut pos = Position::new();
+        println!("{:?}", board);
+        pos.x = 0;
+        pos.y = 0;
+        for i in words.iter(){
+            if Solution::search(&board, i.parse().unwrap(), &pos){
+                answer.push(i.parse().unwrap());
             }
-            words.push(tmp.parse().unwrap());
-            tmp = tmp.chars().rev().collect::<String>();
-            words.push(tmp.parse().unwrap());
+            println!();
         }
-
-        for i in 0..board[0].len() {
-            tmp = "".parse().unwrap();
-            for j in 0..board.len(){
-                tmp += &*board[j][i].to_string();
-            }
-            words.push(tmp.parse().unwrap());
-            tmp = tmp.chars().rev().collect::<String>();
-            words.push(tmp.parse().unwrap());
-        }
-        println!("{:#?}", words);
-        // let mut obj = Trie::new();
-        // for i in words.iter(){
-        //     obj.insert(i.parse().unwrap());
-        // }
-        // //println!("{:#?}", obj);
-        // println!("{}", obj.starts_with("oath".parse().unwrap()));
         answer
     }
-}
-
-#[derive(Debug)]
-struct Node{
-    is_word: bool,
-    next: HashMap<char, Node>
-}
-impl Node{
-    fn new() -> Self {
-        Node {
-            is_word: false,
-            next: HashMap::new()
+    fn search(board : &Vec<Vec<char>>, word : String, pos : &Position) -> bool{
+        let mut queue = VecDeque::new();
+        let tmp = &word[0..1];
+        for i in 0..board.len() {
+            for j in 0..board[i].len(){
+                if board[i][j] == tmp.parse().unwrap() {
+                    queue.push_back((i, j));
+                }
+            }
         }
+        if queue.is_empty() {
+            return false;
+        }
+        let (mut x, mut y) = queue.pop_front().unwrap();
+        //상하좌우 검사
+        //상 y-1
+        if y > 0 {
+
+        }
+        //하 y+1
+
+        //좌 x-1
+
+        //우 x+1
+
+
+        true
+    }
+    fn find(x : usize, y : usize){
+
     }
 }
 
@@ -109,4 +98,7 @@ pub fn run(){
         "rain".parse().unwrap()
     ];
     Solution::find_words(board, words);
+    // let mut obj = Trie::new();
+    // obj.insert("word".parse().unwrap());
+    // println!("{:#?}", obj);
 }
