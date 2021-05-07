@@ -30,7 +30,7 @@ impl Solution {
     pub fn find_order(num_courses: i32, prerequisites: Vec<Vec<i32>>) -> Vec<i32> {
         let mut answer : Vec<i32> = Vec::new();
         //incoming outgoing 저장할 topology Graph
-        //incoming count, outcoming node
+        //incoming count, outgoing node
         let mut v : Vec<(usize, Vec<usize>)> = vec![(0, vec![]); num_courses as usize];
 
         println!("{:?}", prerequisites);
@@ -73,11 +73,11 @@ impl Solution {
 }
 
 pub fn run(){
-    let mut perequistes : Vec<Vec<i32>> = Vec::new();
-    perequistes.push(vec![1, 0]);
-    perequistes.push(vec![2, 0]);
-    perequistes.push(vec![3, 1]);
-    perequistes.push(vec![3, 2]);
+    let mut prerequisites: Vec<Vec<i32>> = Vec::new();
+    prerequisites.push(vec![1, 0]);
+    prerequisites.push(vec![2, 0]);
+    prerequisites.push(vec![3, 1]);
+    prerequisites.push(vec![3, 2]);
 
-    println!("{:?}", Solution::find_order(4, perequistes));
+    println!("{:?}", Solution::find_order(4, prerequisites));
 }
