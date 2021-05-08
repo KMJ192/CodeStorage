@@ -76,6 +76,12 @@
     <Filter Include="소스 파일\leetCode\Trie">
       <UniqueIdentifier>{92bbfbf1-7cd7-427c-9ed7-c51cdbe83dcf}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\leetCode\StackQueue">
+      <UniqueIdentifier>{c51f55e0-5793-4bea-8c9b-33877977e9e9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\프로그래머스\2021카카오상반기">
+      <UniqueIdentifier>{4dcf7fc5-2d66-4c15-9cc8-ce0fd0fcd2e7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="DollDraw.cpp">
@@ -257,6 +263,21 @@
     </ClCompile>
     <ClCompile Include="Trie.cpp">
       <Filter>소스 파일\leetCode\Trie</Filter>
+    </ClCompile>
+    <ClCompile Include="VaildParentheses.cpp">
+      <Filter>소스 파일\leetCode\StackQueue</Filter>
+    </ClCompile>
+    <ClCompile Include="TaskScheduler.cpp">
+      <Filter>소스 파일\leetCode\StackQueue</Filter>
+    </ClCompile>
+    <ClCompile Include="2021상반기카카오1.cpp">
+      <Filter>소스 파일\프로그래머스\2021카카오상반기</Filter>
+    </ClCompile>
+    <ClCompile Include="2021상반기카카오2.cpp">
+      <Filter>소스 파일\프로그래머스\2021카카오상반기</Filter>
+    </ClCompile>
+    <ClCompile Include="2021상반기카카오3.cpp">
+      <Filter>소스 파일\프로그래머스\2021카카오상반기</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

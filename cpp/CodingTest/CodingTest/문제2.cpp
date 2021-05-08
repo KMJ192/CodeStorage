@@ -112,7 +112,7 @@ int solution(string s) {
 int main() {
     string s = "[](){}";
     cout << solution(s);
-    map<string, string> t;
+    //map<string, string> t;
 
     return 0;
 }
