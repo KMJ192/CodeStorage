@@ -1,1 +1,1 @@
-D:\develop\CodingTestTraining\rust\codingtest\target\debug\codingtest.exe: D:\develop\CodingTestTraining\rust\codingtest\src\leet_code\trie\word_search_ii.rs D:\develop\CodingTestTraining\rust\codingtest\src\main.rs
+D:\develop\CodingTestTraining\rust\codingtest\target\debug\codingtest.exe: D:\develop\CodingTestTraining\rust\codingtest\src\leet_code\stack\VaildParentheses.rs D:\develop\CodingTestTraining\rust\codingtest\src\main.rs

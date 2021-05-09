@@ -1,8 +1,11 @@
 "use strict";
 exports.__esModule = true;
-var WordSearchII_1 = require("./leetCode/trie/WordSearchII/WordSearchII");
+//import { buildTrie } from './leetCode/trie/trie';
+//import WordSearchII from './leetCode/trie/WordSearchII/WordSearchII';
+var ValidParentheses_1 = require("./leetCode/stack/ValidParentheses");
 function main() {
     //buildTrie(["apple", "cat", "dog", "boat", "plane", "bottle", "note", "compiler"]);
-    WordSearchII_1["default"]();
+    //WordSearchII();
+    console.log(ValidParentheses_1.isValid("{{)()}}"));
 }
 main();
