@@ -22,7 +22,7 @@ using namespace std;
 //code
 class Solution {
 private:
-    queue<pair<int, int>> q;
+    queue<pair<int, int>> coolTime;
 public:
     int orangesRotting(vector<vector<int>>& grid) {
         int min = 0;
@@ -31,21 +31,21 @@ public:
             for (int j = 0; j < grid[i].size(); j++) {
                 cout << grid[i][j] << " ";
                 if (grid[i][j] == 2) {
-                    q.push(pair<int, int>(i, j));
+                    coolTime.push(pair<int, int>(i, j));
                 }
             }
             cout << endl;
         }
         cout << endl;
-        while (!q.empty()) {
+        while (!coolTime.empty()) {
             cout << "확산" << min+1 << "번째" << endl;
-            int loop = q.size();
+            int loop = coolTime.size();
             for (int i = 0; i < loop; i++){
                 //cout << q.front().first << q.front().second << endl;
                 //vector를 변경하는 함수 call
-                grid = change(grid, pair<int, int>(q.front().first, q.front().second));
+                grid = change(grid, pair<int, int>(coolTime.front().first, coolTime.front().second));
                 //cout << q.front().first << ", " << q.front().second << endl;
-                q.pop();
+                coolTime.pop();
             }
             for (int n = 0; n < grid.size(); n++) {
                 for (int m = 0; m < grid[n].size(); m++) {
@@ -73,28 +73,28 @@ public:
         if (pos.first > 0) {
             if (grid[pos.first - 1][pos.second] == 1) {
                 grid[pos.first - 1][pos.second] = 2;
-                q.push(pair<int, int>(pos.first - 1, pos.second));
+                coolTime.push(pair<int, int>(pos.first - 1, pos.second));
             }
         }
         //하
         if (pos.first < grid.size() - 1) {
             if (grid[pos.first + 1][pos.second] == 1) {
                 grid[pos.first + 1][pos.second] = 2;
-                q.push(pair<int, int>(pos.first + 1, pos.second));
+                coolTime.push(pair<int, int>(pos.first + 1, pos.second));
             }
         }
         //좌
         if (pos.second > 0) {
             if (grid[pos.first][pos.second - 1] == 1) {
                 grid[pos.first][pos.second - 1] = 2;
-                q.push(pair<int, int>(pos.first, pos.second - 1));
+                coolTime.push(pair<int, int>(pos.first, pos.second - 1));
             }
         }
         //우
         if (pos.second < grid[pos.first].size() - 1) {
             if (grid[pos.first][pos.second + 1] == 1) {
                 grid[pos.first][pos.second + 1] = 2;
-                q.push(pair<int, int>(pos.first, pos.second + 1));
+                coolTime.push(pair<int, int>(pos.first, pos.second + 1));
             }
         }
         return grid;

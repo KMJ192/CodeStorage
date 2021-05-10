@@ -16,7 +16,7 @@ using namespace std;
 
 class Solution {
 private:
-    queue<int> q;
+    queue<int> coolTime;
     map<int, int> priority;
     int count = 0;
 

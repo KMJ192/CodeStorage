@@ -28,7 +28,7 @@ struct TreeNode {
 //code :
 class Solution {
 private:
-    queue<TreeNode*> q;
+    queue<TreeNode*> coolTime;
     vector<TreeNode*> compare;
     vector<int> v;
 public:
@@ -44,20 +44,20 @@ public:
         tmp = root;
 
         //BFS풀이를 위한 q
-        q.push(tmp);
+        coolTime.push(tmp);
         //모든 node를 push할 compare vector
         //null일 경우 -1을 저장하고 null이 아니면 tree의 value를 저장
         compare.push_back(tmp);
-        while (!q.empty()) {
-            tmp = q.front();
-            q.pop();
+        while (!coolTime.empty()) {
+            tmp = coolTime.front();
+            coolTime.pop();
             if (tmp->left != nullptr) {
-                q.push(tmp->left);
+                coolTime.push(tmp->left);
                 compare.push_back(tmp->left);
             }
             else compare.push_back(new TreeNode(-1));
             if (tmp->right != nullptr) {
-                q.push(tmp->right);
+                coolTime.push(tmp->right);
                 compare.push_back(tmp->right);
             }
             else compare.push_back(new TreeNode(-1));

@@ -16,21 +16,21 @@ struct TreeNode {
 
 class Solution {
 private:
-    map<string, string> m;
+    map<string, string> task;
 
 public:
     vector<string> letterCombinations(string digits) {
         vector<string> answer;
         if(digits == "") return answer;
 
-        m.insert(pair<string, string>("2", "a.d.c"));
-        m.insert(pair<string, string>("3", "d.e.f"));
-        m.insert(pair<string, string>("4", "g.h.i"));
-        m.insert(pair<string, string>("5", "j.k.l"));
-        m.insert(pair<string, string>("6", "m.n.o"));
-        m.insert(pair<string, string>("7", "p.q.r.s"));
-        m.insert(pair<string, string>("8", "t.u.v"));
-        m.insert(pair<string, string>("9", "w.x.y.z"));
+        task.insert(pair<string, string>("2", "a.d.c"));
+        task.insert(pair<string, string>("3", "d.e.f"));
+        task.insert(pair<string, string>("4", "g.h.i"));
+        task.insert(pair<string, string>("5", "j.k.l"));
+        task.insert(pair<string, string>("6", "m.n.o"));
+        task.insert(pair<string, string>("7", "p.q.r.s"));
+        task.insert(pair<string, string>("8", "t.u.v"));
+        task.insert(pair<string, string>("9", "w.x.y.z"));
         
         vector<vector<string>> map;
         for (int i = 0; i < digits.size(); i++) {
