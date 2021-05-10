@@ -1,2 +1,4 @@
-﻿  2021상반기카카오3.cpp
+﻿  TaskScheduler.cpp
+D:\develop\CodingTestTraining\cpp\CodingTest\CodingTest\TaskScheduler.cpp(16,1): warning C4267: 'return': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+D:\develop\CodingTestTraining\cpp\CodingTest\CodingTest\TaskScheduler.cpp(18,1): warning C4267: '초기화 중': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
   CodingTest.vcxproj -> D:\develop\CodingTestTraining\cpp\CodingTest\x64\Debug\CodingTest.exe
