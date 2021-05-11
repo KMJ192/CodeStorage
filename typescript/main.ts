@@ -1,12 +1,6 @@
-//import { buildTrie } from './leetCode/trie/trie';
-//import WordSearchII from './leetCode/trie/WordSearchII/WordSearchII';
-//import { isValid } from "./leetCode/stack/ValidParentheses";
-import { leastInterval } from "./leetCode/queue/TaskScheduler";
+import { EventLoop } from "./base_syntax/event_loop/EventLoop";
 
 function main(){
-    //buildTrie(["apple", "cat", "dog", "boat", "plane", "bottle", "note", "compiler"]);
-    //WordSearchII();
-    //console.log(isValid("{{)()}}"));
-    leastInterval(['A', 'A', 'A', 'B', 'B', 'B'], 2);
+    EventLoop();
 }
 main();
