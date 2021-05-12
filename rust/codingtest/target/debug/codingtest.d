@@ -1,1 +1,1 @@
-D:\develop\CodingTestTraining\rust\codingtest\target\debug\codingtest.exe: D:\develop\CodingTestTraining\rust\codingtest\src\leet_code\merge\merge_intervals.rs D:\develop\CodingTestTraining\rust\codingtest\src\main.rs
+D:\develop\CodingTestTraining\rust\codingtest\target\debug\codingtest.exe: D:\develop\CodingTestTraining\rust\codingtest\src\leet_code\merge\k_closest_point_to_origin.rs D:\develop\CodingTestTraining\rust\codingtest\src\main.rs
