@@ -19,8 +19,7 @@ impl Solution {
         for i in 0..k{
             answer.push(check[i as usize].1.to_owned());
         }
-        println!("{:?}", check);
-        println!("{:?}", answer);
+
         answer
     }
 }

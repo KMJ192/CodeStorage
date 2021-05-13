@@ -1,6 +1,11 @@
-import { EventLoop } from "./base_syntax/event_loop/EventLoop";
+import { intersection } from "./leetCode/merge/intersection";
+
 
 function main(){
-    EventLoop();
+    let num1: number[] = [1, 2, 2, 1];
+    let num2: number[] = [2, 2];
+    
+    intersection(num1, num2);
 }
 main();
+

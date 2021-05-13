@@ -1,7 +1,9 @@
 "use strict";
 exports.__esModule = true;
-var EventLoop_1 = require("./base_syntax/event_loop/EventLoop");
+var intersection_1 = require("./leetCode/merge/intersection");
 function main() {
-    EventLoop_1.EventLoop();
+    var num1 = [1, 2, 2, 1];
+    var num2 = [2, 2];
+    intersection_1.intersection(num1, num2);
 }
 main();
