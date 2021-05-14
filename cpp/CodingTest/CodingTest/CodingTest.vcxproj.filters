@@ -82,6 +82,12 @@
     <Filter Include="소스 파일\프로그래머스\2021카카오상반기">
       <UniqueIdentifier>{4dcf7fc5-2d66-4c15-9cc8-ce0fd0fcd2e7}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\기본알고리즘">
+      <UniqueIdentifier>{06985a95-8ef6-4fbc-b322-a7d4739b30cf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\기본알고리즘\HashTable">
+      <UniqueIdentifier>{f8f53ade-ae93-4543-9ecb-68920dc91211}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="DollDraw.cpp">
@@ -278,6 +284,9 @@
     </ClCompile>
     <ClCompile Include="2021상반기카카오3.cpp">
       <Filter>소스 파일\프로그래머스\2021카카오상반기</Filter>
+    </ClCompile>
+    <ClCompile Include="HashTable.cpp">
+      <Filter>소스 파일\기본알고리즘\HashTable</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

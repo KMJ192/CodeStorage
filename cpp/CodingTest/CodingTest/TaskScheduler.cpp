@@ -1,11 +1,8 @@
 #include<iostream>
 #include<vector>
 #include<algorithm>
-<<<<<<< Updated upstream
 #include<map>
-=======
 #include<unordered_map>
->>>>>>> Stashed changes
 #include<queue>
 
 using namespace std;
@@ -62,7 +59,6 @@ using namespace std;
 
 class Solution {
 private:
-<<<<<<< Updated upstream
     map<char, int> task;
 public:
     int leastInterval(vector<char>& tasks, int n) {
@@ -84,76 +80,7 @@ public:
             }
         }
         //(가장 숫자가 많은 task의 수 - 1) * (cool time + 1) + 가장 숫자가 많은 task의 수
-        return max(m,(maxTask - 1) * (n + 1) + numpeak);
-=======
-    priority_queue<char> q;                  //작업 queue
-    unordered_map<char, int> coolDown;   //pop 후 coolDown Time
-    unordered_map<char, int> m;          //tasks의 원소 및 갯수
-public:
-    int leastInterval(vector<char>& tasks, int n) {
-        for (int i = 0; i < tasks.size(); i++) {
-            m[tasks[i]]++;
-        }
-        /*for (auto it = m.begin(); it != m.end(); it++) {
-            cout << it->first << ", " << it->second << endl;
-        }*/
-        int time = 1;
-        int index = 1;
-
-        q.push(tasks[0]);
-        coolDown[tasks[0]] = n;
-        m[tasks[0]]--;
-
-        while (!q.empty()) {
-            time++;
-            bool nextStep = false, coolTime = false;
-            char task = q.top();
-            cout << "종료한 task : " << task << endl;
-            if (coolDown.size() > 0) {
-                cout << "쿨타임 현황" << endl;
-                for (auto it = coolDown.begin(); it != coolDown.end(); it++) {
-                    cout << it->first << ", " << it->second << endl;
-                }
-            }
-            q.pop();
-            if (task != ' ') {
-                for (auto it = m.begin(); it != m.end(); it++) {
-                    //실행해야 되는 task가 남아 있는지 확인
-                    cout << it->first << ", " << it->second << endl;
-                    if (it->second > 0) {
-                        nextStep = true;
-                        //있다면 쿨탐 확인
-                        for (int i = 0; i < coolDown.size(); i++) {
-                            /*if (it->first == coolDown[i].first && coolDown[i].second > 0) {
-                                coolTime = true;
-                                break;
-                            }*/
-                        }
-                        //쿨탐 없는게 있다면 q에 push후 m에서 1 감소
-                        if (coolTime == false) {
-                            q.push(it->first);
-                            //coolDown.push_back(pair<char, int>(it->first, n));
-                            m[it->first]--;
-                            break;
-                        }
-                        else {
-                            coolTime = false;
-                        }
-                    }
-                }
-            }
-            if (nextStep == true && q.empty()) {
-                q.push(' ');
-            }
-            //쿨타임 감소
-            //for (int i = 0; i < coolDown.size() - 1; i++) {
-            //    if (coolDown[i].second > 0) {
-            //        coolDown[i].second--;
-            //    }
-            //}
-        }
-        return time;
->>>>>>> Stashed changes
+        return max(m, (maxTask - 1) * (n + 1) + numpeak);
     }
 };
 
