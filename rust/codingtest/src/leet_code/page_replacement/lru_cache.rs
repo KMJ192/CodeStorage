@@ -6,7 +6,7 @@ use std::collections::hash_map::Entry;
 #[derive(Debug)]
 struct LRUCache {
     capacity: usize,
-    map: HashMap<i32, Rc<RefCell<DoublyLinkedListNode<(i32, i32)>>>>,
+    link: HashMap<i32, Rc<RefCell<DoublyLinkedListNode<(i32, i32)>>>>,
     list : DoublyLinkedList<(i32, i32)>
 }
 
@@ -14,31 +14,33 @@ impl LRUCache {
     fn new(capacity: i32) -> Self {
         LRUCache{
             capacity: capacity as usize,
-            map: HashMap::with_capacity(capacity as usize),
+            link: HashMap::with_capacity(capacity as usize),
             list: DoublyLinkedList::new()
         }
     }
-
+    
     fn get(&mut self, key: i32) -> i32 {
-        match self.map.entry(key){
+        //key를 찾았을 경우 해당 value를 returm
+        match self.link.entry(key){
             Entry::Occupied(mut o) => {
-                let (k, v) = self.list.remove(o.get().clone());
-                *o.get_mut() = self.list.push_front((k, v));
-                v
+                o.get().borrow().val.1
             }
             _ => -1
         }
     }
 
     fn put(&mut self, key: i32, value: i32) {
-        if self.map.contains_key(&key){
-            self.list.remove(Rc::clone(self.map.get(&key).unwrap()));
+        if self.link.contains_key(&key){
+            //같은 key가 있을 경우, 해당 Key에 대한 노드 제거
+            self.list.remove(Rc::clone(self.link.get(&key).unwrap()));
         }else if self.capacity == self.list.len(){
+            //현재 할당된 크기(list.len())가 최대크기한도(capacity)와 같을 경우, 연결 해제
             if let Some((k, _v)) = self.list.pop_back(){
-                self.map.remove(&k);
+                self.link.remove(&k);
             }
         }
-        self.map.insert(key, self.list.push_front((key, value)));
+        //새로운 페이지 할당
+        self.link.insert(key, self.list.push_front((key, value)));
     }
 }
 
@@ -115,7 +117,7 @@ impl<T> DoublyLinkedList<T> where T: Copy{
 
         new_tail
     }
-
+    //front노드 연결 해제
     fn pop_front(&mut self) -> Option<T>{
         match &self.head.take(){
             Some(head_node) => {
@@ -134,6 +136,8 @@ impl<T> DoublyLinkedList<T> where T: Copy{
             _ => None
         }
     }
+
+    //back노드 연결 해제
     fn pop_back(&mut self) -> Option<T>{
         match &self.tail.take() {
             Some(tail_node) => {
@@ -185,6 +189,23 @@ impl<T> DoublyLinkedList<T> where T: Copy{
     }
 }
 
+#[derive(Debug)]
+struct Node{
+    key: i32,
+    value: i32,
+    prev: Option<Rc<RefCell<Node>>>,
+    next: Option<Rc<RefCell<Node>>>,
+}
+impl Node{
+    fn new() -> Self{
+        Node{
+            key : 0,
+            value : 0,
+            prev : None,
+            next : None
+        }
+    }
+}
 
 pub fn run(){
     let mut obj = LRUCache::new(4);
@@ -192,8 +213,45 @@ pub fn run(){
     obj.put(2, 2);
     obj.put(3, 3);
     obj.put(4, 4);
-    obj.put(5, 5);
-    obj.put(6, 6);
-    let ret : i32 = obj.get(2);
+    obj.put(5, 4);
+    obj.put(1, 3);
+    let ret : i32 = obj.get(5);
     println!("{:#?}", ret);
+
+    // let mut f_node = Node::new();
+    // let mut s_node = Node::new();
+    // let mut t_node = Node::new();
+    // let mut temp_node = Node::new();
+    // f_node.key = 1;
+    // f_node.value = 1;
+    //
+    // s_node.key = 2;
+    // s_node.value = 2;
+    //
+    // t_node.key = 3;
+    // t_node.value = 3;
+    //
+    // temp_node.key = 0;
+    // temp_node.value = 0;
+    //
+    // f_node.next = Some(Rc::new(RefCell::new(s_node)));
+    // f_node.prev = Some(Rc::new(RefCell::new(t_node)));
+    //
+    //
+    // let test = f_node.prev.as_ref().map(|a| Rc::clone(a));
+    // println!("{:?}", test);
+
+    // let mut hash = HashMap::new();
+    // hash.entry("123").or_insert(1);
+    //
+    // match hash.entry("123"){
+    //     Entry::Occupied(o) => {
+    //         println!("{:?}", o.key());
+    //         println!("{:?}", o.get());
+    //     }
+    //     _ => {}
+    // }
+
+    // println!("{:?}",hash.entry("123"));
+
 }
