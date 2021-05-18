@@ -4,6 +4,6 @@
 
 fn main() {
     //stock::run();
-    //lru::run();
-    lru2::run();
+    lru::run();
+    //lru2::run();
 }

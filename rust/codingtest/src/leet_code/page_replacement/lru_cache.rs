@@ -45,7 +45,7 @@ impl LRUCache {
 }
 
 //이중연결리스트의 node
-#[derive(Debug, Default)]
+#[derive(Debug)]
 struct DoublyLinkedListNode<T>{
     val : T,
     prev : Option<Rc<RefCell<DoublyLinkedListNode<T>>>>,
@@ -189,23 +189,23 @@ impl<T> DoublyLinkedList<T> where T: Copy{
     }
 }
 
-#[derive(Debug)]
-struct Node{
-    key: i32,
-    value: i32,
-    prev: Option<Rc<RefCell<Node>>>,
-    next: Option<Rc<RefCell<Node>>>,
-}
-impl Node{
-    fn new() -> Self{
-        Node{
-            key : 0,
-            value : 0,
-            prev : None,
-            next : None
-        }
-    }
-}
+// #[derive(Debug)]
+// struct Node{
+//     key: i32,
+//     value: i32,
+//     prev: Option<Rc<RefCell<Node>>>,
+//     next: Option<Rc<RefCell<Node>>>,
+// }
+// impl Node{
+//     fn new() -> Self{
+//         Node{
+//             key : 0,
+//             value : 0,
+//             prev : None,
+//             next : None
+//         }
+//     }
+// }
 
 pub fn run(){
     let mut obj = LRUCache::new(4);
