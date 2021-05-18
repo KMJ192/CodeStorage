@@ -2,3 +2,5 @@
 .cpp\CodingTest\bin/
 .obj/
 vscode
+rust/algorithm
+rust/codingtest
