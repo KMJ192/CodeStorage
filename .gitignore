@@ -1,6 +1,5 @@
-.cpp\CodingTest\vs\
-.cpp\CodingTest\bin/
 .obj/
 vscode
-rust/algorithm
-rust/codingtest
+.rust/algorithm
+.rust/codingtest
+.cpp/CodingTest
