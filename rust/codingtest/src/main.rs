@@ -1,5 +1,5 @@
-#[path="./leet_code/page_replacement/lru_cache.rs"] mod lru_cache;
+#[path="./leet_code/page_replacement/buy_and_sell_stock.rs"] mod stock;
 
 fn main() {
-    lru_cache::run();
+    stock::run();
 }

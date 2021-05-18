@@ -1,1 +1,1 @@
-D:\develop\CodingTestTraining\rust\codingtest\target\debug\codingtest.exe: D:\develop\CodingTestTraining\rust\codingtest\src\leet_code\page_replacement\lru_cache.rs D:\develop\CodingTestTraining\rust\codingtest\src\main.rs
+D:\develop\CodingTestTraining\rust\codingtest\target\debug\codingtest.exe: D:\develop\CodingTestTraining\rust\codingtest\src\leet_code\page_replacement\buy_and_sell_stock.rs D:\develop\CodingTestTraining\rust\codingtest\src\main.rs

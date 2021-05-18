@@ -213,7 +213,7 @@ pub fn run(){
     obj.put(2, 2);
     obj.put(3, 3);
     obj.put(4, 4);
-    obj.put(5, 4);
+    obj.put(5, 5);
     obj.put(1, 3);
     let ret : i32 = obj.get(5);
     println!("{:#?}", ret);
@@ -253,5 +253,4 @@ pub fn run(){
     // }
 
     // println!("{:?}",hash.entry("123"));
-
 }
