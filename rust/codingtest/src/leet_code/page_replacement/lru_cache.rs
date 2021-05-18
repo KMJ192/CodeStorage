@@ -45,7 +45,7 @@ impl LRUCache {
 }
 
 //이중연결리스트의 node
-#[derive(Debug)]
+#[derive(Debug, Default)]
 struct DoublyLinkedListNode<T>{
     val : T,
     prev : Option<Rc<RefCell<DoublyLinkedListNode<T>>>>,
