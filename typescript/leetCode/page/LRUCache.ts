@@ -12,12 +12,13 @@ class DoublyLinkedListNode<T>{
 class DoublyLinkedList<T>{
     private head : DoublyLinkedListNode<T> | null;
     private tail : DoublyLinkedListNode<T> | null;
-    private length : number;
+    public length : number;
     constructor(){
         this.head = null;
         this.tail = null;
         this.length = 0;
     }
+
     public push_front(value : T) : DoublyLinkedListNode<T> {
         const newHead = new DoublyLinkedListNode<T>(value);
         if(this.head === null){
@@ -27,32 +28,44 @@ class DoublyLinkedList<T>{
             this.head.prev = newHead;
         }
         this.length++;
-        //console.log(this);
         return newHead;
     }
-    public push_back(value : T){
+    
+    public push_back(value : T) : DoublyLinkedListNode<T>{
         let newTail = new DoublyLinkedListNode<T>(value);
         if(this.tail === null){
-
+            this.head = newTail;
         }else{
             this.tail.prev = this.tail.next;
             this.tail.next = newTail;
         }
-        //console.log(this);
         this.length++;
+        return newTail;
     }
+
     public pop_front(){
-        this.length--;
+        if(this.length > 0) this.length--;
+        if(this.head === null){
+            console.log(this);
+        }else{
+            if(this.head.next === null){
+                this.tail = null;
+            }else{
+
+            }
+        }
+        
     }
+
     public pop_back(){
-        this.length--;
+        if(this.length > 0) this.length--;
+
     }
     public remove(){
-        this.length--;
+        if(this.length > 0) this.length--;
+
     }
 }
-
-
 
 class LRUCache {
     private capacity : number;
@@ -83,6 +96,7 @@ export function run(){
     let test = new DoublyLinkedList<number>();
     test.push_front(1);
     test.push_front(2);
+    test.pop_front();
     //test.push_back(2);
-    console.log(test);
+    //console.log(test);
 }

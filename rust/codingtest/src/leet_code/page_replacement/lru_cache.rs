@@ -51,16 +51,6 @@ struct DoublyLinkedListNode<T>{
     prev : Option<Rc<RefCell<DoublyLinkedListNode<T>>>>,
     next : Option<Rc<RefCell<DoublyLinkedListNode<T>>>>
 }
-impl<T> DoublyLinkedListNode<T>{
-    fn new(val : T) -> Rc<RefCell<DoublyLinkedListNode<T>>>{
-        Rc::new(RefCell::new(DoublyLinkedListNode{
-            val,
-            prev : None,
-            next : None,
-        }))
-    }
-}
-
 //이중연결리스트 객체 생성
 #[derive(Debug)]
 struct DoublyLinkedList<T> {
@@ -82,7 +72,6 @@ impl<T> DoublyLinkedList<T> where T: Copy{
         self.length
     }
 
-    //node를 head에 연결
     fn push_front(&mut self, val: T) -> Rc<RefCell<DoublyLinkedListNode<T>>>{
         let new_head = DoublyLinkedListNode::new(val);
         match &self.head.take(){
@@ -100,7 +89,6 @@ impl<T> DoublyLinkedList<T> where T: Copy{
         new_head
     }
 
-    //node를 tail에 연결
     fn push_back(&mut self, val: T) -> Rc<RefCell<DoublyLinkedListNode<T>>> {
         let new_tail = DoublyLinkedListNode::new(val);
         match &self.tail.take(){
@@ -117,7 +105,6 @@ impl<T> DoublyLinkedList<T> where T: Copy{
 
         new_tail
     }
-    //front노드 연결 해제
     fn pop_front(&mut self) -> Option<T>{
         match &self.head.take(){
             Some(head_node) => {
@@ -186,6 +173,16 @@ impl<T> DoublyLinkedList<T> where T: Copy{
         }
         self.length -= 1;
         rn.val
+    }
+}
+
+impl<T> DoublyLinkedListNode<T>{
+    fn new(val : T) -> Rc<RefCell<DoublyLinkedListNode<T>>>{
+        Rc::new(RefCell::new(DoublyLinkedListNode{
+            val,
+            prev : None,
+            next : None,
+        }))
     }
 }
 
