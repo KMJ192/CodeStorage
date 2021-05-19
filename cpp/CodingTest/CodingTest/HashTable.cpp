@@ -23,7 +23,6 @@ public:
 
 class HashTable {
 private:
-
     int size;
     Node* nodeList;
 
@@ -68,7 +67,6 @@ public:
 
     Node get(string key) {
         int index = hashFunction(key);
-        cout << "ÇØ½Ã °ª: " << index << '\n';
         Node* cur = nodeList[index].getNext();
         while (cur != NULL) {
             if (!key.compare(cur->getKey())) {
@@ -78,7 +76,6 @@ public:
         }
         return Node();
     }
-
 };
 
 int main(void){

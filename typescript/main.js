@@ -1,7 +1,8 @@
 "use strict";
 exports.__esModule = true;
-var LRUCache_1 = require("./leetCode/page/LRUCache");
+var ClimbingStairs_1 = require("./leetCode/dp/ClimbingStairs");
 function main() {
-    LRUCache_1.run();
+    //run();
+    ClimbingStairs_1.climbStairs(9);
 }
 main();

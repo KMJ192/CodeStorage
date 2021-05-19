@@ -27,6 +27,7 @@ class DoublyLinkedList<T>{
             this.head.next = this.head.prev;
             this.head.prev = newHead;
         }
+        this.head = newHead;
         this.length++;
         return newHead;
     }
@@ -39,27 +40,35 @@ class DoublyLinkedList<T>{
             this.tail.prev = this.tail.next;
             this.tail.next = newTail;
         }
+        this.tail = newTail;
         this.length++;
         return newTail;
     }
 
-    public pop_front(){
-        if(this.length > 0) this.length--;
+    public pop_front() : DoublyLinkedListNode<T>{
         if(this.head === null){
-            console.log(this);
+            return null;
         }else{
             if(this.head.next === null){
                 this.tail = null;
             }else{
-
+                this.head = this.head.next.prev
+                this.head.next = null;    
             }
+            if(this.length > 0) this.length--;
+            return this.head;
         }
-        
     }
 
     public pop_back(){
-        if(this.length > 0) this.length--;
+        if(this.tail === null){
+            return null;
+        }else{
+            
 
+            if(this.length > 0) this.length--;
+            return this.tail;
+        }
     }
     public remove(){
         if(this.length > 0) this.length--;
@@ -95,8 +104,7 @@ export function run(){
 
     let test = new DoublyLinkedList<number>();
     test.push_front(1);
-    test.push_front(2);
+    console.log(test);
     test.pop_front();
-    //test.push_back(2);
-    //console.log(test);
+    console.log(test);
 }

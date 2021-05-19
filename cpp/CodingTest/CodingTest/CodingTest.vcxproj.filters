@@ -88,6 +88,9 @@
     <Filter Include="소스 파일\기본알고리즘\HashTable">
       <UniqueIdentifier>{f8f53ade-ae93-4543-9ecb-68920dc91211}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\기본알고리즘\LinkedList">
+      <UniqueIdentifier>{795071d2-6702-44d3-874c-2965ffa2a8ea}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="DollDraw.cpp">
@@ -287,6 +290,9 @@
     </ClCompile>
     <ClCompile Include="HashTable.cpp">
       <Filter>소스 파일\기본알고리즘\HashTable</Filter>
+    </ClCompile>
+    <ClCompile Include="DoublyLinkedList.cpp">
+      <Filter>소스 파일\기본알고리즘\LinkedList</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

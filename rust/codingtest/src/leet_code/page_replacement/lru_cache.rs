@@ -51,6 +51,15 @@ struct DoublyLinkedListNode<T>{
     prev : Option<Rc<RefCell<DoublyLinkedListNode<T>>>>,
     next : Option<Rc<RefCell<DoublyLinkedListNode<T>>>>
 }
+impl<T> DoublyLinkedListNode<T>{
+    fn new(val : T) -> Rc<RefCell<DoublyLinkedListNode<T>>>{
+        Rc::new(RefCell::new(DoublyLinkedListNode{
+            val,
+            prev : None,
+            next : None,
+        }))
+    }
+}
 //이중연결리스트 객체 생성
 #[derive(Debug)]
 struct DoublyLinkedList<T> {
@@ -114,7 +123,7 @@ impl<T> DoublyLinkedList<T> where T: Copy{
                         self.head = Some(Rc::clone(&next_node));
                     },
                     _ =>{
-                        self.tail = None
+                        self.tail = None;
                     }
                 }
                 self.length -= 1;
@@ -175,17 +184,6 @@ impl<T> DoublyLinkedList<T> where T: Copy{
         rn.val
     }
 }
-
-impl<T> DoublyLinkedListNode<T>{
-    fn new(val : T) -> Rc<RefCell<DoublyLinkedListNode<T>>>{
-        Rc::new(RefCell::new(DoublyLinkedListNode{
-            val,
-            prev : None,
-            next : None,
-        }))
-    }
-}
-
 // #[derive(Debug)]
 // struct Node{
 //     key: i32,
