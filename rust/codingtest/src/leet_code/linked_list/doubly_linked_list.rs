@@ -1,23 +1,23 @@
 use std::rc::Rc;
 use std::cell::RefCell;
 
-//Doubly Linked List Node
+//이중연결리스트의 node
 #[derive(Debug)]
 struct DoublyLinkedListNode<T>{
-    prev : Option<Rc<RefCell<DoublyLinkedListNode<T>>>>,
     val : T,
+    prev : Option<Rc<RefCell<DoublyLinkedListNode<T>>>>,
     next : Option<Rc<RefCell<DoublyLinkedListNode<T>>>>
 }
 impl<T> DoublyLinkedListNode<T>{
     fn new(val : T) -> Rc<RefCell<DoublyLinkedListNode<T>>>{
         Rc::new(RefCell::new(DoublyLinkedListNode{
-            prev : None,
             val,
+            prev : None,
             next : None,
         }))
     }
 }
-//Doubly Linked List Object
+//이중연결리스트 객체 생성
 #[derive(Debug)]
 struct DoublyLinkedList<T> {
     head: Option<Rc<RefCell<DoublyLinkedListNode<T>>>>,
@@ -39,20 +39,36 @@ impl<T> DoublyLinkedList<T> where T: Copy{
     }
 
     fn push_front(&mut self, val: T) -> Rc<RefCell<DoublyLinkedListNode<T>>>{
-        let new_node = DoublyLinkedListNode::new(val);
-        if let Some(old_node) = &self.head.take() {
-            new_node.borrow_mut().next = Some(Rc::clone(&old_node));
-            old_node.borrow_mut().prev = Some(Rc::clone(&new_node));
-        }else{
-            self.tail = Some(Rc::clone(&new_node));
+        let new_head = DoublyLinkedListNode::new(val);
+        match &self.head.take(){
+            Some(old_head) => {
+                old_head.borrow_mut().prev = Some(Rc::clone(&new_head));
+                new_head.borrow_mut().next = Some(Rc::clone(&old_head));
+            },
+            _ => {
+                self.tail = Some(Rc::clone(&new_head));
+            }
         }
-        self.head = Some(Rc::clone(&new_node));
+        self.head = Some(Rc::clone(&new_head));
         self.length += 1;
-        new_node
+
+        new_head
     }
 
     fn push_back(&mut self, val: T) -> Rc<RefCell<DoublyLinkedListNode<T>>> {
         let new_tail = DoublyLinkedListNode::new(val);
+        match &self.tail.take(){
+            Some(old_tail) => {
+                old_tail.borrow_mut().next = Some(Rc::clone(&new_tail));
+                new_tail.borrow_mut().prev = Some(Rc::clone(&old_tail));
+            },
+            _=>{
+                self.head = Some(Rc::clone(&new_tail));
+            }
+        }
+        self.tail = Some(Rc::clone(&new_tail));
+        self.length += 1;
+
         new_tail
     }
     fn pop_front(&mut self) -> Option<T>{
@@ -130,5 +146,7 @@ pub fn run(){
     let mut t : DoublyLinkedList<i32> = DoublyLinkedList::new();
     t.push_front(1);
     t.push_front(2);
-    println!("Doubly Linked List : {:#?} ", t.head);
+    t.pop_front();
+    t.pop_front();
+    println!("Doubly Linked List : {:#?} ", t);
 }

@@ -1,4 +1,4 @@
-import runDoublyLinkedList from "./base_syntax/base_ds_algorithm/linked_list/doubly_linked_list";
+import runDoublyLinkedList from "./base_ds_algorithm/linked_list/doubly_linked_list";
 //import { run } from "./leetCode/page/LRUCache";
 
 
