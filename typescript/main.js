@@ -1,8 +1,8 @@
 "use strict";
 exports.__esModule = true;
-var ClimbingStairs_1 = require("./leetCode/dp/ClimbingStairs");
+var doubly_linked_list_1 = require("./base_syntax/base_ds_algorithm/linked_list/doubly_linked_list");
+//import { run } from "./leetCode/page/LRUCache";
 function main() {
-    //run();
-    ClimbingStairs_1.climbStairs(9);
+    doubly_linked_list_1["default"]();
 }
 main();
