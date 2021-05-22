@@ -91,6 +91,12 @@
     <Filter Include="소스 파일\기본알고리즘\LinkedList">
       <UniqueIdentifier>{795071d2-6702-44d3-874c-2965ffa2a8ea}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\구름">
+      <UniqueIdentifier>{eeb9c84f-f0f5-4b2c-a0e2-c7b430964e68}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\구름\DevCarnival">
+      <UniqueIdentifier>{8a990ecf-c170-47b4-a77e-ec19ca525138}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="DollDraw.cpp">
@@ -293,6 +299,12 @@
     </ClCompile>
     <ClCompile Include="DoublyLinkedList.cpp">
       <Filter>소스 파일\기본알고리즘\LinkedList</Filter>
+    </ClCompile>
+    <ClCompile Include="1번문제.cpp">
+      <Filter>소스 파일\구름\DevCarnival</Filter>
+    </ClCompile>
+    <ClCompile Include="2번문제.cpp">
+      <Filter>소스 파일\구름\DevCarnival</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
