@@ -1,1 +1,1 @@
-D:\develop\CodingTestTraining\rust\codingtest\target\debug\codingtest.exe: D:\develop\CodingTestTraining\rust\codingtest\src\leet_code\linked_list\doubly_linked_list.rs D:\develop\CodingTestTraining\rust\codingtest\src\main.rs
+D:\develop\CodingTestTraining\rust\codingtest\target\debug\codingtest.exe: D:\develop\CodingTestTraining\rust\codingtest\src\leet_code\string\count_and_say.rs D:\develop\CodingTestTraining\rust\codingtest\src\main.rs

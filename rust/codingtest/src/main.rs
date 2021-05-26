@@ -1,9 +1,6 @@
-//#[path= "leet_code/dp/buy_and_sell_stock.rs"] mod stock;
-// #[path= "leet_code/page_replacement/lru_cache.rs"] mod lru;
-#[path= "leet_code/linked_list/doubly_linked_list.rs"] mod dll;
+//#[path= "leet_code/dp/rotate_image.rs"] mod rotate;
+#[path= "leet_code/string/count_and_say.rs"] mod cas;
 
 fn main() {
-    //stock::run();
-    //lru::run();
-    dll::run();
+    cas::run();
 }
