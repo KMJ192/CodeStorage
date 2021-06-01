@@ -1,5 +1,6 @@
 .obj/
 vscode
-.rust/algorithm
-.rust/codingtest
-.cpp/CodingTest
+rust/algorithm
+rust/codingtest
+cpp/CodingTest
+node_modules
