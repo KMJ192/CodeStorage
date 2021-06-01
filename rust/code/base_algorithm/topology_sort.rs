@@ -26,15 +26,15 @@
 //      -> 2 -> 3
 struct Solution;
 impl Solution {
-    pub fn topology_sort(num_courses: i32, prerequisites: Vec<Vec<i32>>) -> Vec<i32> {
+    pub fn topology_sort(graph: Vec<Vec<i32>>) -> Vec<i32> {
         let mut answer : Vec<i32> = Vec::new();
         //incoming outgoing 저장할 topology Graph
         //incoming count, outgoing node
-        let mut v : Vec<(usize, Vec<usize>)> = vec![(0, vec![]); num_courses as usize];
+        let mut v : Vec<(usize, Vec<usize>)> = vec![(0, vec![]); graph.len()];
 
-        println!("그래프 : {:?}", prerequisites);
+        println!("그래프 : {:?}", graph);
         //topology Graph 구성
-        for p in prerequisites.iter(){
+        for p in graph.iter(){
             v[p[1] as usize].0 += 1;
             v[p[0] as usize].1.push(p[1] as usize);
         }
@@ -66,8 +66,7 @@ impl Solution {
             }
         }
         println!();
-        if answer.len() == num_courses as usize{ answer }
-        else { vec![] }
+        answer
     }
 }
 
@@ -77,6 +76,8 @@ pub fn run(){
     graph.push(vec![0, 2]);
     graph.push(vec![1, 3]);
     graph.push(vec![2, 3]);
+    graph.push(vec![3, 5]);
+    graph.push(vec![4, 5]);
 
-    println!("정렬\n{:?}", Solution::topology_sort(4, graph));
+    println!("정렬\n{:?}", Solution::topology_sort(graph));
 }
