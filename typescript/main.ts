@@ -1,8 +1,6 @@
 import runDoublyLinkedList from "./base_ds_algorithm/linked_list/doubly_linked_list";
 //import { run } from "./leetCode/page/LRUCache";
 
-
-
 function main(){
     runDoublyLinkedList();
 }
