@@ -1,8 +1,9 @@
 "use strict";
 exports.__esModule = true;
-var doubly_linked_list_1 = require("./base_ds_algorithm/linked_list/doubly_linked_list");
-//import { run } from "./leetCode/page/LRUCache";
+var this_1 = require("./syntax/this/this");
 function main() {
-    doubly_linked_list_1["default"]();
+    //asyncProcess();
+    //closureFunc();
+    this_1.thisRun();
 }
 main();

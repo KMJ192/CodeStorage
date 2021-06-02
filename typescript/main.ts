@@ -1,7 +1,10 @@
-import runDoublyLinkedList from "./base_ds_algorithm/linked_list/doubly_linked_list";
-//import { run } from "./leetCode/page/LRUCache";
+import { thisRun } from "./syntax/this/this";
+import { asyncProcess } from "./syntax/async/asyncExam";
+import { closureFunc } from "./syntax/closure/closure";
 
 function main(){
-    runDoublyLinkedList();
+    //asyncProcess();
+    //closureFunc();
+    thisRun();
 }
 main();
