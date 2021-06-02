@@ -6,4 +6,13 @@ function main() {
     //closureFunc();
     this_1.thisRun();
 }
-main();
+//main();
+var obj = {
+    a: "a",
+    b : function (){
+        setTimeout(() => {
+            console.log(this);
+        }, 1000);
+    }
+};
+obj.b();

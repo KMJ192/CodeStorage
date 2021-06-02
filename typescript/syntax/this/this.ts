@@ -11,7 +11,7 @@ export function thisRun(){
 
     //현재 scope(thisRun 함수)의 this를 출력
     const who = object.whoami;
-    who();
+    //who();
 }
 
 function onclickEvent(){

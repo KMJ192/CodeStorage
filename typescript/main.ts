@@ -7,4 +7,17 @@ function main(){
     //closureFunc();
     thisRun();
 }
-main();
+//main();
+
+function test(){
+    const b = "b";
+    const obj = {
+        a : "a",
+        b : () => {
+            console.log(this);
+        }
+    }
+    obj.b();
+}
+
+test();

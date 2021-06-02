@@ -12,7 +12,7 @@ function thisRun() {
     object.whoami();
     //현재 scope(thisRun 함수)의 this를 출력
     var who = object.whoami;
-    who();
+    //who();
 }
 exports.thisRun = thisRun;
 function onclickEvent() {
