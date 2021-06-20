@@ -1,4 +1,4 @@
-import { run } from "./base_syntax/generator_function/Generator"
+import { run } from "./base_ds_algorithm/divide_and_conquer/merge_sort";
 
 function main(){
     run();

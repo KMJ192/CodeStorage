@@ -1,7 +1,7 @@
 "use strict";
 exports.__esModule = true;
-var Generator_1 = require("./base_syntax/generator_function/Generator");
+var merge_sort_1 = require("./base_ds_algorithm/divide_and_conquer/merge_sort");
 function main() {
-    Generator_1.run();
+    merge_sort_1.run();
 }
 main();
