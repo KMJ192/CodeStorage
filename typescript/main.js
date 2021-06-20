@@ -1,18 +1,7 @@
 "use strict";
 exports.__esModule = true;
-var this_1 = require("./syntax/this/this");
+var Generator_1 = require("./base_syntax/generator_function/Generator");
 function main() {
-    //asyncProcess();
-    //closureFunc();
-    this_1.thisRun();
+    Generator_1.run();
 }
-//main();
-var obj = {
-    a: "a",
-    b : function (){
-        setTimeout(() => {
-            console.log(this);
-        }, 1000);
-    }
-};
-obj.b();
+main();
