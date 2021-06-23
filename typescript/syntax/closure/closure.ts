@@ -1,29 +1,19 @@
-function examOne(){
-    let innerText : string = "내부값";
-    return {
-        setText(cText) {
+const global = (function() {
+    let innerText : string = "innerText";
+    function examOne(): [string, (cText: string) => void]{
+        const setText = (cText: string) => {
             innerText = cText;
-        },
-        getText(){
-            console.log(innerText)
         }
+        return [innerText, setText];
     }
-}
-
+    return {
+        examOne
+    }
+})();
 export function closureFunc(){
-    const test1 = examOne();
-    const test2 = examOne();
-    const test3 = examOne();
+    const [state, setText] = global.examOne();
+    
+    setText("2");
+    console.log(state);
 
-    test1.getText();
-    test2.getText();
-    test3.getText();
-
-    test1.setText("test2");
-    test2.setText("test4");
-    test3.setText("test6");
-
-    test1.getText();
-    test2.getText();
-    test3.getText();
 }
