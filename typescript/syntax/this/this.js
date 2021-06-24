@@ -36,9 +36,9 @@ function thisRun() {
     // new => 함수를 객체로 만들어 준다. this는 해당 객체를 가리킨다.
     var newBinding = new bindTest();
     console.log(newBinding.name + ", " + newBinding.pw);
-    // call binding
+    // call/apply binding => 첫번째 arg로 함수를 넣어주며 주번째 인자값은 해당 함수가 받을 parameter
+    // this는 첫번째 arg로 넘겨준 함수를 가리킨다.
     callTest.call(bindTest, "test");
-    // apply binding
     applyTest.apply(bindTest, ["arg1", "arg2"]);
 }
 exports.thisRun = thisRun;
