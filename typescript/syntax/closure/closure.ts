@@ -15,5 +15,4 @@ export function closureFunc(){
     
     setText("2");
     console.log(state);
-
 }
