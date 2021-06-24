@@ -52,4 +52,4 @@ function run() {
     // console.log(count);
 }
 exports.run = run;
-//inheritance prototype closure call apply bind currying
+//inheritance prototype closure call apply bind currying pollyfill

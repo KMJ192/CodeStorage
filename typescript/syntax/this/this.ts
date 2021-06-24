@@ -1,28 +1,45 @@
 const object = {
-    name : "name",
-    whoami : function () {
+    name : "OBJ",
+    whoami: function () {
         console.log(this);
+        const thisTest = () =>{
+            console.log(this);
+        }
+        thisTest();
     }
+}
+
+function thisTest(test: Function){
+    test();
+}
+function bindTest(){
+    this.name = "bindTest";
+    this.pw = "123";
+}
+function callTest(test: string){
+    console.log(`call binding this.name : ${this.name}, this.pw : ${this.pw}`);
+    console.log(test);
+}
+
+function applyTest(test1: string, test2: string){
+    console.log(`${this.name}, ${this.pw}`);
+    console.log(test1);
+    console.log(test2);
 }
 
 export function thisRun(){
-    //object의 this를 출력
-    object.whoami();
-
-    //현재 scope(thisRun 함수)의 this를 출력
-    const who = object.whoami;
-    //who();
-}
-
-function onclickEvent(){
-    const object = {
-        name : "name",
-        whoami : function () {
-            console.log(this);
-        }
-    }
+    //암시적 바인딩 => this는 this가 속해있는 Object를 가리킨다.
     object.whoami();
     
-    const who = object.whoami;
-    who();
+    //암시적 소실 => this는 window를 가리킨다. (script mode => undefined)
+    thisTest(object.whoami);
+
+    // new => 함수를 객체로 만들어 준다. this는 해당 객체를 가리킨다.
+    let newBinding = new bindTest();
+    console.log(`${newBinding.name}, ${newBinding.pw}`);
+
+    // call/apply binding => 첫번째 arg로 함수를 넣어주며 주번째 인자값은 해당 함수가 받을 parameter
+    // this는 첫번째 arg로 넘겨준 함수를 가리킨다.
+    callTest.call(bindTest, "test");
+    applyTest.apply(bindTest, ["arg1", "arg2"]);
 }

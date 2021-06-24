@@ -1,8 +1,9 @@
 "use strict";
 exports.__esModule = true;
-var closure_1 = require("./syntax/closure/closure");
+var this_1 = require("./syntax/this/this");
 function main() {
     //run();
-    closure_1.closureFunc();
+    //closureFunc();
+    this_1.thisRun();
 }
 main();
