@@ -1,11 +1,8 @@
 "use strict";
 exports.__esModule = true;
-//import { run } from "./base_ds_algorithm/divide_and_conquer/merge_sort";
-var useState_1 = require("./hooks/useState");
+var async_await_1 = require("./syntax/async/async_await/async_await");
 function main() {
-    useState_1.run();
-    //closureFunc();
-    //thisRun();
+    async_await_1.AsyncAwait();
 }
 main();
 function eTest() {
