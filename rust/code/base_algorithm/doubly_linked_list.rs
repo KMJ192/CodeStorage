@@ -112,11 +112,4 @@ pub fn run(){
     tmp.push_front(1);
     tmp.push_front(2);
     tmp.push_front(3);
-
-    match tmp.head.take(){
-        Some(node) => {
-            println!("{}", node.borrow().val)
-        },
-        _ => println!("None")
-    }
 }
