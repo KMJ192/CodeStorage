@@ -36,8 +36,36 @@ Function.prototype.myBinding = function () {
         obj.apply(args[0], __spreadArrays(rest, args2));
     };
 };
+function mulNum(arg) {
+    console.log(this);
+    var val = 1;
+    for (var i = 0; i < arg.length; i++) {
+        val *= arg[i];
+    }
+    console.log(val);
+}
+function addNum(arg) {
+    var val = 0;
+    for (var i = 0; i < arg.length; i++) {
+        val += arg[i];
+    }
+    console.log(val);
+}
+function currying(fn) {
+    var arg = [];
+    for (var _i = 1; _i < arguments.length; _i++) {
+        arg[_i - 1] = arguments[_i];
+    }
+    return function () {
+        fn(arg);
+    };
+}
 function curryingRun() {
-    var tmp = examFunc.myBinding(examObject, "third", "forth", "fifth");
-    tmp("sixth", "seventh");
+    // const tmp = examFunc.myBinding(examObject, "third", "forth", "fifth");
+    // tmp("sixth", "seventh");
+    var mul = currying(mulNum, 1, 2, 3, 4, 5);
+    var add = currying(addNum, 1, 2, 3, 4, 5, 6);
+    mul();
+    add();
 }
 exports.curryingRun = curryingRun;
