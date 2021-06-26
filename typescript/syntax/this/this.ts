@@ -12,8 +12,8 @@ const object = {
 function thisTest(test: Function){
     test();
 }
-function bindTest(){
-    this.name = "bindTest";
+function bindTest(tmp : string){
+    this.name = `bind${tmp}`;
     this.pw = "123";
 }
 function callTest(test: string){
@@ -25,6 +25,20 @@ function applyTest(test1: string, test2: string){
     console.log(`${this.name}, ${this.pw}`);
     console.log(test1);
     console.log(test2);
+}
+
+class Temp{
+    private str: string;
+    constructor(){
+        this.str = "";
+    }
+    setStr(data: string){
+        this.str = data;
+    }
+    print(){
+        console.log(`this ${this}`);
+        console.log(`Temp's data: ${this.str}`);
+    }
 }
 
 export function thisRun(){
@@ -42,4 +56,9 @@ export function thisRun(){
     // this는 첫번째 arg로 넘겨준 함수를 가리킨다.
     callTest.call(bindTest, "test");
     applyTest.apply(bindTest, ["arg1", "arg2"]);
+
+    let tmp = new Temp;
+    tmp.setStr("123");
+    tmp.print();
 }
+

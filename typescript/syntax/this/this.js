@@ -28,6 +28,19 @@ function applyTest(test1, test2) {
     console.log(test1);
     console.log(test2);
 }
+var Temp = /** @class */ (function () {
+    function Temp() {
+        this.str = "";
+    }
+    Temp.prototype.setStr = function (data) {
+        this.str = data;
+    };
+    Temp.prototype.print = function () {
+        console.log("this " + this);
+        console.log("Temp's data: " + this.str);
+    };
+    return Temp;
+}());
 function thisRun() {
     //암시적 바인딩 => this는 this가 속해있는 Object를 가리킨다.
     object.whoami();
@@ -40,5 +53,8 @@ function thisRun() {
     // this는 첫번째 arg로 넘겨준 함수를 가리킨다.
     callTest.call(bindTest, "test");
     applyTest.apply(bindTest, ["arg1", "arg2"]);
+    var tmp = new Temp;
+    tmp.setStr("123");
+    tmp.print();
 }
 exports.thisRun = thisRun;

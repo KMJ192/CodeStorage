@@ -1,7 +1,8 @@
-import { AsyncAwait } from "./syntax/async/async_await/async_await";
+import { curryingRun } from "./syntax/currying/currying";
+
 
 function main(){
-    AsyncAwait();
+    curryingRun();
 }
 main();
 

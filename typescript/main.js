@@ -1,8 +1,8 @@
 "use strict";
 exports.__esModule = true;
-var async_await_1 = require("./syntax/async/async_await/async_await");
+var currying_1 = require("./syntax/currying/currying");
 function main() {
-    async_await_1.AsyncAwait();
+    currying_1.curryingRun();
 }
 main();
 function eTest() {
