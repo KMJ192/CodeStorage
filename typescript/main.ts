@@ -1,8 +1,11 @@
 import { curryingRun } from "./syntax/currying/currying";
+import { thisRun } from "./syntax/this/this";
+
 
 
 function main(){
-    curryingRun();
+    //curryingRun();
+    thisRun();
 }
 main();
 

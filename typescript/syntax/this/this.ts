@@ -12,13 +12,15 @@ const object = {
 function thisTest(test: Function){
     test();
 }
-function bindTest(tmp : string){
-    this.name = `bind${tmp}`;
-    this.pw = "123";
+function bindTest(...arg: string[]){
+    this.name = `${arg[0]}`;
+    this.pw = `${arg[1]}`;
 }
-function callTest(test: string){
-    console.log(`call binding this.name : ${this.name}, this.pw : ${this.pw}`);
-    console.log(test);
+function callTest(...arg: string[]){
+    console.log(this.name);
+    console.log(this.pw);
+    console.log(`call binding name : ${arg[0]}, pw : ${arg[1]}`);
+    //console.log(test);
 }
 
 function applyTest(test1: string, test2: string){
@@ -49,13 +51,15 @@ export function thisRun(){
     thisTest(object.whoami);
 
     // new => 함수를 객체로 만들어 준다. this는 해당 객체를 가리킨다.
-    let newBinding = new bindTest();
+    let newBinding = new bindTest("name", "pw");
     console.log(`${newBinding.name}, ${newBinding.pw}`);
 
     // call/apply binding => 첫번째 arg로 함수를 넣어주며 주번째 인자값은 해당 함수가 받을 parameter
     // this는 첫번째 arg로 넘겨준 함수를 가리킨다.
-    callTest.call(bindTest, "test");
+    callTest.call(newBinding, "test", "123");
     applyTest.apply(bindTest, ["arg1", "arg2"]);
+    let bTest = callTest.bind(newBinding, "test", "123");
+    bTest();
 
     let tmp = new Temp;
     tmp.setStr("123");

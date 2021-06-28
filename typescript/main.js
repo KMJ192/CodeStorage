@@ -1,8 +1,9 @@
 "use strict";
 exports.__esModule = true;
-var currying_1 = require("./syntax/currying/currying");
+var this_1 = require("./syntax/this/this");
 function main() {
-    currying_1.curryingRun();
+    //curryingRun();
+    this_1.thisRun();
 }
 main();
 function eTest() {
