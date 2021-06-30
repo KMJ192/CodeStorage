@@ -1,10 +1,9 @@
 "use strict";
 exports.__esModule = true;
-var revers_words_in_string_1 = require("./algoexpert/string/revers_words_in_string");
+//import { runSlidingWindow } from "./algoexpert/sliding_window/sliding_window";
+var container_with_most_water_1 = require("./leetCode/sliding_window/container_with_most_water");
 function main() {
-    //runAnagram();
-    //runSlidingWindow();
-    revers_words_in_string_1.runReversString();
+    container_with_most_water_1.run();
 }
 main();
 // function eTest(){

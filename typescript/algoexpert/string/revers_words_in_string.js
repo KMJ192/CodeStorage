@@ -38,10 +38,17 @@
 
     time: O(n)
     space: O(n)
+
+    //1. sudo코드 작성 전 example 확인
+    //2. solution코드 작성 전 time, splace complex 작성
+    //3. Edge Case 코드에 반영
 */
 exports.__esModule = true;
 exports.runReversString = void 0;
 function solution(str) {
+    if (!str.length) {
+        return "";
+    }
     var tmp = [];
     var retArr = [];
     for (var i = 0; i < str.length; i++) {

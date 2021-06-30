@@ -6,10 +6,6 @@
 //front pointer가 이동할 때 마다 counter증가
 exports.__esModule = true;
 exports.runSlidingWindow = void 0;
-// interface PointType{
-//     front: number;
-//     back: number;
-// }
 function solution(tmp, goal) {
     var obj = {};
     var count = 0;
@@ -37,6 +33,7 @@ function solution(tmp, goal) {
             }
         }
         console.log(obj);
+        console.log(count);
         if (count < goal.length) {
             if (obj[tmp[pointer.back]]) {
                 obj[tmp[pointer.back]]--;
@@ -49,7 +46,6 @@ function solution(tmp, goal) {
             obj[tmp[pointer.front]]++;
             count--;
         }
-        pointer.front++;
     }
     pointer.back--;
     console.log(pointer);
@@ -57,7 +53,7 @@ function solution(tmp, goal) {
 function runSlidingWindow() {
     //tmp내 goal의 문자열이 모두 포함되는 위치 구하기
     //원하는 결과값 sdbds
-    var tmp = "asdbdssd";
+    var tmp = "sdbdsasd";
     var goal = "bdssa";
     solution(tmp, goal);
 }

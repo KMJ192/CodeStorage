@@ -1,11 +1,8 @@
-import { runAnagram } from "./algoexpert/ascii/anagram";
-import { runSlidingWindow } from "./algoexpert/sliding_window/sliding_window";
-import { runReversString } from "./algoexpert/string/revers_words_in_string";
+//import { runSlidingWindow } from "./algoexpert/sliding_window/sliding_window";
+import { run } from "./leetCode/sliding_window/container_with_most_water";
 
 function main(){
-    //runAnagram();
-    //runSlidingWindow();
-    runReversString();
+    run();
 }
 main();
 
