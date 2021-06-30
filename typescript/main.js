@@ -1,15 +1,15 @@
 "use strict";
 exports.__esModule = true;
-var this_1 = require("./syntax/this/this");
+var sliding_window_1 = require("./algoexpert/sliding_window/sliding_window");
 function main() {
-    //curryingRun();
-    this_1.thisRun();
+    //runAnagram();
+    sliding_window_1.runSlidingWindow();
 }
 main();
-function eTest() {
-    var array = ["1", "2", "3", "4"];
-    var array1 = ["1", "2", "3", "4"];
-    var tmp = array.some(function (el, i) { return el === array1[i]; });
-    console.log(tmp);
-}
+// function eTest(){
+//     let array: string[] = ["1", "2", "3", "4"];
+//     let array1: string[] = ["1", "2", "3", "4"];
+//     let tmp = array.some((el: string, i: number) => el === array1[i]);
+//     console.log(tmp);
+// }
 //eTest();
