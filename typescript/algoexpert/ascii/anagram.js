@@ -41,3 +41,51 @@ function runAnagram() {
     console.log(result);
 }
 exports.runAnagram = runAnagram;
+// ===========================================================
+/*
+  15:10 ~ 15:50
+  
+  Input:
+    An array of strings
+  Output:
+    An 2d-array of anagram-groups
+  Constraints:
+    1 <= input.length <= 100
+    1 <= word.length <= 100 = k
+  Edge Case:
+    If input.length === 1, [input];
+  Solution:
+    ["yo", "act", "flop", "tac", "foo", "cat", "oy", "olfp"]
+    
+    const ht = {
+      "oy": ["yo", "oy"],
+      "act": ["act", "tac", "cat"],
+      "flop": ["flop", "olfp"],
+      "foo": ["foo"],
+    }
+
+    return Object.values(ht);
+
+    1. 배열의 각 단어들을 스캔 해 나간다.
+      - 각 단어를 스캔할때, 단어를 오름차순으로 정렬하여 그 정렬된 단어가 ht 안에 key로서
+      존재하고 있는지를 확인.
+        - 만약 존재하고 있다면, 그 key의 value array로 그냥 push 해준다.
+        - 만약 존재하고 있지 않다면, 정렬된 현 단어로 새로운 key를 만들어주고 value = [정렬된 단어]
+
+    2. 배열의 각 단어들의 스캔이 끝난 후, ht 오브젝트의 밸류들을 묶은 배열을 리턴 해 준다.
+  Time Complexity:
+    O(N * klogk) when N = words.length, k = max(word.length)
+  Space Complexity::
+    O(N)
+*/
+// function Solution(words) {
+//   const ht = {};
+//   for (let i = 0; i < words.length; i++) {
+//     const sorted = [...words[i]].sort().join("");
+//     if (!ht[sorted]) ht[sorted] = [];
+//     ht[sorted].push(words[i]);
+//   }
+//   return Object.values(ht);
+// }
+// const input = ["yo", "act", "flop", "tac", "foo", "cat", "oy", "olfp"];
+// console.log(Solution(input));

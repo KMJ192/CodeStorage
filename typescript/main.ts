@@ -1,9 +1,11 @@
 import { runAnagram } from "./algoexpert/ascii/anagram";
 import { runSlidingWindow } from "./algoexpert/sliding_window/sliding_window";
+import { runReversString } from "./algoexpert/string/revers_words_in_string";
 
 function main(){
     //runAnagram();
-    runSlidingWindow();
+    //runSlidingWindow();
+    runReversString();
 }
 main();
 

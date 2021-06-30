@@ -1,9 +1,10 @@
 "use strict";
 exports.__esModule = true;
-var sliding_window_1 = require("./algoexpert/sliding_window/sliding_window");
+var revers_words_in_string_1 = require("./algoexpert/string/revers_words_in_string");
 function main() {
     //runAnagram();
-    sliding_window_1.runSlidingWindow();
+    //runSlidingWindow();
+    revers_words_in_string_1.runReversString();
 }
 main();
 // function eTest(){

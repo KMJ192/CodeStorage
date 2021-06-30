@@ -6,6 +6,10 @@
 //front pointer가 이동할 때 마다 counter증가
 exports.__esModule = true;
 exports.runSlidingWindow = void 0;
+// interface PointType{
+//     front: number;
+//     back: number;
+// }
 function solution(tmp, goal) {
     var obj = {};
     var count = 0;
@@ -21,27 +25,40 @@ function solution(tmp, goal) {
             obj[goal[i]] = 1;
         }
     }
-    console.log(obj);
-    var objLength = Object.keys(obj).length;
-    // let sb = 100;
-    // while(1){
-    //     const c = obj[tmp[pointer.back]];
-    //     if(c){
-    //         obj[tmp[pointer.back]]--;
-    //     }
-    //     if(count < goal.length){
-    //         pointer.back++;
-    //         continue;
-    //     }
-    //     for(let i = 0; i < objLength; i++){
-    //     }
-    // }
+    //{ s: 2, b: 1, d: 1 }
+    var objArr = Object.keys(obj);
+    var bPoint = true;
+    while (bPoint) {
+        bPoint = false;
+        for (var i = 0; i < objArr.length; i++) {
+            if (obj[objArr[i]] !== 0) {
+                bPoint = true;
+                break;
+            }
+        }
+        console.log(obj);
+        if (count < goal.length) {
+            if (obj[tmp[pointer.back]]) {
+                obj[tmp[pointer.back]]--;
+                count++;
+            }
+            pointer.back++;
+            continue;
+        }
+        if (obj[tmp[pointer.front]]) {
+            obj[tmp[pointer.front]]++;
+            count--;
+        }
+        pointer.front++;
+    }
+    pointer.back--;
+    console.log(pointer);
 }
 function runSlidingWindow() {
     //tmp내 goal의 문자열이 모두 포함되는 위치 구하기
     //원하는 결과값 sdbds
     var tmp = "asdbdssd";
-    var goal = "sbds";
+    var goal = "bdssa";
     solution(tmp, goal);
 }
 exports.runSlidingWindow = runSlidingWindow;
