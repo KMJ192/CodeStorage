@@ -1,7 +1,8 @@
 "use strict";
 exports.__esModule = true;
-var third_question_1 = require("./algoexpert/sliding_window/third_question");
+//import { run } from "./algoexpert/sliding_window/third_question";
+var three_sum_1 = require("./leetCode/sliding_window/three_sum");
 function main() {
-    third_question_1.run();
+    three_sum_1.run();
 }
 main();

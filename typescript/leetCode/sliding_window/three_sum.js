@@ -134,11 +134,11 @@ exports.run = void 0;
 //3 4 5
 function threeSum(nums) {
     var triplets = [];
-    var n = nums.length;
-    if (n < 3)
+    if (nums.length < 3)
         return [];
     nums.sort();
-    for (var i = 0; i < nums.length - 1; i++) {
+    console.log(nums);
+    for (var i = 0; i < nums.length; i++) {
         if (i > 0 && nums[i] === nums[i - 1])
             continue;
         var j = i + 1;
@@ -147,7 +147,7 @@ function threeSum(nums) {
             if (nums[i] + nums[j] + nums[k] > 0) {
                 k--;
             }
-            else if (nums[i] + nums[j] + nums[k] > 0) {
+            else if (nums[i] + nums[j] + nums[k] < 0) {
                 j++;
             }
             else {

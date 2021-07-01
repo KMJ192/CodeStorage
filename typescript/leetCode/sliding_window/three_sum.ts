@@ -141,17 +141,17 @@
 //3 4 5
 function threeSum(nums: number[]): number[][] {
     let triplets = [];
-    let n = nums.length;
-    if(n < 3) return [];
+    if(nums.length < 3) return [];
     nums.sort();
-    for(let i = 0; i < nums.length - 1; i++){
+    console.log(nums);
+    for(let i = 0; i < nums.length; i++){
         if(i > 0 && nums[i] === nums[i - 1]) continue;
         let j = i + 1;
         let k = nums.length - 1;
         while(j < k){
             if(nums[i] + nums[j] + nums[k] > 0){
                 k--;
-            }else if(nums[i] + nums[j] + nums[k] > 0){
+            }else if(nums[i] + nums[j] + nums[k] < 0){
                 j++;
             }else{
                 triplets.push([nums[i], nums[j], nums[k]]);
