@@ -1,17 +1,7 @@
-//import { runSlidingWindow } from "./algoexpert/sliding_window/sliding_window";
-import { run } from "./leetCode/sliding_window/container_with_most_water";
+import { run } from "./algoexpert/sliding_window/third_question";
+
 
 function main(){
-    run();
+    run();    
 }
 main();
-
-
-// function eTest(){
-//     let array: string[] = ["1", "2", "3", "4"];
-//     let array1: string[] = ["1", "2", "3", "4"];
-//     let tmp = array.some((el: string, i: number) => el === array1[i]);
-//     console.log(tmp);
-// }
-
-//eTest();
