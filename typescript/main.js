@@ -1,7 +1,8 @@
 "use strict";
 exports.__esModule = true;
-var frequently_k_1 = require("./algoexpert/heap/frequently_k");
+var selection_1 = require("./base_ds_algorithm/sort/selection");
 function main() {
-    frequently_k_1.fk();
+    //fk();
+    selection_1.selectionSort();
 }
 main();

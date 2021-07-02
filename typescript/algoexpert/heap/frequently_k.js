@@ -16,15 +16,14 @@ function solution(arr, k) {
         else
             ht[arr[i]] = 1;
     }
-    console.log(ht);
+    //sort
     var key = Object.keys(ht);
     var value = Object.values(ht);
-    //sort
     for (var i = 0; i < key.length; i++) {
         curr.push([value[i], key[i]]);
     }
     curr.sort();
-    //convert
+    //making
     for (var i = 0; i < k; i++) {
         retVal.push(Number(curr[curr.length - 1 - i][1]));
     }
