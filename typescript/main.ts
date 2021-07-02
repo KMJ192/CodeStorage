@@ -1,7 +1,6 @@
-//import { run } from "./algoexpert/sliding_window/third_question";
-import { run } from "./leetCode/sliding_window/three_sum";
+import { fk } from "./algoexpert/heap/frequently_k";
 
 function main(){
-    run();   
+    fk();
 }
 main();
