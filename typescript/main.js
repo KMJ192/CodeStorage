@@ -1,8 +1,9 @@
 "use strict";
 exports.__esModule = true;
-var selection_1 = require("./base_ds_algorithm/sort/selection");
+var longest_substr_1 = require("./algoexpert/sliding_window/longest_substr");
 function main() {
     //fk();
-    selection_1.selectionSort();
+    //selectionSort();
+    longest_substr_1.longSubstring();
 }
 main();

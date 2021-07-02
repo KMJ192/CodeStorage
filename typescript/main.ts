@@ -1,8 +1,8 @@
-import { fk } from "./algoexpert/heap/frequently_k";
-import { selectionSort } from "./base_ds_algorithm/sort/selection";
+import { longSubstring } from "./algoexpert/sliding_window/longest_substr";
 
 function main(){
     //fk();
-    selectionSort();
+    //selectionSort();
+    longSubstring();
 }
 main();

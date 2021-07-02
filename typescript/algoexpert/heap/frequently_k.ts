@@ -36,6 +36,3 @@ export function fk(){
     const arr = [5, 5, 5, 12, 5, 5, 5, 11, 3, 11, 12];
     console.log(solution(arr, 2));
 }
-
-//const arr = [1, 3, 5, 12, 11, 12, 11]; 2 => [12, 11]
-//const arr = [5, 12, 11, 3, 11]; 2 => [11, 5] or [11, 12] or [11, 3]
