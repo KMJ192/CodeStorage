@@ -1,8 +1,6 @@
-import { longSubstring } from "./algoexpert/sliding_window/longest_substr";
+import { dateCalculation } from "./syntax/date_calculation/date_calculation";
 
 function main(){
-    //fk();
-    //selectionSort();
-    longSubstring();
+    dateCalculation();
 }
 main();

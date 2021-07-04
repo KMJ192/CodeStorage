@@ -1,9 +1,7 @@
 "use strict";
 exports.__esModule = true;
-var longest_substr_1 = require("./algoexpert/sliding_window/longest_substr");
+var date_calculation_1 = require("./syntax/date_calculation/date_calculation");
 function main() {
-    //fk();
-    //selectionSort();
-    longest_substr_1.longSubstring();
+    date_calculation_1.dateCalculation();
 }
 main();
