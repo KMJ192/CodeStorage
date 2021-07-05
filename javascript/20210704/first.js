@@ -10,6 +10,7 @@ function solution(k, rates) {
             break;
         }
     }
+
     if(property[0] === k) return k;
 
     for(let i = start; i < rates.length; i++){
