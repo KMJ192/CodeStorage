@@ -9,6 +9,7 @@
 // 
 
 function run(width: number, height: number){
+    if(width === 1 ||  height === 1) return 1;
     let max  = Array.from(Array(height), () => Array(width).fill(0));
     let currNum = 0;
     for(let i = 0; i < height; i++){
@@ -18,13 +19,11 @@ function run(width: number, height: number){
     for(let i = 0; i < width; i++){
         max[0][i] = 1;
     }
-
     for(let i = 1; i < height; i++){
         for(let j = 1; j < width; j++){
             max[i][j] = max[i-1][j] + max[i][j-1];
         }
     }
-
     return max[height - 1][width - 1];
 }
 
