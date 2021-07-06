@@ -1,9 +1,6 @@
-import { first } from "./week2_of_juli/first";
-//import { dateCalculation } from "./syntax/date_calculation/date_calculation";
-
+import { syncStr } from "./algoexpert/dp/sync_string";
 
 function main(){
-    //dateCalculation();
-    first();
+    syncStr();
 }
 main();
