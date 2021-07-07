@@ -1,6 +1,6 @@
-import { syncStr } from "./algoexpert/dp/sync_string";
+import { forthQuestion } from "./week2_of_juli/forth";
 
 function main(){
-    syncStr();
+    forthQuestion();
 }
 main();

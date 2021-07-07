@@ -1,9 +1,8 @@
 "use strict";
 exports.__esModule = true;
-var first_1 = require("./week2_of_juli/first");
-//import { dateCalculation } from "./syntax/date_calculation/date_calculation";
+var third_1 = require("./week2_of_juli/third");
 function main() {
-    //dateCalculation();
-    first_1.first();
+    //second();
+    third_1.third();
 }
 main();
