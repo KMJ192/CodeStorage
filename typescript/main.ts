@@ -1,6 +1,6 @@
-import { forthQuestion } from "./week2_of_juli/forth";
+import { second } from "./week2_of_juli/second";
 
 function main(){
-    forthQuestion();
+    second();
 }
 main();
