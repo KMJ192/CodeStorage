@@ -1,7 +1,8 @@
 "use strict";
 exports.__esModule = true;
-var second_1 = require("./week2_of_juli/second");
+var forth_1 = require("./week2_of_juli/forth");
 function main() {
-    second_1.second();
+    //w2Fifth();
+    forth_1.forthQuestion();
 }
 main();

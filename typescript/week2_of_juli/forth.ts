@@ -12,6 +12,58 @@
     space complexity: O(1)
 */
 
+// function run(items: number[][], capacity: number){
+//     if(!items.length) return [0];
+//     if(!capacity) return [0];
+//     // 원소의 가중치가 가장 높으면서도 무게가 capacity보다 작은 원소를 저장할 길이가 2인 배열
+//     let topTwo: number[][] = []; 
+//     // topTwo배열에 입력되어 있는 원소의 index값 저장
+//     let index: number[] = []; 
+//     //topTwo 배열의 변화를 감지
+//     let pFlag = false;
+//     for(let i = 0; i < items.length; i++){
+//         items[i] = [items[i][1], items[i][0]];
+//     }
+//     for(let i = 0; i < items.length; i++){
+//         if(pFlag){
+//             pFlag = false;
+//             if(topTwo[0][1] > topTwo[1][1]){
+//                 topTwo = [topTwo[1], topTwo[0]];
+//                 index = [index[1], index[0]];
+//             }
+//         }
+//         if(!topTwo.length){
+//             if(items[i][1] < capacity) {
+//                 topTwo.push(items[i]);
+//                 index.push(i);
+//             }
+//             continue;
+//         }
+//         //가중치가 작은것이 0번째 원소
+//         if(topTwo.length === 1){
+//             if(items[i][0] + topTwo[0][0] <= capacity) {
+//                 topTwo.push(items[i]);
+//                 index.push(i);
+//                 pFlag = true;
+//                 continue;
+//             }
+//         }
+//         //items의 현재 원소의 가중치가 topTwo 원소의 가중치보다 큰것이 있을 경우
+//         if(topTwo[0][1] < items[i][1] || topTwo[1][1] < items[i][1]){
+//             if(topTwo[1][0] + items[i][0] <= capacity){
+//                 topTwo[0] = items[i];
+//                 index[0] = i;
+//                 pFlag = true;
+//             }else if(topTwo[0][0] + items[i][0] <= capacity){
+//                 topTwo[1] = items[i];
+//                 index[1] = i;
+//                 pFlag = true;
+//             }
+//         }
+//     }
+//     return [topTwo[0][0] + topTwo[1][0], [index[0], index[1]]];
+// }
+
 function run(items: number[][], capacity: number){
     if(!items.length) return [0];
     if(!capacity) return [0];
@@ -21,18 +73,18 @@ function run(items: number[][], capacity: number){
     // topTwo배열에 입력되어 있는 원소의 index값 저장
     let index: number[] = []; 
     //topTwo 배열의 변화를 감지
-    let pFlag = false; 
+    let pFlag = false;
 
     for(let i = 0; i < items.length; i++){
         if(pFlag){
             pFlag = false;
-            if(topTwo[0][1] > topTwo[1][1]){
+            if(topTwo[0][0] > topTwo[1][0]){
                 topTwo = [topTwo[1], topTwo[0]];
                 index = [index[1], index[0]];
             }
         }
         if(!topTwo.length){
-            if(items[i][1] < capacity) {
+            if(items[i][0] < capacity) {
                 topTwo.push(items[i]);
                 index.push(i);
             }
@@ -40,7 +92,7 @@ function run(items: number[][], capacity: number){
         }
         //가중치가 작은것이 0번째 원소
         if(topTwo.length === 1){
-            if(items[i][0] + topTwo[0][0] <= capacity) {
+            if(items[i][1] + topTwo[0][1] <= capacity) {
                 topTwo.push(items[i]);
                 index.push(i);
                 pFlag = true;
@@ -48,21 +100,22 @@ function run(items: number[][], capacity: number){
             }
         }
         //items의 현재 원소의 가중치가 topTwo 원소의 가중치보다 큰것이 있을 경우
-        if(topTwo[0][1] < items[i][1] || topTwo[1][1] < items[i][1]){
-            if(topTwo[1][0] + items[i][0] <= capacity){
+        if(topTwo[0][0] < items[i][0] || topTwo[1][0] < items[i][0]){
+            if(topTwo[1][1] + items[i][1] <= capacity){
                 topTwo[0] = items[i];
                 index[0] = i;
                 pFlag = true;
-            }else if(topTwo[0][0] + items[i][0] <= capacity){
+            }else if(topTwo[0][1] + items[i][1] <= capacity){
                 topTwo[1] = items[i];
                 index[1] = i;
                 pFlag = true;
             }
         }
     }
-    return [topTwo[0][0] + topTwo[1][0], [index[0], index[1]]];
-    
+
+    return [topTwo[0][1] + topTwo[1][1], [index[0], index[1]]];
 }
+
 
 export function forthQuestion(){
     //가방의 무게, 가방의 가중치
@@ -70,7 +123,7 @@ export function forthQuestion(){
         [1, 2],
         [4, 3],
         [5, 6],
-        [6, 7]
+        [6, 7],
     ];
 
     console.log(run(items, 10));
