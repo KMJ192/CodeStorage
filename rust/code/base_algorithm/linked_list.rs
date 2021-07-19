@@ -1,60 +1,69 @@
-use std::collections::HashSet;
-use std::iter::FromIterator;
-use std::borrow::BorrowMut;
-
-struct Solution;
-
-#[derive(PartialEq, Eq, Clone, Debug)]
-pub struct ListNode {
-  pub val: i32,
-  pub next: Option<Box<ListNode>>
+#[derive(Debug)]
+struct Node<T>{
+    val: T,
+    connect: Option<Box<Node<T>>>
 }
 
-impl ListNode where i32 : Copy {
-  #[inline]
-  fn new(val: i32) -> Self {
-    ListNode {
-      next: None,
-      val
-    }
-  }
+#[derive(Debug)]
+struct LinkedList<T>{
+    next: Option<Box<Node<T>>>,
+    len: usize
 }
 
-impl Solution {
-    pub fn num_components(head: Option<Box<ListNode>>, nums: Vec<i32>) -> i32 {
-        let mut h = head;
-        let mut set_num: HashSet<i32> = HashSet::from_iter(nums);
-
-        let mut res = 0;
-        while let Some(cur) = h {
-            if set_num.contains(&cur.val)
-                && cur.next.is_none()
-                || !set_num.contains(&cur.next.as_ref().unwrap().val){
-                res += 1;
-            }
-            h = cur.next;
+impl<T> LinkedList<T> where T: Copy{
+    fn new() -> Self{
+        LinkedList{
+            next: None,
+            len: 0
         }
-        res
+    }
+    fn push_front(&mut self, val: T){
+        let new_node = Some(Box::new(Node{
+            val,
+            connect: self.next.take()
+        }));
+        self.next = new_node;
+    }
+    fn push_back(&mut self, val: T){
+        self.len += 1;
+        let mut new_node = match self.next{
+            Some(ref mut a) => a,
+            None => { // list 가 비어있을 때
+                self.next = Some(Box::new(Node {
+                    val,
+                    connect: None
+                }));
+                return;
+            }
+        };
+        while let Some(ref mut next) = new_node.connect {
+            new_node = next;
+        }
+        new_node.connect = Some(Box::new(Node{
+            val,
+            connect: None
+        }));
+    }
+
+    //Box smart pointer 추가학습 필요
+    fn pop_back(&mut self){
+        if self.len == 0 { return; }
+        self.len -= 1;
+    }
+
+    fn pop_front(&mut self){
+        if self.len == 0 { return; }
+        self.len -= 1;
     }
 }
 
 pub fn run(){
-    let mut node = Some(Box::new(ListNode{
-        val:0,
-        next: Some(Box::new(ListNode{
-            val: 1,
-            next: Some(Box::new(ListNode{
-                val: 2,
-                next: None
-            }))
-        }))
-    }));
-
-    // for i in 0..2{
-    //     let mut tmp = node.take().borrow_mut();
-    //     println!("{:?}", tmp.val);
-    //     tmp = node.take().borrow_mut().next;
-    // }
-
-
+    let mut list = LinkedList::new();
+    list.push_back(1);
+    list.push_back(2);
+    list.push_back(3);
+    list.push_back(4);
+    list.push_back(5);
+    list.pop_back();
+    //println!("{:#?}", list);
 }
