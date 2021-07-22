@@ -4,23 +4,23 @@ exports.closureFunc = void 0;
 function classClosure() {
     var fn = "classClosure";
     return /** @class */ (function () {
-        function class_1(name, pw) {
+        function Closure(name, pw) {
             this.name = "some";
             this.pw = "1234";
             this.name = name;
             this.pw = pw;
         }
-        class_1.prototype.display = function () {
+        Closure.prototype.display = function () {
             console.log("user : " + this.name + ", pw : " + this.pw + ", fn : " + fn);
         };
-        class_1.prototype.rtThis = function () {
+        Closure.prototype.rtThis = function () {
             return {
                 name: this.name,
                 pw: this.pw,
                 fn: fn
             };
         };
-        return class_1;
+        return Closure;
     }());
 }
 var global = (function () {
@@ -46,8 +46,6 @@ var Test = /** @class */ (function () {
     return Test;
 }());
 function closureFunc() {
-    var tmp = classClosure();
-    console.log(tmp);
     var test = new Test("123");
     test.display();
 }
