@@ -38,8 +38,6 @@ function solution(n, k) {
         dll.push_back(i);
     }
     //dll.head = dll.tail;
-    console.log(dll.head);
-    console.log(dll.tail);
 }
 function josephus() {
     var n = 7;

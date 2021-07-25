@@ -1,11 +1,11 @@
 "use strict";
 exports.__esModule = true;
-var josephus_1 = require("./backjun/linked_list/josephus");
+var sudoku_1 = require("./hard/sudoku");
 function main() {
     //w2Fifth();
     //forthQuestion();
     //closureFunc();
     //sortedArray();
-    josephus_1.josephus();
+    sudoku_1.sSudoku();
 }
 main();
