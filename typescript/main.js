@@ -1,11 +1,7 @@
 "use strict";
 exports.__esModule = true;
-var sudoku_1 = require("./hard/sudoku");
+var AsteroidCollision_1 = require("./leetCode/linked_list/AsteroidCollision");
 function main() {
-    //w2Fifth();
-    //forthQuestion();
-    //closureFunc();
-    //sortedArray();
-    sudoku_1.sSudoku();
+    AsteroidCollision_1.AsteroidCollision();
 }
 main();
