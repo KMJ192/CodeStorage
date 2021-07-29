@@ -207,7 +207,6 @@ function asteroidCollision(asteroids) {
         if (curr > 0)
             s.push(curr);
         else {
-            console.log(s.get());
             while (s.len() && s.top() > 0 && s.top() < Math.abs(curr)) {
                 s.pop();
             }
@@ -225,4 +224,3 @@ function AsteroidCollision() {
     console.log(result);
 }
 exports.AsteroidCollision = AsteroidCollision;
-//stack
