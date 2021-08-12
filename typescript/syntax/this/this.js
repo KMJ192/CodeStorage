@@ -57,14 +57,22 @@ function thisRun() {
     //암시적 소실 => this는 window를 가리킨다. (script mode => undefined)
     //thisTest(object.whoami);
     // new => 함수를 객체로 만들어 준다. this는 해당 객체를 가리킨다.
-    var newBinding = new bindTest("name", "pw");
+    // let newBinding = new bindTest("name", "pw");
     // console.log(`${newBinding.name}, ${newBinding.pw}`);
     // call/apply binding => 첫번째 arg로 함수를 넣어주며 주번째 인자값은 해당 함수가 받을 parameter
     // this는 첫번째 arg로 넘겨준 함수를 가리킨다.
     // callTest.call(newBinding, "test", "123");
     // applyTest.apply(bindTest, ["arg1", "arg2"]);
-    var tmp = callTest.bind(newBinding, "test", "123");
-    tmp();
+    var bObject = {
+        name: 'name',
+        pw: '12'
+    };
+    var bTest = callTest.bind(bObject, "123", "456");
+    bTest.args = {
+        name: 'name2',
+        pw: '123'
+    };
+    bTest();
     // let tmp = new Temp;
     // tmp.setStr("123");
     // tmp.print();
