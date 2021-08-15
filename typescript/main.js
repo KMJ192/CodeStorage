@@ -1,6 +1,5 @@
 "use strict";
 exports.__esModule = true;
-var this_1 = require("./syntax/this/this");
 function main() {
     //AsteroidCollision();
     // const sampleArray = [1, 2, 3, 4, 5];
@@ -9,6 +8,19 @@ function main() {
     // });
     // console.log(hap);
     //TSRun();
-    this_1.thisRun();
+    //thisRun();
 }
-main();
+var object = {
+    name: 'Changmin'
+};
+function ChangMinHandler() {
+    var name = this.name;
+    return function todo() {
+        console.log(name + " have to unlimit studing then die!!");
+    };
+}
+var run = ChangMinHandler.bind(object);
+var changmin = run();
+//while(1) {
+changmin();
+//}
