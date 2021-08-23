@@ -1,7 +1,8 @@
 "use strict";
 exports.__esModule = true;
-var DuplicateZero_1 = require("./leetCode/else/DuplicateZero");
+// import { dupZeros } from "./leetCode/else/DuplicateZero";
+var CheapestFlightsWithinKStops_1 = require("./leetCode/sort/CheapestFlightsWithinKStops");
 function main() {
-    DuplicateZero_1.dupZeros();
+    CheapestFlightsWithinKStops_1.sfwks();
 }
 main();
