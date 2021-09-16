@@ -91,7 +91,7 @@ impl<T> DoublyLinkedList<T> where T: Copy{
         match &self.tail.take(){
             Some(tail_node) => {
                 match tail_node.borrow_mut().prev.as_mut(){
-                    Some(prev_node)=> {
+                    Some(prev_node) => {
                         prev_node.borrow_mut().next = None;
                         self.tail = Some(Rc::clone(&prev_node));
                     },
@@ -109,7 +109,9 @@ impl<T> DoublyLinkedList<T> where T: Copy{
 
 pub fn run(){
     let mut tmp = DoublyLinkedList::new();
-    tmp.push_front(1);
-    tmp.push_front(2);
-    tmp.push_front(3);
+    tmp.push_back(1);
+    tmp.push_back(1);
+    tmp.push_back(1);
+    println!("{:#?}", tmp);
+
 }
