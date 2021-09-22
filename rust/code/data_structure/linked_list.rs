@@ -2,7 +2,7 @@ use std::fmt::Debug;
 
 #[derive(Debug)]
 struct Node<T> {
-    val: T,
+    val: Option<T>,
     next: Option<Box<Node<T>>>
 }
 
@@ -22,7 +22,7 @@ impl<T> LinkedList<T> where T: Debug {
 
     fn push_front(&mut self, val: T) {
         let new_node = Node {
-            val,
+            val: Some(val),
             next: self.head.take()
         };
         self.head = Some(Box::new(new_node));
@@ -35,7 +35,7 @@ impl<T> LinkedList<T> where T: Debug {
             None => {
                 // head가 없으니 새로운 node를 만든다.
                 let new_node = Node {
-                    val,
+                    val: Some(val),
                     next: self.head.take(),
                 };
                 self.head = Some(Box::new(new_node));
@@ -49,7 +49,7 @@ impl<T> LinkedList<T> where T: Debug {
         }
 
         let node = Node {
-            val,
+            val: Some(val),
             next: None
         };
 
@@ -80,24 +80,42 @@ impl<T> LinkedList<T> where T: Debug {
     }
 
     fn pop_back(&mut self) {
-        let mut idx: usize = 1;
-        match self.head.take() {
-            Some(ref mut node) => {
-                let mut cur_node = node;
-                while let Some(ref mut next) = cur_node.next {
-                    idx += 1;
-                    if idx >= self.len {
-                        cur_node.next = None;
-                        break;
-                    }
-                    println!("{:?}", next);
-                    cur_node = next;
-                }
-            },
-            _ => {
-                return;
+        let mut dummy_head = Box::new(Node {
+            val: None,
+            next: self.head.take(),
+        });
+        let mut idx = 0;
+        let mut cur = &mut dummy_head;
+        while idx < self.len - 1 {
+            if let Some(ref mut next) = cur.next {
+                cur = next;
             }
-        };
+            idx += 1;
+        }
+        cur.next = cur.next.take().and_then(|a| a.next);
+        self.head = dummy_head.next;
+
+        // match self.head {
+        //     Some(ref mut node) => {
+        //         let mut cur_node = node;
+        //         while let Some(ref mut next)= cur_node.next {
+        //             match next.next {
+        //                 None => {
+        //                     println!("{:?}", next);
+        //                     break;
+        //                 },
+        //                 _ => {
+        //
+        //
+        //                     cur_node = next;
+        //                 }
+        //             }
+        //         }
+        //     },
+        //     _ => {
+        //         return;
+        //     }
+        // };
 
         if self.len > 0 { self.len -= 1; }
     }
@@ -117,6 +135,23 @@ impl<T> LinkedList<T> where T: Debug {
             }
         };
     }
+
+    fn test(&mut self) {
+        let tmp = self.head.take();
+        let tmp = tmp.and_then(|a|  {
+            println!("{:?}", a);
+            a.next
+        });
+        let tmp = tmp.and_then(|a|  {
+            println!("{:?}", a);
+            a.next
+        });
+        let tmp = tmp.and_then(|a|  {
+            println!("{:?}", a);
+            a.next
+        });
+        // println!("{:?}", tmp);
+    }
 }
 
 pub fn run() {
@@ -124,9 +159,14 @@ pub fn run() {
     ll.push_back(1);
     ll.push_back(2);
     ll.push_back(3);
+    ll.push_back(4);
+    ll.push_back(5);
     ll.pop_back();
+    // ll.test();
     // ll.display();
-    // println!("{:#?}", ll);
+    println!("==================================");
+    println!("{:?}", ll);
+    println!("==================================");
 
     // let test_box = Box::new(String::from("test"));
     // let mut tmp = *test_box;
