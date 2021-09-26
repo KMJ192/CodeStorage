@@ -16,6 +16,6 @@ fn bubble_sort(array: &mut Vec<i32>) {
 }
 
 pub fn bubble_sort_run() {
-    let mut array = vec![1, 3, 5, 2, 4];
+    let mut array = vec![6, 1, 3, 5, 2, 4];
     bubble_sort(&mut array);
 }

@@ -1,14 +1,19 @@
 /*
-    11:48 ~ 12:18
-    input: n, k
-    output: char
+    < Feedback Template >
+  0. Question/Solver : find kth bit in nth binary string / 김수환
+  1. Problem Solving: 풀었다
+  2. Coding : javascript 조건문 동치연산자 ==를 ===로 바꾸면 좋겟다.
+  3. Communication : 의사 전달력 - 10점만점에 10점
+  4. 잘한 것 : 코드가 작동하지 않을 때 침착하게 대응, 도전정신
+  5. 좀 더 노력해야되는 부분 : 배열의 unshift 가 조금 아쉽다.
+
 */
 
 struct Solution;
 
 impl Solution {
     pub fn find_kth_bit(n: i32, k: i32) -> char {
-        if k == 0 { return '0';}
+        if k == 1 { return '0'; }
         let mut bit = String::from("0");
 
         Solution::recursion(&mut bit, 0, n);
