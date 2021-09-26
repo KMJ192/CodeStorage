@@ -2,7 +2,7 @@
 // https://leetcode.com/problems/lru-cache
 
 use std::rc::Rc;
-use std::cell::{RefCell, Ref};
+use std::cell::RefCell;
 use std::collections::HashMap;
 use std::collections::hash_map::Entry;
 

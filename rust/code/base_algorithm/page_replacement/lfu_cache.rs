@@ -1,156 +1,194 @@
 use std::rc::Rc;
-use std::cell::{RefCell, Ref};
+use std::cell::RefCell;
 use std::collections::HashMap;
-use std::collections::hash_map::Entry;
 
 #[derive(Debug)]
-struct DoublyLinkedListNode<T> {
-    val: T,
-    prev: Option<Rc<RefCell<DoublyLinkedListNode<T>>>>,
-    next: Option<Rc<RefCell<DoublyLinkedListNode<T>>>>,
+struct DoublyLinkedListNode  {
+    val: i32,
+    prev: Option<Rc<RefCell<DoublyLinkedListNode>>>,
+    next: Option<Rc<RefCell<DoublyLinkedListNode>>>,
 }
 
-impl<T> DoublyLinkedListNode<T> {
-    fn new(val: T) -> Rc<RefCell<DoublyLinkedListNode<T>>> {
-        Rc::new(RefCell::new(DoublyLinkedListNode {
+impl DoublyLinkedListNode {
+    fn new(val: i32) -> Self {
+        DoublyLinkedListNode {
             val,
             prev: None,
             next: None,
-        }))
+        }
+    }
+
+    fn disconnect(&mut self) {
+        if let Some(node) = &self.prev {
+            node.borrow_mut().next = self.next.as_ref().map(|r| r.clone());
+        }
+
+        if let Some(node) = &self.next {
+            node.borrow_mut().prev = self.prev.as_ref().map(|r| r.clone());
+        }
+
+        self.prev = None;
+        self.next = None;
+    }
+}
+
+// 빈도 저장 공간
+#[derive(Debug)]
+struct Frequency {
+    val: i32,
+    ref_count: i32,
+    freq_map: HashMap<i32, Rc<RefCell<DoublyLinkedListNode>>>,
+    head: Option<Rc<RefCell<DoublyLinkedListNode>>>,
+    tail: Option<Rc<RefCell<DoublyLinkedListNode>>>,
+}
+
+impl Frequency {
+    fn new(val: i32) -> Self {
+        Frequency {
+            val,
+            ref_count: 0,
+            freq_map: HashMap::new(),
+            head: None,
+            tail: None,
+        }
+    }
+
+    fn remove_key(&mut self, key: i32) {
+        if let Some(old_node) = self.freq_map.get_mut(&key) {
+            if self.tail.as_ref().map_or(false, |n| Rc::ptr_eq(&n, old_node)) {
+                self.tail = old_node.borrow().prev.as_ref().map(|r| r.clone());
+            }
+            if self.head.as_ref().map_or(false, |n| Rc::ptr_eq(&n, old_node)) {
+                self.head = old_node.borrow().next.as_ref().map(|r| r.clone());
+            }
+            old_node.borrow_mut().disconnect();
+            self.freq_map.remove(&key);
+            self.ref_count -= 1;
+        }
+    }
+
+    fn push_back(&mut self, key: i32) {
+        let new_node = Rc::new(RefCell::new(DoublyLinkedListNode::new(key.clone())));
+        if let Some(old_node) = &self.tail {
+            old_node.clone().borrow_mut().next = Some(new_node.clone());
+            new_node.borrow_mut().prev = Some(old_node.clone());
+            self.tail = Some(new_node.clone())
+        } else {
+            self.head = Some(new_node.clone());
+            self.tail = Some(new_node.clone());
+        }
+        self.freq_map.insert(key, new_node);
+        self.ref_count += 1;
+    }
+
+    fn pop_front(&mut self) {
+        let key = self.head.as_ref().unwrap().borrow().val.clone();
+        self.remove_key(key);
     }
 }
 
 #[derive(Debug)]
-struct DoublyLinkedList<T> {
-    head: Option<Rc<RefCell<DoublyLinkedListNode<T>>>>,
-    tail: Option<Rc<RefCell<DoublyLinkedListNode<T>>>>,
-    length: usize
+struct CacheTable {
+    value: i32,
+    freq: i32
 }
 
-impl<T> DoublyLinkedList<T> where T: Copy {
-    fn new() -> Self{
-        DoublyLinkedList {
-            head: None,
-            tail: None,
-            length: 0,
+#[derive(Debug)]
+struct LFUCache {
+    capacity: i32,
+    len: i32,
+    lowest_freq: i32,
+    data_info: HashMap<i32, CacheTable>,
+    freq: HashMap<i32, Frequency>
+}
+
+impl LFUCache {
+    fn new(capacity: i32) -> Self {
+        LFUCache {
+            capacity,
+            len: 0,
+            lowest_freq: 0,
+            data_info: HashMap::new(),
+            freq: HashMap::new(),
         }
     }
-    fn len(&self) -> usize {
-        self.length
-    }
 
-    fn push_front(&mut self, val: T) -> Rc<RefCell<DoublyLinkedListNode<T>>> {
-        let new_head = DoublyLinkedListNode::new(val);
+    fn get(&mut self, key: i32) -> i32 {
+        if let Some(item) = self.data_info.get_mut(&key) {
+            let old_freq = self.freq.get_mut(&item.freq).unwrap();
+            old_freq.remove_key(key);
 
-        match &self.head.take() {
-            Some(old_head) => {
-                old_head.borrow_mut().prev = Some(Rc::clone(&new_head));
-                new_head.borrow_mut().next = Some(Rc::clone(&old_head));
-            },
-            _ => {
-                self.tail = Some(Rc::clone(&new_head));
+            if self.lowest_freq == old_freq.val && old_freq.ref_count == 0 {
+                self.lowest_freq += 1;
             }
+
+            item.freq += 1;
+            self.freq.entry(item.freq).or_insert(Frequency::new(item.freq)).push_back(key);
+
+            item.value.clone()
+        } else {
+            -1
         }
-
-        self.head = Some(Rc::clone(&new_head));
-        self.length += 1;
-
-        new_head
     }
 
-    fn push_back(&mut self, val: T) -> Rc::<RefCell<DoublyLinkedListNode<T>>> {
-        let new_tail = DoublyLinkedListNode::new(val);
-
-        match &self.tail.take() {
-            Some(old_tail) => {
-                old_tail.borrow_mut().next = Some(Rc::clone(&new_tail));
-                new_tail.borrow_mut().prev = Some(Rc::clone(&old_tail));
-            },
-            _ => {
-                self.head = Some(Rc::clone(&new_tail));
+    fn put(&mut self, key: i32, value: i32) {
+        if let Some(item) = self.data_info.get_mut(&key) {
+            // cache 메모리에 데이터가 있던 경우
+            let old_freq = self.freq.get_mut(&item.freq).unwrap();
+            old_freq.remove_key(key);
+            if self.lowest_freq == old_freq.val && old_freq.ref_count == 0 {
+                self.lowest_freq += 1;
             }
-        }
-        self.tail = Some(Rc::clone(&new_tail));
-        self.length += 1;
 
-        new_tail
-    }
+            item.freq += 1;
+            item.value = value;
 
-    fn pop_front(&mut self) -> Option<T> {
-        match &self.head.take() {
-            Some(head_node) => {
-                match head_node.borrow_mut().next.as_mut() {
-                    Some(next_node) => {
-                        next_node.borrow_mut().prev = None;
-                        self.head = Some(Rc::clone(&next_node));
-                    },
-                    _ => {
-                        self.tail = None;
-                    }
+            self.freq.entry(item.freq).or_insert(Frequency::new(item.freq)).push_back(key);
+        } else {
+            // cache 메모리에 데이터가 없음
+            if self.capacity > 0 {
+                // table 의 길이와 capacity 가 같은 경우 => cache 메모리 공간이 없는 경우 참조 횟수가 가장 적은 페이지 제거
+                if self.len == self.capacity {
+                    let lowest_freq = self.freq.get_mut(&self.lowest_freq).unwrap();
+                    self.data_info.remove(&lowest_freq.head.as_ref().unwrap().borrow().val);
+                    lowest_freq.pop_front();
+                    self.len -= 1;
                 }
-                self.length -= 1;
-                Some(head_node.borrow().val)
-            },
-            _ => {
-                None
+
+                self.data_info.insert(key, CacheTable {
+                    value,
+                    freq: 1
+                });
+                self.freq.entry(1).or_insert((Frequency::new(1))).push_back(key);
+                self.len += 1;
+                self.lowest_freq = 1;
             }
         }
-    }
-
-    fn pop_back(&mut self) ->  Option<T> {
-        match &self.tail.take() {
-            Some(tail_node) => {
-                match tail_node.borrow_mut().prev.as_mut() {
-                    Some(prev_node) => {
-                        prev_node.borrow_mut().next = None;
-                        self.tail = Some(Rc::clone(&prev_node));
-                    },
-                    _ => {
-                        self.head = None;
-                    }
-                }
-                self.length -= 1;
-                Some(tail_node.borrow().val)
-            },
-            _ => {
-                None
-            },
-        }
-    }
-
-    fn remove(&mut self, node: Rc<RefCell<DoublyLinkedListNode<T>>>) -> T {
-        if node.borrow().prev.is_none() && node.borrow().next.is_none() {
-            self.head = None;
-            self.tail = None;
-            self.length = 0;
-
-            return node.borrow().val;
-        }
-        let mut rn = node.borrow_mut();
-        match rn.prev.take() {
-            Some(prev_node) => {
-                match rn.next.take() {
-                    Some(next_node) => {
-                        prev_node.borrow_mut().next = Some(Rc::clone(&next_node));
-                        next_node.borrow_mut().prev = Some(prev_node);
-                    },
-                    _ => {
-                        prev_node.borrow_mut().next = None;
-                        self.tail = Some(prev_node);
-                    }
-                }
-            },
-            _ => {
-                self.head = rn.next.clone();
-                self.head.as_mut().unwrap().borrow_mut().prev = None;
-            }
-        }
-
-        self.length -= 1;
-        rn.val
     }
 }
+
 
 pub fn run() {
+    let mut lfu_cache = LFUCache::new(2);
+    println!("null");
 
+    lfu_cache.put(1, 1);
+    println!("null");
+    lfu_cache.put(2, 2);
+    println!("null");
+
+    println!("{}", lfu_cache.get(1));
+
+    lfu_cache.put(3, 3);
+    println!("null");
+
+    println!("{}", lfu_cache.get(2));
+    println!("{}", lfu_cache.get(3));
+
+    lfu_cache.put(4, 4);
+    println!("null");
+
+    println!("{}", lfu_cache.get(1));
+    println!("{}", lfu_cache.get(3));
+    println!("{}", lfu_cache.get(4));
 }
