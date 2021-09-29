@@ -1,9 +1,12 @@
-class TrieNode {
+export class TrieNode {
   public isWord: boolean;
+
   public word: string;
+
   public next: {
     [key: string]: TrieNode;
   };
+
   constructor() {
     this.isWord = false;
     this.next = {};
@@ -11,8 +14,9 @@ class TrieNode {
   }
 }
 
-class TrieDataStructure {
+export class TrieDataStructure {
   private root: TrieNode;
+
   constructor() {
     this.root = new TrieNode();
   }
@@ -21,16 +25,20 @@ class TrieDataStructure {
     let curNode: TrieNode = this.root;
     for (let i: number = 0; i < word.length; i++) {
       const c: string = word[i];
-      !curNode.next[c] && (curNode.next[c] = new TrieNode());
+      if (!curNode.next[c]) {
+        curNode.next[c] = new TrieNode();
+      }
       curNode = curNode.next[c];
     }
     curNode.word = word;
     curNode.isWord = true;
   }
+
   public search(word: string): boolean {
     let curNode: TrieNode = this.root;
     for (let i: number = 0; i < word.length; i++) {
       curNode = curNode.next[word.charAt(i)];
+      console.log(curNode);
       if (!curNode) return false;
     }
     return curNode.isWord;

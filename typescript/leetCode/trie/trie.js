@@ -1,13 +1,15 @@
 "use strict";
 exports.__esModule = true;
-exports.buildTrie = void 0;
+exports.buildTrie = exports.TrieDataStructure = exports.TrieNode = void 0;
 var TrieNode = /** @class */ (function () {
     function TrieNode() {
         this.isWord = false;
         this.next = {};
+        this.word = "";
     }
     return TrieNode;
 }());
+exports.TrieNode = TrieNode;
 var TrieDataStructure = /** @class */ (function () {
     function TrieDataStructure() {
         this.root = new TrieNode();
@@ -16,16 +18,19 @@ var TrieDataStructure = /** @class */ (function () {
         var curNode = this.root;
         for (var i = 0; i < word.length; i++) {
             var c = word[i];
-            !curNode.next[c] && (curNode.next[c] = new TrieNode());
+            if (!curNode.next[c]) {
+                curNode.next[c] = new TrieNode();
+            }
             curNode = curNode.next[c];
         }
+        curNode.word = word;
         curNode.isWord = true;
     };
     TrieDataStructure.prototype.search = function (word) {
         var curNode = this.root;
         for (var i = 0; i < word.length; i++) {
-            var c = word.charAt(i);
             curNode = curNode.next[word.charAt(i)];
+            console.log(curNode);
             if (!curNode)
                 return false;
         }
@@ -42,6 +47,7 @@ var TrieDataStructure = /** @class */ (function () {
     };
     return TrieDataStructure;
 }());
+exports.TrieDataStructure = TrieDataStructure;
 var buildTrie = function () {
     var trie = new TrieDataStructure();
     trie.insert("abcd");
