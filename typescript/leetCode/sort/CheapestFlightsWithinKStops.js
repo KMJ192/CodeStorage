@@ -47,6 +47,10 @@ function findCheapestPrice(n, flights, src, dst, k) {
     return answer;
 }
 ;
+function findCheapestPrice2(n, flights, src, dst, k) {
+    var answer = 0;
+    return answer;
+}
 function sfwks() {
     var n = 3;
     // [from, to, price] 
@@ -56,6 +60,7 @@ function sfwks() {
     var dst = 2;
     // 경유 1회 가능
     var k = 1;
-    findCheapestPrice(n, flights, src, dst, k);
+    //findCheapestPrice(n, flights, src, dst, k);
+    findCheapestPrice2(n, flights, src, dst, k);
 }
 exports.sfwks = sfwks;

@@ -1,8 +1,9 @@
 "use strict";
-exports.__esModule = true;
 // import { dupZeros } from "./leetCode/else/DuplicateZero";
-var CheapestFlightsWithinKStops_1 = require("./leetCode/sort/CheapestFlightsWithinKStops");
+// import { sfwks } from "./leetCode/sort/CheapestFlightsWithinKStops";
+exports.__esModule = true;
+var trie_1 = require("./leetCode/trie/trie");
 function main() {
-    CheapestFlightsWithinKStops_1.sfwks();
+    trie_1.buildTrie();
 }
 main();

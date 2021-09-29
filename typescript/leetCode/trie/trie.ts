@@ -1,48 +1,53 @@
-class Trie{
-    private root : Object;
-    private end : string;
-    constructor() {
-        this.root = {};
-        this.end = "*";
-    }
-    public insert(word : string){
-        let currentNode : Object = this.root;
-        for(let i = 0; i < word.length; i++) {
-            !currentNode[word[i]] && ( currentNode[word[i]] = {} );
-            currentNode = currentNode[word[i]];
-        }
-        currentNode[this.end] = true;
-    }
-    public search(word : string) : boolean{
-        let currentNode : Object = this.root;
-        for(let i = 0; i < word.length; i++) {
-            if(!currentNode[word[i]]) return false;
-            currentNode = currentNode[word[i]];
-
-            if(i === word.length - 1){
-                if(currentNode[this.end]) return true;
-            }
-        }
-        return false;
-    }
-    public startsWith(prefix : string) : boolean{
-        let currentNode : Object = this.root;
-        for(let i = 0; i < prefix.length; i++) {
-            if(!currentNode[prefix[i]]) return false;
-            currentNode = currentNode[prefix[i]];
-        }
-        return Object.keys(currentNode).length !== 0;
-    }
-    public show(){
-        return this.root;
-    }
+class TrieNode {
+  public isWord: boolean;
+  public word: string;
+  public next: {
+    [key: string]: TrieNode;
+  };
+  constructor() {
+    this.isWord = false;
+    this.next = {};
+    this.word = "";
+  }
 }
 
-export const buildTrie = (words : Array<string>) => {
-    const dictionary = new Trie();
-    for(let i = 0; i < words.length; i++){
-        dictionary.insert(words[i]);
+class TrieDataStructure {
+  private root: TrieNode;
+  constructor() {
+    this.root = new TrieNode();
+  }
+
+  public insert(word: string) {
+    let curNode: TrieNode = this.root;
+    for (let i: number = 0; i < word.length; i++) {
+      const c: string = word[i];
+      !curNode.next[c] && (curNode.next[c] = new TrieNode());
+      curNode = curNode.next[c];
     }
-    dictionary.startsWith("appd");
-    //console.log(dictionary.search("apple"));
+    curNode.word = word;
+    curNode.isWord = true;
+  }
+  public search(word: string): boolean {
+    let curNode: TrieNode = this.root;
+    for (let i: number = 0; i < word.length; i++) {
+      curNode = curNode.next[word.charAt(i)];
+      if (!curNode) return false;
+    }
+    return curNode.isWord;
+  }
+
+  public startsWith(prefix: string): boolean {
+    let curNode = this.root;
+    for (let i: number = 0; i < prefix.length; i++) {
+      curNode = curNode.next[prefix.charAt(i)];
+      if (!curNode) return false;
+    }
+    return true;
+  }
 }
+
+export const buildTrie = () => {
+  let trie = new TrieDataStructure();
+  trie.insert("abcd");
+  console.log(trie.search("b"));
+};

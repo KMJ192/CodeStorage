@@ -1,52 +1,50 @@
 "use strict";
 exports.__esModule = true;
 exports.buildTrie = void 0;
-var Trie = /** @class */ (function () {
-    function Trie() {
-        this.root = {};
-        this.end = "*";
+var TrieNode = /** @class */ (function () {
+    function TrieNode() {
+        this.isWord = false;
+        this.next = {};
     }
-    Trie.prototype.insert = function (word) {
-        var currentNode = this.root;
-        for (var i = 0; i < word.length; i++) {
-            !currentNode[word[i]] && (currentNode[word[i]] = {});
-            currentNode = currentNode[word[i]];
-        }
-        currentNode[this.end] = true;
-    };
-    Trie.prototype.search = function (word) {
-        var currentNode = this.root;
-        for (var i = 0; i < word.length; i++) {
-            if (!currentNode[word[i]])
-                return false;
-            currentNode = currentNode[word[i]];
-            if (i === word.length - 1) {
-                if (currentNode[this.end])
-                    return true;
-            }
-        }
-        return false;
-    };
-    Trie.prototype.startsWith = function (prefix) {
-        var currentNode = this.root;
-        for (var i = 0; i < prefix.length; i++) {
-            if (!currentNode[prefix[i]])
-                return false;
-            currentNode = currentNode[prefix[i]];
-        }
-        return Object.keys(currentNode).length !== 0;
-    };
-    Trie.prototype.show = function () {
-        return this.root;
-    };
-    return Trie;
+    return TrieNode;
 }());
-var buildTrie = function (words) {
-    var dictionary = new Trie();
-    for (var i = 0; i < words.length; i++) {
-        dictionary.insert(words[i]);
+var TrieDataStructure = /** @class */ (function () {
+    function TrieDataStructure() {
+        this.root = new TrieNode();
     }
-    dictionary.startsWith("appd");
-    //console.log(dictionary.search("apple"));
+    TrieDataStructure.prototype.insert = function (word) {
+        var curNode = this.root;
+        for (var i = 0; i < word.length; i++) {
+            var c = word[i];
+            !curNode.next[c] && (curNode.next[c] = new TrieNode());
+            curNode = curNode.next[c];
+        }
+        curNode.isWord = true;
+    };
+    TrieDataStructure.prototype.search = function (word) {
+        var curNode = this.root;
+        for (var i = 0; i < word.length; i++) {
+            var c = word.charAt(i);
+            curNode = curNode.next[word.charAt(i)];
+            if (!curNode)
+                return false;
+        }
+        return curNode.isWord;
+    };
+    TrieDataStructure.prototype.startsWith = function (prefix) {
+        var curNode = this.root;
+        for (var i = 0; i < prefix.length; i++) {
+            curNode = curNode.next[prefix.charAt(i)];
+            if (!curNode)
+                return false;
+        }
+        return true;
+    };
+    return TrieDataStructure;
+}());
+var buildTrie = function () {
+    var trie = new TrieDataStructure();
+    trie.insert("abcd");
+    console.log(trie.search("b"));
 };
 exports.buildTrie = buildTrie;
