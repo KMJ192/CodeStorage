@@ -1,42 +1,61 @@
-class Node {
-  isWord: string;
-  next: any;
+export class TrieNode {
+  public isWord: boolean;
+
+  public word: string;
+
+  public next: {
+    [key: string]: TrieNode;
+  };
+
   constructor() {
-    this.isWord = '';
+    this.isWord = false;
     this.next = {};
+    this.word = "";
   }
 }
 
-class Trie{
-  private root: Node;
-  private end: string;
+export class TrieDataStructure {
+  private root: TrieNode;
+
   constructor() {
-      this.root = new Node();
-      this.end = '';
+    this.root = new TrieNode();
   }
 
   public insert(word: string) {
-    let current = this.root;
-    for(let i = 0; i < word.length; i++) {
-      if(!current.next[word[i]]) current.next = new Node();
-      current = current.next;
+    let curNode: TrieNode = this.root;
+    for (let i: number = 0; i < word.length; i++) {
+      const c: string = word[i];
+      if (!curNode.next[c]) {
+        curNode.next[c] = new TrieNode();
+      }
+      curNode = curNode.next[c];
     }
+    curNode.word = word;
+    curNode.isWord = true;
   }
 
-  public display() {
-    this.recursion(this.root);
+  public search(word: string): boolean {
+    let curNode: TrieNode = this.root;
+    for (let i: number = 0; i < word.length; i++) {
+      curNode = curNode.next[word.charAt(i)];
+      console.log(curNode);
+      if (!curNode) return false;
+    }
+    return curNode.isWord;
   }
 
-  private recursion(currNode: Node) {
-    console.log(Object.keys(currNode));
+  public startsWith(prefix: string): boolean {
+    let curNode = this.root;
+    for (let i: number = 0; i < prefix.length; i++) {
+      curNode = curNode.next[prefix.charAt(i)];
+      if (!curNode) return false;
+    }
+    return true;
   }
 }
 
-
-export function TSRun() {
-  let tr = new Trie();
-  tr.insert("test1");
-  tr.insert("sest2");
-  console.log(tr);
-  tr.display();
-}
+export const buildTrie = () => {
+  let trie = new TrieDataStructure();
+  trie.insert("abcd");
+  console.log(trie.search("b"));
+};
