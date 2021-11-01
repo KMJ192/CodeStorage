@@ -38,7 +38,6 @@ export class TrieDataStructure {
     let curNode: TrieNode = this.root;
     for (let i: number = 0; i < word.length; i++) {
       curNode = curNode.next[word.charAt(i)];
-      console.log(curNode);
       if (!curNode) return false;
     }
     return curNode.isWord;
