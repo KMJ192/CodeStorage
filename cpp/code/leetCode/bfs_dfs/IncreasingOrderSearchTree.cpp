@@ -16,7 +16,7 @@ struct TreeNode {
 class Solution {
 private:
     priority_queue<int> q;
-    TreeNode* answer = new TreeNode();
+    TreeNode* answer;
 public:
     TreeNode* increasingBST(TreeNode* root) {
         recursionSearch(root);
@@ -31,7 +31,6 @@ public:
     }
 
     void recursionSearch(TreeNode* node) {
-        // v.push_back(node->val);
         q.push(node->val);
         if (node->left != nullptr) recursionSearch(node->left);
         if (node->right != nullptr) recursionSearch(node->right);
@@ -41,10 +40,15 @@ public:
         parent->right = child;
         return parent;
     }
-
-    void recursion(TreeNode* node) {
-        cout << node->val << endl;
-        if (node->right != nullptr) recursion(node->right);
+    void recursion(TreeNode* root) {
+        if (root->right != nullptr) recursion(root->right);
+        delete root;
+    }
+    Solution() {
+        answer = new TreeNode();
+    }
+    ~Solution() {
+        recursion(answer);
     }
 };
 
@@ -74,6 +78,16 @@ int main() {
 
     Solution s;
     s.increasingBST(root);
+
+    delete rlr;
+    delete rll;
+    delete rl;
+    delete lr;
+    delete r;
+    delete lll;
+    delete ll;
+    delete l;
+    delete root;
 
     return 0;
 }
