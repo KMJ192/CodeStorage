@@ -1,27 +1,28 @@
-//1. left edge Å½»ö -> dfs »ç¿ë
-//  - root node¿¡¼­ ½ÃÀÛ
-//  - left node°¡ ÀÖ´ÂÁö ¾ø´ÂÁö È®ÀÎ ÈÄ ÀÖÀ¸¸é left nodeÃâ·Â
-//  - left node°¡ ¾øÀ» °æ¿ì rigth nodeÃâ·Â
-//  - left/right node°¡ ¸ðµÎ ¾øÀ» °æ¿ì left edgeÅ½»ö ¿Ï·á
+//1. left edge Å½ï¿½ï¿½ -> dfs ï¿½ï¿½ï¿½
+//  - root nodeï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+//  - left nodeï¿½ï¿½ ï¿½Ö´ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ È®ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ left nodeï¿½ï¿½ï¿½
+//  - left nodeï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ rigth nodeï¿½ï¿½ï¿½
+//  - left/right nodeï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ left edgeÅ½ï¿½ï¿½ ï¿½Ï·ï¿½
 
-//2. bottom edge Å½»ö
-// - 1¹ø ·ÎÁ÷À» °è¼Ó ÁøÇàÇÏ¸é¼­ ÃÖÇÏ´Ü node¸¦ ¸¸³ª¸é Ãâ·Â
+//2. bottom edge Å½ï¿½ï¿½
+// - 1ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï¸é¼­ ï¿½ï¿½ï¿½Ï´ï¿½ nodeï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
 
-//3. 1¹ø/2¹ø logicÀÌ Á¾·áµÈ ÈÄ ´Ù¸¥ logicÀ¸·Î ½ÇÇà
-//  - root node¿¡¼­ ½ÃÀÛ
-//  - right node°¡ ÀÖ´ÂÁö ¾ø´ÂÁö È®ÀÎ ÈÄ ÀÖÀ¸¸é rigth node¸¦ vector¹è¿­¿¡ push
-//  - rigth node°¡ ¾øÀ¸¸é left node¸¦ vector¹è¿­¿¡ push
-//  - ÃÖÇÏ´Ü node¸¦ ¸¸³ª¸é Á¾·á
-//  - vector¸¦ reverse
-//  - 1¹ø ¿ø¼ÒºÎÅÍ ¸¶Áö¸· ¿ø¼Ò±îÁö Ãâ·Â
+//3. 1ï¿½ï¿½/2ï¿½ï¿½ logicï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Ù¸ï¿½ logicï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+//  - root nodeï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+//  - right nodeï¿½ï¿½ ï¿½Ö´ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ È®ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ rigth nodeï¿½ï¿½ vectorï¿½è¿­ï¿½ï¿½ push
+//  - rigth nodeï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ left nodeï¿½ï¿½ vectorï¿½è¿­ï¿½ï¿½ push
+//  - ï¿½ï¿½ï¿½Ï´ï¿½ nodeï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+//  - vectorï¿½ï¿½ reverse
+//  - 1ï¿½ï¿½ ï¿½ï¿½ï¿½Òºï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ò±ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
 
-//½Ã°£º¹Àâµµ : O(n^2) + O(3n) ?
-//°ø°£º¹Àâµµ : O(n) ?
+//ï¿½Ã°ï¿½ï¿½ï¿½ï¿½âµµ : O(n^2) + O(3n) ?
+//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½âµµ : O(n) ?
 #include<iostream>
+#include <algorithm>
 #include<vector>
 
 using namespace std;
-//ÀÌÁøÆ®¸® ±¸Á¶Ã¼
+//ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ã¼
 struct TreeNode {
     char val;
     TreeNode* left;
@@ -30,13 +31,13 @@ struct TreeNode {
 };
 
 vector<char> b;
-bool lLast = false; //¿ÞÂÊ °¡ÀåÀÚ¸®ÀÇ ¸¶Áö¸· nodeÀÓÀ» ±¸ºÐ
-bool posFirst = false; //bottom °¡ÀåÀÚ¸®ÀÇ Ã¹¹øÂ° nodeÀÓÀ» ±¸ºÐ
-bool toggle = false;//¿ÞÂÊnodeÀÏ¶§ false, ¿À¸¥ÂÊ nodeÀÏ¶§ true
+bool lLast = false; //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ú¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ nodeï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+bool posFirst = false; //bottom ï¿½ï¿½ï¿½ï¿½ï¿½Ú¸ï¿½ï¿½ï¿½ Ã¹ï¿½ï¿½Â° nodeï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+bool toggle = false;//ï¿½ï¿½ï¿½ï¿½nodeï¿½Ï¶ï¿½ false, ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ nodeï¿½Ï¶ï¿½ true
 
 void first(TreeNode* root) {
-    //left°¡ÀåÀÚ¸® Å½»ö
-    //lLast°¡ trueÀÏ °æ¿ì left°¡ÀåÀÚ¸®ÀÇ node´Â ¸ðµÎ ¼øÈ¸¸¦ ¸¶Ä§
+    //leftï¿½ï¿½ï¿½ï¿½ï¿½Ú¸ï¿½ Å½ï¿½ï¿½
+    //lLastï¿½ï¿½ trueï¿½ï¿½ ï¿½ï¿½ï¿½ leftï¿½ï¿½ï¿½ï¿½ï¿½Ú¸ï¿½ï¿½ï¿½ nodeï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½È¸ï¿½ï¿½ ï¿½ï¿½Ä§
     if (lLast == false) cout << root->val << " ";
 
     if (root->left != NULL) first(root->left);
@@ -47,14 +48,14 @@ void first(TreeNode* root) {
         }
         else {
             if (lLast == false) {
-                //ÇöÀç ³ëµåÀÇ left/right°¡ ¸ðµÎ nullÀÌ¹Ç·Î
-                //left¸¦ Ãâ·ÂÇÏÁö ¾Ê±â À§ÇØ lLast¸¦ true·Î ¼³Á¤ 
+                //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ left/rightï¿½ï¿½ ï¿½ï¿½ï¿½ nullï¿½Ì¹Ç·ï¿½
+                //leftï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê±ï¿½ ï¿½ï¿½ï¿½ï¿½ lLastï¿½ï¿½ trueï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ 
                 lLast = true;
                 posFirst = true;
             }
         }
     }
-    //bottomÀÇ °¡ÀåÀÚ¸® Å½»ö 
+    //bottomï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ú¸ï¿½ Å½ï¿½ï¿½ 
     if (root->right != NULL) first(root->right);
     else {
         if (root->left == NULL) {
@@ -66,8 +67,8 @@ void first(TreeNode* root) {
 }
 
 void second(TreeNode* root) {
-    //lLast°¡ trueÀÏ °æ¿ì root node¸¦ °¡¸®Å°°í ÀÖÀ¸¹Ç·Î
-    //Ãâ·Â ´ë»ó¿¡¼­ Á¦¿Ü
+    //lLastï¿½ï¿½ trueï¿½ï¿½ ï¿½ï¿½ï¿½ root nodeï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Å°ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ç·ï¿½
+    //ï¿½ï¿½ï¿½ ï¿½ï¿½ó¿¡¼ï¿½ ï¿½ï¿½ï¿½ï¿½
     if (lLast == false) b.push_back(root->val);
     else lLast = false;
     if (root->right != NULL) second(root->right);
@@ -75,19 +76,19 @@ void second(TreeNode* root) {
         if (root->left != NULL) second(root->left);
     }
 }
-//firstÇÔ¼ö¿Í secondÇÔ¼ö¸¦ ½ÇÇà
+//firstï¿½Ô¼ï¿½ï¿½ï¿½ secondï¿½Ô¼ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 void run(TreeNode* root) {
     if (root == nullptr) return;
     first(root);
     second(root);
-    //secondÇÔ¼ö¿¡¼­ ½ÇÇàÇÑ °á°úÀÎ vector b¸¦ reverse
+    //secondï¿½Ô¼ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ vector bï¿½ï¿½ reverse
     reverse(b.begin(), b.end());
-    //0¹øÂ° ¿ø¼Ò´Â Ãâ·Â ´ë»ó¿¡¼­ Á¦¿Ü
+    //0ï¿½ï¿½Â° ï¿½ï¿½ï¿½Ò´ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ó¿¡¼ï¿½ ï¿½ï¿½ï¿½ï¿½
     for (int i = 1; i < b.size(); i++) {
         cout << b[i] << " ";
     }
 }
-//main function¿¡¼­ input
+//main functionï¿½ï¿½ï¿½ï¿½ input
 int main() {
     //tree input
     TreeNode* root = new TreeNode('a');

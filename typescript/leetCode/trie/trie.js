@@ -30,7 +30,6 @@ var TrieDataStructure = /** @class */ (function () {
         var curNode = this.root;
         for (var i = 0; i < word.length; i++) {
             curNode = curNode.next[word.charAt(i)];
-            console.log(curNode);
             if (!curNode)
                 return false;
         }
@@ -51,6 +50,6 @@ exports.TrieDataStructure = TrieDataStructure;
 var buildTrie = function () {
     var trie = new TrieDataStructure();
     trie.insert("abcd");
-    console.log(trie.search("b"));
+    console.log(trie.search("abcd"));
 };
 exports.buildTrie = buildTrie;
