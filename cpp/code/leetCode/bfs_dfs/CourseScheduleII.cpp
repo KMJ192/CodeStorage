@@ -10,7 +10,7 @@ public:
     // 모든 과정을 완료할 수 없을 경우 []반환
     vector<int> findOrder(int numCourses, vector<vector<int>>& prerequisites) {
       vector<int> answer;
-
+      
       vector<vector<int>> outgoing(numCourses);
       vector<int> incoming(numCourses, 0);
 
