@@ -5,3 +5,4 @@ cpp/CodingTest
 node_modules
 package-lock.json
 cpp/**/**.exe
+teamMatching.js
