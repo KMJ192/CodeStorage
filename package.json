@@ -1,0 +1,23 @@
+{
+  "name": "codestorage",
+  "version": "1.0.0",
+  "description": "알고리즘, 알고리즘문제, 문법, 테스트코드 등 저장하는 곳",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/KMJ192/CodeStorage.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/KMJ192/CodeStorage/issues"
+  },
+  "homepage": "https://github.com/KMJ192/CodeStorage#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
