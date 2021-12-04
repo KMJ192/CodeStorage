@@ -9,3 +9,5 @@ teamMatching.js
 realCote/**
 Cargo.lock
 rust/target
+node_modules
+yarn.lock
