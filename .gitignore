@@ -11,3 +11,4 @@ Cargo.lock
 rust/target
 node_modules
 yarn.lock
+*.pptx
