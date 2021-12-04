@@ -12,7 +12,9 @@ macro_rules! vec {
 
 fn learn_macro() {
   let v = vec![1, 2, 3];
-  println!("{:?}", v);
+  let debug = format!("{:?}", v);
+  println!("{}", debug);
+  // let s = print_to_string!(v);
 }
 
 pub fn run() {
