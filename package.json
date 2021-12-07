@@ -4,6 +4,7 @@
   "description": "알고리즘, 알고리즘문제, 문법, 테스트코드 등 저장하는 곳",
   "main": "index.js",
   "scripts": {
+    "ts": "tsc typescript/main.ts && node typescript/main.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

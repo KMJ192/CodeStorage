@@ -1,24 +1,29 @@
+const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const webpack = require("webpack");
 
 module.exports = {
-  entry: "./index.js",
+  entry: "./index.ts",
+  output: {
+    filename: "index.js",
+    path: path.resolve(__dirname, "dist"),
+  },
   devServer: {
     open: true,
     port: 3000,
-    headers: {
-      "Access-Control-Allow-Origin": "*",
-      "Access-Control-Allow-Credentials": "true",
-      "Access-Control-Allow-Methods": "GET,HEAD,OPTIONS,POST,PUT",
-      "Access-Control-Allow-Headers":
-        "Origin, X-Requested-With, Content-Type, Accept, Authorization",
-    },
+    hot: true,
   },
   mode: "development",
   resolve: {
-    extensions: [".js"],
+    extensions: [".js", ".ts"],
   },
   module: {
     rules: [
+      {
+        test: /\.ts$/i,
+        use: ["babel-loader", "ts-loader"],
+        exclude: /node_modules/,
+      },
       {
         test: /\.js$/i,
         use: ["babel-loader"],
@@ -32,6 +37,7 @@ module.exports = {
     ],
   },
   plugins: [
+    new webpack.HotModuleReplacementPlugin(),
     new HtmlWebpackPlugin({
       title: "Webpack",
       template: "./index.html",

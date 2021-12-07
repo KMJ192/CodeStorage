@@ -4,6 +4,6 @@
 #[path="./dp/knapsack_problem.rs"] mod knapsack;
 
 fn main() {
-    knapsack::knapsack();
-    // stock::run();
+  knapsack::knapsack();
+
 }

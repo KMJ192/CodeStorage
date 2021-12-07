@@ -2,8 +2,9 @@
 // import { dupZeros } from "./leetCode/else/DuplicateZero";
 // import { sfwks } from "./leetCode/sort/CheapestFlightsWithinKStops";
 exports.__esModule = true;
-var trie_1 = require("./leetCode/trie/trie");
+// import { buildTrie } from "./leetCode/trie/trie";
+var dp_1 = require("./base_ds_algorithm/dp/dp");
 function main() {
-    trie_1.buildTrie();
+    dp_1.dpRun();
 }
 main();

@@ -10,9 +10,8 @@ void makeTable(string s, vector<int>& table) {
     while (j > 0 && s[i] != s[j]) {
       j = table[j - 1];
     }
-    if (s[i] -= s[j]) {
-      j++;
-    }
+
+    if (s[i] == s[j]) j++;
     table[i] = j;
   }
 }
@@ -21,11 +20,11 @@ void kmp(string s, string pattern, vector<int>& table) {
   int sLen = s.size(), pLen = pattern.size();
   int j = 0;
   for (int i = 0; i < sLen; i++) {
-    while(j > 0 && s[i] != pattern[j]) {
+    while (j > 0 && s[i] != pattern[j]) {
       j = table[j - 1];
     }
     if (s[i] == pattern[j]) {
-      if (j == pLen - 1){
+      if (j == pLen - 1) {
         cout << i - pLen + 1 << endl;
         j = table[j];
       } else {

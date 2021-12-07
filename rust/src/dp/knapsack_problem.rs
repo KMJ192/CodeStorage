@@ -112,13 +112,13 @@ pub fn knapsack() {
     vec![255, 40]
   ];
 
-  // let capacity = 5;
-  // let items = vec![
-  //   vec![3, 2],
-  //   vec![4, 3],
-  //   vec![5, 4],
-  //   vec![6, 5],
-  // ];
+  let capacity = 10;
+  let items = vec![
+    vec![3, 2],
+    vec![4, 3],
+    vec![5, 4],
+    vec![6, 5],
+  ];
 
   // let items = vec! [
   //   vec![30, 1],

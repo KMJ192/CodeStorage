@@ -32,5 +32,51 @@ app.get("/", (req, res) =>
   )
 );
 app.get("/product-list", (req, res) => res.send(productList));
+app.get("/product/1", (req, res) => {
+  res.send(productOption1);
+});
+app.get("/product/2", (req, res) => {
+  res.send(productOption2);
+});
+
+app.get("/product/3", (req, res) => {
+  res.send(productOption3);
+});
+
+app.get("/product/4", (req, res) => {
+  res.send(productOption4);
+});
+
+app.get("/product/5", (req, res) => {
+  res.send(productOption5);
+});
+
+app.get("/product/6", (req, res) => {
+  res.send(productOption6);
+});
+
+app.get("/product/7", (req, res) => {
+  res.send(productOption7);
+});
+
+app.get("/product/8", (req, res) => {
+  res.send(productOption8);
+});
+
+app.get("/product/9", (req, res) => {
+  res.send(productOption9);
+});
+
+app.get("/product/10", (req, res) => {
+  res.send(productOption10);
+});
+
+app.get("/product/11", (req, res) => {
+  res.send(productOption11);
+});
+
+app.get("/product/12", (req, res) => {
+  res.send(productOption12);
+});
 
 app.listen(port);
