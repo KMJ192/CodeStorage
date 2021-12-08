@@ -12,4 +12,3 @@ rust/target
 node_modules
 yarn.lock
 *.pptx
-javascript/dev-matching/2021/server/images

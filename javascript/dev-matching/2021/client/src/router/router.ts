@@ -1,34 +1,61 @@
-import productList from "../productList";
-import productInfo from "../productInfo";
-import shoppingBack from "../shoppingBack";
+import ProductList from "../productList";
+import ProductInfo from "../productInfo";
+import ShoppingBack from "../shoppingBack";
 
 import { PageTypes } from "./types";
 
-// export class RoutePath {
-//   data: string[];
+import { ShoppingBackParam } from "../shoppingBack/types";
+import { ProductInfoParam } from "../productInfo/types";
+import { ProductListParam } from "../productList/types";
 
-//   constructor() {
-//     this.data = [];
-//   }
-
-//   setList(id: string) {
-//     this.data.push(id);
-//   }
-// }
-
-function router(mainContainer: Element) {
-  const routePath: string = location.pathname;
-  if (routePath === "/") {
-    productList(mainContainer);
-  } else if (routePath.indexOf("/products/") === 0) {
-    productInfo(mainContainer);
-  } else {
-    shoppingBack();
-  }
+interface Routes {
+  path: string;
+  view: (mainContainer: Element) => void;
 }
 
-window.onhashchange = () => {
-  console.log(1);
-};
+const initRoutes: Routes[] = [
+  {
+    path: "/",
+    view: (mainContainer: Element) => {
+      const param: ProductListParam = {
+        mainContainer,
+      };
+      const productList = new ProductList(param);
+      productList.render();
+    },
+  },
+  {
+    path: "/products",
+    view: () => {
+      console.log("products");
+    },
+  },
+  {
+    path: "/cart",
+    view: () => {
+      console.log("cart");
+    },
+  },
+];
+
+function router() {
+  const mainContainer: Element = document.getElementsByClassName("App")[0];
+  const { pathname } = location;
+
+  const routing = initRoutes.map((page: Routes) => {
+    return {
+      route: page,
+      isMatch: pathname === page.path,
+    };
+  });
+
+  let match = routing.find((match) => match.isMatch);
+  match?.route.view(mainContainer);
+}
+
+// document.addEventListener("DOMContentLoaded", () => {
+//   router();
+// });
+// https://www.youtube.com/watch?v=6BozpmSjk-Y
 
 export default router;

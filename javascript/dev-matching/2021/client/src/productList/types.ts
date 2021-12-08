@@ -4,3 +4,7 @@ export interface ProductItemType {
   imageUrl: string;
   price: number;
 }
+
+export interface ProductListParam {
+  mainContainer: Element;
+}
