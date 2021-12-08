@@ -3,6 +3,12 @@
 
   정수 배열이 주어지면 가장 큰 합을 가진 연속 되는 숫자의 합계를 반환함
   반드시 0번째 idx부터 찾아봐야 함.
+
+  time: O(n)
+  space: {
+    iterative: O(n)
+    recursive: O(n*n)
+  }
 */
 #include <iostream>
 #include <algorithm>
@@ -23,16 +29,16 @@ public:
       return maxSum;
     }
 
-    int recursionSolution(vector<int>& nums, int n) {
+    int recursiveSolution(vector<int>& nums, int n) {
       if (n == 1) return nums[0];
-      int currSum = max(nums[n - 1], recursionSolution(nums, n - 1) + nums[n - 1]);
+      int currSum = max(nums[n - 1], recursiveSolution(nums, n - 1) + nums[n - 1]);
       recursionMaxSum = max(currSum, recursionMaxSum);
       return currSum;
     }
 
     int maxSubArray(vector<int>& nums) {
       recursionMaxSum = nums[0];
-      recursionSolution(nums, nums.size());
+      recursiveSolution(nums, nums.size());
       return recursionMaxSum;
       // return iterativeSolution(nums);
     }
