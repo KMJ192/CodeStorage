@@ -2,9 +2,11 @@ import { ProductInfoParam } from "./types";
 
 class ProductInfo {
   mainContainer: Element;
+  id: number;
   constructor(param: ProductInfoParam) {
     const { mainContainer } = param;
     this.mainContainer = mainContainer;
+    this.id = -1;
   }
 
   render() {

@@ -2,8 +2,6 @@ import ProductList from "../productList";
 import ProductInfo from "../productInfo";
 import ShoppingBack from "../shoppingBack";
 
-import { PageTypes } from "./types";
-
 import { ShoppingBackParam } from "../shoppingBack/types";
 import { ProductInfoParam } from "../productInfo/types";
 import { ProductListParam } from "../productList/types";
@@ -25,37 +23,64 @@ const initRoutes: Routes[] = [
     },
   },
   {
-    path: "/products",
-    view: () => {
-      console.log("products");
+    path: "products",
+    view: (mainContainer: Element) => {
+      const param: ProductInfoParam = {
+        mainContainer,
+      };
+      const prodInfo = new ProductInfo(param);
+      prodInfo.render();
     },
   },
   {
-    path: "/cart",
-    view: () => {
-      console.log("cart");
+    path: "cart",
+    view: (mainContainer: Element) => {
+      const param: ShoppingBackParam = {
+        mainContainer,
+      };
+      const shoppingBack = new ShoppingBack(param);
+      shoppingBack.render();
     },
   },
 ];
 
-function router() {
+export const navigateTo = (url: string) => {
+  history.pushState(null, "", url);
+  router();
+};
+
+async function router() {
   const mainContainer: Element = document.getElementsByClassName("App")[0];
   const { pathname } = location;
 
   const routing = initRoutes.map((page: Routes) => {
+    if (page.path === "/") {
+      return {
+        route: page,
+        isMatch: pathname === page.path,
+      };
+    }
     return {
       route: page,
-      isMatch: pathname === page.path,
+      isMatch: pathname.indexOf(page.path) >= 0,
     };
   });
 
+  console.log(routing);
   let match = routing.find((match) => match.isMatch);
+
+  if (!match) {
+    match = {
+      route: initRoutes[0],
+      isMatch: true,
+    };
+  }
+
   match?.route.view(mainContainer);
 }
 
 // document.addEventListener("DOMContentLoaded", () => {
 //   router();
 // });
-// https://www.youtube.com/watch?v=6BozpmSjk-Y
 
 export default router;

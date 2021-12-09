@@ -1,10 +1,7 @@
 import api from "../api";
 import { productListUrl } from "../urls";
 import { ProductListParam, ProductItemType } from "./types";
-
-const productClickEvent = (e: MouseEvent) => {
-  console.log(e.currentTarget);
-};
+import { navigateTo } from "@src/router/router";
 
 class ProductList {
   private mainContainer: Element;
@@ -17,7 +14,7 @@ class ProductList {
   private listMaker(item: ProductItemType[]) {
     const ul = document.createElement("ul");
     const listTemplate = `
-      <li class='Product'>
+      <li class='Product' key={{key}} data-prod-id="{{product-id}}">
         <img src='{{imageURL}}'/>
         <div class='Product__info'>
           <div>{{name}}</div>
@@ -26,12 +23,8 @@ class ProductList {
       </li>
     `;
 
-    // const routePath = new RoutePath();
-
     for (let i = 0; i < item.length; i++) {
       const { id, imageUrl, name, price } = item[i];
-      // routePath.setList(String(id));
-
       let p = String(price);
       let tmp = [];
       let ptr = 0;
@@ -42,7 +35,9 @@ class ProductList {
       }
       p = tmp.join(",");
 
-      let element = listTemplate.replace("{{imageURL}}", imageUrl);
+      let element = listTemplate.replace("{{key}}", `${String(id)}-name`);
+      element = element.replace("{{product-id}}", String(id));
+      element = element.replace("{{imageURL}}", imageUrl);
       element = element.replace("{{name}}", name);
       element = element.replace("{{price}}", p);
 
@@ -70,13 +65,21 @@ class ProductList {
           for (let i = 0; i < li.length; i++) {
             (li[i] as HTMLLIElement).addEventListener(
               "click",
-              productClickEvent
+              this.productClickEvent
             );
           }
         })
         .catch((e) => console.error(e));
     }
     mainContainer.appendChild(prodListContainer);
+  }
+
+  async productClickEvent(e: MouseEvent) {
+    const li = (e.target as Element).closest("li");
+    const data: any = li?.dataset;
+    const { prodId } = data;
+    e.preventDefault();
+    navigateTo(`/products/${prodId}`);
   }
 
   public render() {
