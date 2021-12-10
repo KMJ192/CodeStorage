@@ -1,48 +1,4 @@
-import ProductList from "../productList";
-import ProductInfo from "../productInfo";
-import ShoppingBack from "../shoppingBack";
-
-import { ShoppingBackParam } from "../shoppingBack/types";
-import { ProductInfoParam } from "../productInfo/types";
-import { ProductListParam } from "../productList/types";
-
-interface Routes {
-  path: string;
-  view: (mainContainer: Element) => void;
-}
-
-const initRoutes: Routes[] = [
-  {
-    path: "/",
-    view: (mainContainer: Element) => {
-      const param: ProductListParam = {
-        mainContainer,
-      };
-      const productList = new ProductList(param);
-      productList.render();
-    },
-  },
-  {
-    path: "products",
-    view: (mainContainer: Element) => {
-      const param: ProductInfoParam = {
-        mainContainer,
-      };
-      const prodInfo = new ProductInfo(param);
-      prodInfo.render();
-    },
-  },
-  {
-    path: "cart",
-    view: (mainContainer: Element) => {
-      const param: ShoppingBackParam = {
-        mainContainer,
-      };
-      const shoppingBack = new ShoppingBack(param);
-      shoppingBack.render();
-    },
-  },
-];
+import { routeInfo, Routes, PageTypes } from "./types";
 
 export const navigateTo = (url: string) => {
   history.pushState(null, "", url);
@@ -53,30 +9,44 @@ async function router() {
   const mainContainer: Element = document.getElementsByClassName("App")[0];
   const { pathname } = location;
 
-  const routing = initRoutes.map((page: Routes) => {
+  const routing: PageTypes[] = routeInfo.map((page: Routes) => {
+    const result = {
+      route: page,
+    };
     if (page.path === "/") {
       return {
-        route: page,
+        ...result,
         isMatch: pathname === page.path,
       };
     }
+
+    if (page.queryString === true) {
+      const id = pathname.split("/");
+      return {
+        ...result,
+        isMatch: pathname.indexOf(page.path) >= 0,
+        param: {
+          id: id[id.length - 1],
+        },
+      };
+    }
+
     return {
-      route: page,
+      ...result,
       isMatch: pathname.indexOf(page.path) >= 0,
     };
   });
 
-  console.log(routing);
-  let match = routing.find((match) => match.isMatch);
+  let renderPage = routing.find((match) => match.isMatch);
 
-  if (!match) {
-    match = {
-      route: initRoutes[0],
+  if (!renderPage) {
+    renderPage = {
+      route: routeInfo[0],
       isMatch: true,
     };
   }
 
-  match?.route.view(mainContainer);
+  renderPage?.route.view(mainContainer, renderPage.param);
 }
 
 // document.addEventListener("DOMContentLoaded", () => {

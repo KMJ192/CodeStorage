@@ -11,17 +11,18 @@ class ProductList {
     this.mainContainer = mainContainer;
   }
 
-  private listMaker(item: ProductItemType[]) {
-    const ul = document.createElement("ul");
+  private listMaker(item: ProductItemType[]): string {
+    let listUl = `<ul>{{content}}</ul>`;
+    const listArr = Array.from({ length: item.length }, () => "");
     const listTemplate = `
-      <li class='Product' key={{key}} data-prod-id="{{product-id}}">
-        <img src='{{imageURL}}'/>
-        <div class='Product__info'>
-          <div>{{name}}</div>
-          <div>{{price}}원~</div>
-        </div>
-      </li>
-    `;
+<li class='Product' key={{key}} data-prod-id="{{product-id}}">
+  <img src='{{imageURL}}'/>
+  <div class='Product__info'>
+    <div>{{name}}</div>
+    <div>{{price}}원~</div>
+  </div>
+</li>
+`;
 
     for (let i = 0; i < item.length; i++) {
       const { id, imageUrl, name, price } = item[i];
@@ -40,41 +41,40 @@ class ProductList {
       element = element.replace("{{imageURL}}", imageUrl);
       element = element.replace("{{name}}", name);
       element = element.replace("{{price}}", p);
-
-      ul.insertAdjacentHTML("beforeend", element);
+      listArr[i] = element;
     }
-
-    return ul;
+    listUl = listUl.replace("{{content}}", listArr.join(""));
+    return listUl;
   }
 
   private productList() {
     const { mainContainer } = this;
-    const prodListContainer = document.createElement("div");
-    prodListContainer.className = "ProductListPage";
 
-    const header = "<h1>상품목록</h2>";
-    prodListContainer.innerHTML = header;
+    let prodListContainer = "<div class='ProductListPage'>{{content}}</div>";
 
     let tmp = api("Get", productListUrl);
     if (tmp !== null) {
       tmp
         .then((item) => {
-          prodListContainer.appendChild(this.listMaker(item));
-          const li: HTMLCollectionOf<Element> =
-            prodListContainer.getElementsByClassName("Product");
-          for (let i = 0; i < li.length; i++) {
-            (li[i] as HTMLLIElement).addEventListener(
-              "click",
-              this.productClickEvent
-            );
-          }
+          const content = `<h1>상품목록</h2>\n${this.listMaker(item)}`;
+          prodListContainer = prodListContainer.replace("{{content}}", content);
+          mainContainer.innerHTML = prodListContainer;
+          this.productClickEvent();
         })
         .catch((e) => console.error(e));
     }
-    mainContainer.appendChild(prodListContainer);
   }
 
-  async productClickEvent(e: MouseEvent) {
+  productClickEvent() {
+    const li: HTMLCollectionOf<Element> =
+      document.getElementsByClassName("Product");
+
+    for (let i = 0; i < li.length; i++) {
+      (li[i] as HTMLLIElement).addEventListener("click", this.clickTo);
+    }
+  }
+
+  clickTo(e: MouseEvent) {
     const li = (e.target as Element).closest("li");
     const data: any = li?.dataset;
     const { prodId } = data;
