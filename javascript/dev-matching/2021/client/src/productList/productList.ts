@@ -1,7 +1,7 @@
 import api from "../api";
 import { productListUrl } from "../urls";
 import { ProductListParam, ProductItemType } from "./types";
-import { navigateTo } from "@src/router/router";
+import { navigateTo } from "../router/router";
 
 class ProductList {
   private mainContainer: Element;

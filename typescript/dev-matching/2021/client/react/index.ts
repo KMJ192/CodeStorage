@@ -1,3 +1,17 @@
+// function mixin(targetClass: any, baseClasses: any) {
+//   baseClasses.forEach((baseClass: any) => {
+//     Object.getOwnPropertyNames(baseClass.prototype).forEach((name) => {
+//       const descriptor = Object.getOwnPropertyDescriptor(
+//         baseClass.prototype,
+//         name
+//       );
+//       if (descriptor) {
+//         Object.defineProperty(targetClass.prototype, name, descriptor);
+//       }
+//     });
+//   });
+// }
+
 const React = (function () {
   let hooks: any = [];
   let currentHook: number = 0;
@@ -29,6 +43,7 @@ const React = (function () {
 
   function render(Component: Function) {
     currentHook = 0;
+    console.log(currentHook);
     const C = Component();
     //컴포넌트의 render함수(closure)를 실행하여 React 함수 전체를 업데이트한다.
     //useState로 설정해 둔 각각의 state별로 React App 전체를 업데이트 하여 상태가 연동되도록 한다.
@@ -43,35 +58,9 @@ const React = (function () {
   };
 })();
 
-function Component() {
-  const [count, setCount] = React.useState<number>(1);
-  const [text, setText] = React.useState<string>("초기값");
+// function render(component: string, application: Element | null) {
+//   if (application !== null) application.innerHTML = component;
+// }
 
-  React.useEffect(() => {
-    console.log(`increase count ${count}`);
-    console.log(`텍스트 "${text}"`);
-  }, [count, text]);
-
-  return {
-    render: () => {
-      console.log("컴포넌트를 렌더링 합니다.");
-    },
-    click: () => setCount(count + 1),
-    setString: (newVal: string) => setText(newVal),
-  };
-}
-
-export function HooksTest() {
-  let App = React.render(Component);
-  App.click();
-  App.setString("바뀐값1");
-  App = React.render(Component);
-  App.click();
-  App.setString("바뀐값2");
-  App = React.render(Component);
-  App.click();
-  App.setString("바뀐값3");
-  App = React.render(Component);
-}
-
-//inheritance prototype closure call apply bind currying pollyfill
+export default React;
+// export { render };

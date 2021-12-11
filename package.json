@@ -20,5 +20,8 @@
   "homepage": "https://github.com/KMJ192/CodeStorage#readme",
   "dependencies": {
     "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "webpack-cli": "^4.9.1"
   }
 }

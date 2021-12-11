@@ -1,6 +1,6 @@
 "use strict";
 exports.__esModule = true;
-exports.run = void 0;
+exports.HooksTest = void 0;
 var React = (function () {
     var hooks = [];
     var currentHook = 0;
@@ -17,7 +17,9 @@ var React = (function () {
         //deps배열에 바뀐 내용이 있는지 검증
         var hasNoDeps = !depArray;
         var deps = hooks[currentHook];
-        var hasChangedDeps = deps ? !(depArray === null || depArray === void 0 ? void 0 : depArray.every(function (el, i) { return el === deps[i]; })) : true;
+        var hasChangedDeps = deps
+            ? !(depArray === null || depArray === void 0 ? void 0 : depArray.every(function (el, i) { return el === deps[i]; }))
+            : true;
         if (hasNoDeps || hasChangedDeps) {
             //바뀐 내용이 있다면 첫번째 parameter로 받아온 callback함수를 실행한다.
             callback();
@@ -54,7 +56,7 @@ function Component() {
         setString: function (newVal) { return setText(newVal); }
     };
 }
-function run() {
+function HooksTest() {
     var App = React.render(Component);
     App.click();
     App.setString("바뀐값1");
@@ -66,5 +68,5 @@ function run() {
     App.setString("바뀐값3");
     App = React.render(Component);
 }
-exports.run = run;
+exports.HooksTest = HooksTest;
 //inheritance prototype closure call apply bind currying pollyfill

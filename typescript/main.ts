@@ -4,7 +4,10 @@
 // import { buildTrie } from "./leetCode/trie/trie";
 import { dpRun } from "./base_ds_algorithm/dp/dp";
 
+import { HooksTest } from "./hooks/useState";
+
 function main() {
-  dpRun();
+  // dpRun();
+  HooksTest();
 }
 main();

@@ -49,8 +49,4 @@ async function router() {
   renderPage?.route.view(mainContainer, renderPage.param);
 }
 
-// document.addEventListener("DOMContentLoaded", () => {
-//   router();
-// });
-
 export default router;
