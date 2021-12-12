@@ -6,7 +6,8 @@
     "outDir": "dist",
     "paths": {
       "@src/*": ["src/*"],
-      "@react/*": ["react/*"]
+      "@react/*": ["react/*"],
+      "@router/*": ["router/*"]
     },
     "target": "es5",
     "lib": ["dom", "dom.iterable", "esnext", "ES2015"],

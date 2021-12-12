@@ -18,9 +18,10 @@
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-import": "^2.25.3",
     "eslint-plugin-prettier": "^4.0.0",
+    "fork-ts-checker-webpack-plugin": "^6.5.0",
     "html-webpack-plugin": "^5.5.0",
+    "mini-css-extract-plugin": "^2.4.5",
     "prettier": "^2.5.1",
-    "style-loader": "^3.3.1",
     "ts-loader": "^9.2.6",
     "typescript": "^4.5.2",
     "webpack": "^5.64.4",
@@ -29,7 +30,9 @@
     "webpack-merge": "^5.8.0"
   },
   "scripts": {
-    "start": "cross-env NODE_ENV=DEVELOPMENT webpack-dev-server --config webpack.config.js",
+    "start": "cross-env NODE_ENV=DEVELOPMENT webpack-dev-server --config webpack.dev.js",
+    "build": "cross-env NODE_ENV=PRODUCTION webpack --config webpack.prod.js",
+    "dev": "cross-env NODE_ENV=DEVELOPMENT webpack --config webpack.dev.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],

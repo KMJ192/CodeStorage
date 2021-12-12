@@ -1,7 +1,7 @@
-const { merge } = require("webpack-merge");
-const common = require("./webpack.config.js");
+const { merge } = require('webpack-merge');
+const common = require('./webpack.config.js');
 
-module.expoerts = merge(common, {
+module.exports = merge(common, {
   devServer: {
     open: true,
     port: 3000,
@@ -9,6 +9,6 @@ module.expoerts = merge(common, {
     historyApiFallback: true,
     compress: true,
   },
-  mode: "development",
-  devtool: "eval",
+  mode: 'development',
+  devtool: 'eval',
 });

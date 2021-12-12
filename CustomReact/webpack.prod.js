@@ -1,21 +1,21 @@
-const { merge } = require("webpack-merge");
-const common = require("./webpack.config.js");
+const { merge } = require('webpack-merge');
+const common = require('./webpack.config.js');
 
-const config = {
-  devtool: "hidden-source-map",
-  mode: "production",
+module.exports = merge(common, {
+  devtool: 'hidden-source-map',
+  mode: 'production',
   optimization: {
     runtimeChunk: {
-      name: "runtime",
+      name: 'runtime',
     },
     splitChunks: {
       cacheGroups: {
         commons: {
           test: /[\\/]node_modules[\\/]/,
-          name: "vendors",
-          chunks: "all",
+          name: 'vendors',
+          chunks: 'all',
         },
       },
     },
   },
-};
+});

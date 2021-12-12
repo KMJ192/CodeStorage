@@ -1,2 +1,3 @@
-declare module "@react";
-declare module "@src";
+declare module '@react';
+declare module '@router';
+declare module '@src';
