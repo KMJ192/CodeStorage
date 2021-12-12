@@ -8,14 +8,6 @@ module.exports = {
     filename: "index.js",
     path: path.resolve(__dirname, "dist"),
   },
-  devServer: {
-    open: true,
-    port: 3000,
-    hot: true,
-    historyApiFallback: true,
-    compress: true,
-  },
-  mode: "development",
   resolve: {
     extensions: [".js", ".ts"],
     alias: {
