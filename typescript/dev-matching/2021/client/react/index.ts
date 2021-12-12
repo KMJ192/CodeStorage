@@ -8,19 +8,6 @@ function React() {
     root: null,
   };
 
-  function render(inputComponent: Function, rootEle: Element | null) {
-    _this.component = inputComponent;
-    _this.root = rootEle;
-    reactRenderer();
-  }
-
-  const reactRenderer = debounceFrame(() => {
-    const { root, component } = _this;
-    if (root === null || component === null) return;
-    root.innerHTML = component();
-    _this.currStateKey = 0;
-  });
-
   function useState<T = undefined>(initState: T): [T, (newVal: T) => void] {
     const { states, currStateKey } = _this;
 
@@ -47,6 +34,7 @@ function React() {
     const hasChangedDeps: boolean = deps
       ? !depArray?.every((el: any, i: number) => el === deps[i])
       : true;
+    console.log(hasNoDeps, hasChangedDeps);
     if (hasNoDeps || hasChangedDeps) {
       //바뀐 내용이 있다면 첫번째 parameter로 받아온 callback함수를 실행한다.
       callback();
@@ -54,6 +42,19 @@ function React() {
     }
     _this.currStateKey++;
   }
+
+  function render(inputComponent: Function, rootEle: Element | null) {
+    _this.component = inputComponent;
+    _this.root = rootEle;
+    reactRenderer();
+  }
+
+  const reactRenderer = debounceFrame(() => {
+    const { root, component } = _this;
+    if (root === null || component === null) return;
+    root.innerHTML = component();
+    _this.currStateKey = 0;
+  });
 
   return {
     useState,
