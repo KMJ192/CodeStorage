@@ -1,30 +1,33 @@
 import React from "./react";
-import App from "./src/App";
+import App from "@src/App";
+import debounceFrame from "./debounceFrame/debounceFrame";
 import "./style.css";
 
+const { render, useState } = React();
+
 const root = document.getElementById("App");
-if (root !== null) root.innerHTML = App();
 
-function Test() {
-  const [count, setCount] = React.useState<number>(0);
+function Count() {
+  const [count, setCount] = useState<number>(1);
+  const [cat, setCat] = useState<string>("야옹");
 
-  React.useEffect(() => {
-    console.log(count);
-  }, [count]);
-
-  return {
-    render: () => {
-      console.log("rendering");
-    },
-    click: () => setCount(count + 1),
+  window.increament = () => multiCnt(count + 1);
+  window.decreament = () => {
+    if (count > 0) multiCnt(count - 1);
   };
-}
-let app = React.render(Test);
-app.click();
-app.render();
-app.click();
-app.render();
-app.click();
-app.render();
+  const multiCnt = (cnt: number) => {
+    setCount(cnt);
+    setCat("야옹".repeat(cnt));
+  };
 
-// const render = new (Render() as any)();
+  return `
+    <div>
+      <button onclick="increament()">증가</button>      
+      <button onclick="decreament()">감소</button>
+      <strong>count: ${count}</strong>
+    </div>
+  `;
+}
+render(Count, root);
+
+//cd typescript/dev-matching/2021

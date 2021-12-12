@@ -1,54 +1,58 @@
-// function mixin(targetClass: any, baseClasses: any) {
-//   baseClasses.forEach((baseClass: any) => {
-//     Object.getOwnPropertyNames(baseClass.prototype).forEach((name) => {
-//       const descriptor = Object.getOwnPropertyDescriptor(
-//         baseClass.prototype,
-//         name
-//       );
-//       if (descriptor) {
-//         Object.defineProperty(targetClass.prototype, name, descriptor);
-//       }
-//     });
-//   });
-// }
+import debounceFrame from "../debounceFrame/debounceFrame";
 
-const React = (function () {
-  let hooks: any = [];
-  let currentHook: number = 0;
+function React() {
+  const _this = {
+    currStateKey: 0,
+    states: [],
+    component: null,
+    root: null,
+  };
 
-  function useState<T>(initVal: T): [T, (newVal: T) => void] {
-    const state = hooks[currentHook] || initVal;
-    const _currentHook = currentHook; //상태에 대한 배열의 index를 고정해둔다.
-    const setState = (newVal: T) => {
-      hooks[_currentHook] = newVal; //고정한 index에  값을 집어 넣는다.
+  function render(inputComponent: Function, rootEle: Element | null) {
+    _this.component = inputComponent;
+    _this.root = rootEle;
+    reactRenderer();
+  }
+
+  const reactRenderer = debounceFrame(() => {
+    const { root, component } = _this;
+    if (root === null || component === null) return;
+    root.innerHTML = component();
+    _this.currStateKey = 0;
+  });
+
+  function useState<T = undefined>(initState: T): [T, (newVal: T) => void] {
+    const { states, currStateKey } = _this;
+
+    const state = states[currStateKey] || initState;
+    const _currStateKey = currStateKey;
+
+    const setState = (newState: T) => {
+      if (newState === state) return;
+      if (JSON.stringify(newState) === JSON.stringify(state)) return;
+
+      states[_currStateKey] = newState;
+      reactRenderer();
     };
-    currentHook++; //어떤 state가 설정 되었을때 다음 state가 설정될 경우를 위해 index를 1증가시켜 둔다.
+
+    _this.currStateKey++;
     return [state, setState];
   }
 
   function useEffect(callback: Function, depArray?: any[]) {
+    const { states, currStateKey } = _this;
     //deps배열에 바뀐 내용이 있는지 검증
     const hasNoDeps: boolean = !depArray;
-    const deps = hooks[currentHook];
+    const deps = states[currStateKey];
     const hasChangedDeps: boolean = deps
       ? !depArray?.every((el: any, i: number) => el === deps[i])
       : true;
     if (hasNoDeps || hasChangedDeps) {
       //바뀐 내용이 있다면 첫번째 parameter로 받아온 callback함수를 실행한다.
       callback();
-      hooks[currentHook] = depArray;
+      states[currStateKey] = depArray;
     }
-    currentHook++;
-  }
-
-  function render(Component: Function) {
-    currentHook = 0;
-    console.log(currentHook);
-    const C = Component();
-    //컴포넌트의 render함수(closure)를 실행하여 React 함수 전체를 업데이트한다.
-    //useState로 설정해 둔 각각의 state별로 React App 전체를 업데이트 하여 상태가 연동되도록 한다.
-    C.render();
-    return C;
+    _this.currStateKey++;
   }
 
   return {
@@ -56,11 +60,6 @@ const React = (function () {
     useEffect,
     render,
   };
-})();
-
-// function render(component: string, application: Element | null) {
-//   if (application !== null) application.innerHTML = component;
-// }
+}
 
 export default React;
-// export { render };

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="value"></div>
+    <img class="provi" src="./카봇프로브.jfif" alt="프로비" />
+    <script>
+      const value = document.querySelector(".value");
+      const provi = document.querySelector(".provi");
+
+      let yPos = 0;
+      let id;
+
+      function render() {
+        value.innerHTML = yPos;
+        provi.style.transform = `translateY(${yPos}px)`;
+        yPos++;
+        id = requestAnimationFrame(render);
+        if (yPos > 500) {
+          yPos = 0;
+        }
+      }
+      render();
+
+      window.addEventListener("click", () => {
+        cancelAnimationFrame(id);
+      });
+    </script>
+  </body>
+</html>

@@ -1,20 +1,23 @@
 {
   "compilerOptions": {
     "declaration": true,
+    "declarationDir": "./build",
     "baseUrl": ".",
+    "outDir": "dist",
+    "paths": {
+      "@src/*": ["src/*"]
+    },
     "target": "es5",
     "lib": ["dom", "dom.iterable", "esnext", "ES2015"],
     "skipLibCheck": true,
     "esModuleInterop": true,
+    "strict": false,
+    "allowJs": true,
     "allowSyntheticDefaultImports": true,
-    "strict": true,
     "module": "esnext",
     "moduleResolution": "node",
-    "resolveJsonModule": true,
-    "jsx": "react",
-    "typeRoots": ["./typings"],
-    "plugins": [{ "name": "typescript-plugin-css-modules" }]
+    "resolveJsonModule": true
   },
   "exclude": ["node_modules"],
-  "include": [".", "src/**/*", "./typings", "declaration.d.ts"]
+  "include": [".", "src/**/*", "./types", "declaration.d.ts", "global.d.ts"]
 }
