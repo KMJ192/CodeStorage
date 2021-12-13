@@ -1,9 +1,7 @@
-import Router from '@router';
+import routing from '@router';
 
 function App(): string {
-  return `
-    <div>React App</div>
-  `;
+  return routing();
 }
 
 export default App;

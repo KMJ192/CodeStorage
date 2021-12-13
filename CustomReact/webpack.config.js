@@ -18,7 +18,7 @@ module.exports = {
     alias: {
       '@src': path.resolve(__dirname, 'src'),
       '@react': path.resolve(__dirname, 'react'),
-      '@router': path.resolve(__dirname, 'Router'),
+      '@router': path.resolve(__dirname, 'router'),
     },
   },
   module: {
