@@ -29,6 +29,7 @@ function React() {
 
     const setState = (newState: T) => {
       if (newState === state) return;
+      // map set과 같은 원시타입은 비교하지 걸러내지 못하므로 로직이 추가로 필요함...
       if (JSON.stringify(newState) === JSON.stringify(state)) return;
 
       states[_currStateKey] = newState;
