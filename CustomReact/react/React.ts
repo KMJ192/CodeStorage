@@ -6,6 +6,7 @@ function React() {
     states: [],
     component: null,
     root: null,
+    renderingCount: 0,
   };
 
   function render(inputComponent: () => any, rootEle: Element | null) {
@@ -17,7 +18,10 @@ function React() {
   const reactRenderer = debounceFrame(() => {
     const { root, component } = _this;
     if (root === null || component === null) return;
-    root.innerHTML = component();
+    root.innerHTML = `
+      <div>${_this.renderingCount}</div>
+      ${component()}
+    `;
     _this.currStateKey = 0;
   });
 
@@ -33,6 +37,7 @@ function React() {
       if (JSON.stringify(newState) === JSON.stringify(state)) return;
 
       states[_currStateKey] = newState;
+      _this.renderingCount++;
       reactRenderer();
     };
 
@@ -44,6 +49,7 @@ function React() {
     const { states, currStateKey } = _this;
     const hasNoDeps = !depArray;
     const deps = states[currStateKey];
+    console.log(currStateKey);
     const hasChangedDeps: boolean = deps
       ? !depArray?.every((el: any, i: number) => el === deps[i])
       : true;
@@ -53,6 +59,9 @@ function React() {
     }
     _this.currStateKey++;
   }
+
+  // virtual dom을 생성하는 코드
+  function createElement() {}
 
   return {
     useState,

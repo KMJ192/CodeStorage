@@ -6,7 +6,8 @@ export interface VirtualDOMTreeType {
   event: {
     [key: string]: string;
   };
-  children?: VirtualDOMTreeType[];
+  dirty?: boolean;
+  childNode?: VirtualDOMTreeType[];
 }
 
 // 참고: http://blog.drakejin.me/React-VirtualDOM-And-Repaint-Reflow/
