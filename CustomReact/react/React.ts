@@ -1,4 +1,19 @@
-import debounceFrame from './debounceFrame/debounceFrame';
+import debounceFrame from './debounceFrame';
+import diffingAlgorithm from './diffingAlgorithm';
+
+export interface customElement {
+  tagName: string;
+  value: any;
+  props?: {
+    [key: string]: string;
+  };
+  event?: {
+    type: string;
+    eventRun: () => void;
+  };
+  dirty?: boolean;
+  childNode?: customElement[];
+}
 
 function React() {
   const _this = {
@@ -6,24 +21,58 @@ function React() {
     states: [],
     component: null,
     root: null,
-    renderingCount: 0,
+    virtualDom: null,
   };
 
-  function render(inputComponent: () => any, rootEle: Element | null) {
+  const creatRealDom = (root: Element, dom?: customElement[]) => {
+    if (dom === undefined) return;
+
+    for (let i = 0; i < dom.length; i++) {
+      const { tagName, value, event, props, childNode } = dom[i];
+
+      const element: HTMLElement = document.createElement(tagName);
+      element.innerText = String(value);
+
+      if (props) {
+        for (const [key, value] of Object.entries(props)) {
+          (element as any)[key] = value;
+        }
+      }
+
+      if (event) {
+        const { type, eventRun } = event;
+        element.addEventListener(type, eventRun);
+      }
+
+      root.appendChild(element);
+      if (childNode !== undefined) {
+        creatRealDom(element, childNode);
+      }
+    }
+  };
+
+  const reactRenderer = debounceFrame(() => {
+    const { root, component, virtualDom } = _this;
+    if (root === null || component === null) return;
+    root.innerHTML = '';
+
+    if (virtualDom === null) {
+      creatRealDom(root, component());
+    } else {
+      creatRealDom(root, component());
+    }
+
+    _this.currStateKey = 0;
+  });
+
+  function render(
+    inputComponent: () => customElement,
+    rootEle: Element | null,
+  ) {
     _this.component = inputComponent;
     _this.root = rootEle;
     reactRenderer();
   }
-
-  const reactRenderer = debounceFrame(() => {
-    const { root, component } = _this;
-    if (root === null || component === null) return;
-    root.innerHTML = `
-      <div>${_this.renderingCount}</div>
-      ${component()}
-    `;
-    _this.currStateKey = 0;
-  });
 
   function useState<T = undefined>(initState: T): [T, (newVal: T) => void] {
     const { states, currStateKey } = _this;
@@ -37,7 +86,6 @@ function React() {
       if (JSON.stringify(newState) === JSON.stringify(state)) return;
 
       states[_currStateKey] = newState;
-      _this.renderingCount++;
       reactRenderer();
     };
 
@@ -49,7 +97,7 @@ function React() {
     const { states, currStateKey } = _this;
     const hasNoDeps = !depArray;
     const deps = states[currStateKey];
-    console.log(currStateKey);
+
     const hasChangedDeps: boolean = deps
       ? !depArray?.every((el: any, i: number) => el === deps[i])
       : true;
@@ -60,8 +108,11 @@ function React() {
     _this.currStateKey++;
   }
 
-  // virtual dom을 생성하는 코드
-  function createElement() {}
+  function useMemo() {}
+
+  function useCallback() {}
+
+  function memo() {}
 
   return {
     useState,
