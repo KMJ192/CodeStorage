@@ -1,9 +1,11 @@
-"use strict";
 // import { dpRun } from "./base_ds_algorithm/dp/dp";
 // import { HooksTest } from "./hooks/useState";
-exports.__esModule = true;
-var mergeTwoSortedList_1 = require("./base_ds_algorithm/linked_list/mergeTwoSortedList");
+// import mergeTwoSortedList from "./base_ds_algorithm/linked_list/mergeTwoSortedList";
 function main() {
-    mergeTwoSortedList_1["default"]();
+    //mergeTwoSortedList();
+    var tmp = [];
+    tmp[10] = 2;
+    tmp[1] = 1;
+    console.log(tmp);
 }
 main();

@@ -8,9 +8,6 @@ var ListNode = /** @class */ (function () {
     return ListNode;
 }());
 function build() {
-    // const obj: {
-    //   [key: number]: number;
-    // } = {};
     var obj = new Map();
     function recursion(node) {
         var value = obj.get(node.val);
