@@ -1,13 +1,9 @@
-// import { dupZeros } from "./leetCode/else/DuplicateZero";
-// import { sfwks } from "./leetCode/sort/CheapestFlightsWithinKStops";
+// import { dpRun } from "./base_ds_algorithm/dp/dp";
+// import { HooksTest } from "./hooks/useState";
 
-// import { buildTrie } from "./leetCode/trie/trie";
-import { dpRun } from "./base_ds_algorithm/dp/dp";
-
-import { HooksTest } from "./hooks/useState";
+import mergeTwoSortedList from "./base_ds_algorithm/linked_list/mergeTwoSortedList";
 
 function main() {
-  // dpRun();
-  HooksTest();
+  mergeTwoSortedList();
 }
 main();

@@ -1,10 +1,9 @@
 "use strict";
-// import { dupZeros } from "./leetCode/else/DuplicateZero";
-// import { sfwks } from "./leetCode/sort/CheapestFlightsWithinKStops";
+// import { dpRun } from "./base_ds_algorithm/dp/dp";
+// import { HooksTest } from "./hooks/useState";
 exports.__esModule = true;
-var useState_1 = require("./hooks/useState");
+var mergeTwoSortedList_1 = require("./base_ds_algorithm/linked_list/mergeTwoSortedList");
 function main() {
-    // dpRun();
-    useState_1.HooksTest();
+    mergeTwoSortedList_1["default"]();
 }
 main();

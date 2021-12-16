@@ -23,9 +23,7 @@ public:
       answer = tmp;
 
       while (!vals.empty()) {
-        ListNode* n = new ListNode();
-        n->val = vals.top();
-        tmp->next = n;
+        tmp->next = new ListNode(vals.top());
         tmp = tmp->next;
         vals.pop();
       }
