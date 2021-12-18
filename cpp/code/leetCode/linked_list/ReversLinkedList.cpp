@@ -11,6 +11,8 @@ struct ListNode {
   ListNode(int x, ListNode *next) : val(x), next(next) {}
 };
 
+// time: O(n)
+
 class Solution {
   stack<int> vals;
 public:
