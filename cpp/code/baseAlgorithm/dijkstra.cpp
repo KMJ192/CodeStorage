@@ -56,14 +56,15 @@ public:
 int main() {
   // from, to, weight
   vector<vector<int>> info = {
-    { 5, 1, 1 },
+    { 1, 0, 1 },
+    { 0, 1, 1 },
     { 1, 2, 2 },
     { 1, 3, 3 },
     { 2, 3, 4 },
     { 2, 4, 5 },
     { 3, 4, 6 }
   };
-  int start = 5, dest = 1;
+  int start = 1, dest = 4;
   int nodeCnt = 5;
 
   Dijkstra d;

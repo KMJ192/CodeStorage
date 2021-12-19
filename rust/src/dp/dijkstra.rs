@@ -30,6 +30,7 @@ impl Dijkstra {
     while let Some(unit) = pq.pop() {
       let cur = unit.1;
       let weight = -unit.0 as i32;
+      println!("{:?} {}", self.table[cur], weight);
 
       if (self.table[cur] as i32) < weight {
         continue;
@@ -38,13 +39,14 @@ impl Dijkstra {
       for i in 0..self.path[cur].len() {
         let connect = self.path[cur][i].0;
         let con_dist = weight + (self.path[cur][i].1 as i32);
-
+        println!("{} {}", self.table[connect as usize], con_dist);
         if self.table[connect as usize] > con_dist as u32 {
           self.table[connect as usize] = con_dist as u32;
           pq.push((-con_dist, connect as usize))
         }
       }
     }
+    println!("{:?}", self.table);
   }
 
   fn input(&mut self) {
@@ -89,5 +91,5 @@ pub fn dijkstra_build() {
   let mut dk = Dijkstra::new();
   dk.input();
   dk.dijkstra();
-  dk.display();
+  //dk.display();
 }

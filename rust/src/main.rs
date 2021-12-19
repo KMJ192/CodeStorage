@@ -5,6 +5,6 @@
 #[path="./dp/dijkstra.rs"] mod dijkstra;
 
 fn main() {
-  dijkstra::dijkstra_build();
-
+  // dijkstra::dijkstra_build();
+  println!("{}", std::u32::MAX);
 }
