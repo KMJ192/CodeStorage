@@ -29,6 +29,7 @@ class DoublyLinkedList {
 
     const newNode: Node | null = new Node(value, null, null);
 
+    const o = table[obj];
     // key | value table에 node할당
     this.table = {
       ...table,
@@ -44,34 +45,34 @@ class DoublyLinkedList {
       return;
     }
 
-    // 대상 node(table[obj])의 prev에 새로운 노드 할당
-    if (pos === "front" && table[obj]) {
-      if (head === table[obj]) {
+    // 대상 node(o)의 prev에 새로운 노드 할당
+    if (pos === "front" && o) {
+      if (head === o) {
         // 대상 노드가 head일 경우 head를 새로운 노드로 교체
         this.head = newNode;
-      } else if (table[obj].prev) {
+      } else if (o.prev) {
         // 새로운 노드의 prev와 대상 노드prev의 next가 서로 가리키도록 설정
-        newNode.prev = table[obj].prev;
-        (table[obj].prev as Node).next = newNode;
+        newNode.prev = o.prev;
+        (o.prev as Node).next = newNode;
       }
       // 대상 노드의 prev와 새로운 노드의 next가 서로 가리키도록 설정
-      table[obj].prev = newNode;
-      newNode.next = table[obj];
+      o.prev = newNode;
+      newNode.next = o;
     }
 
-    // 대상 node(table[obj])의 next에 새로운 노드 할당
-    if (pos === "back" && table[obj]) {
-      if (tail === table[obj]) {
+    // 대상 node(o)의 next에 새로운 노드 할당
+    if (pos === "back" && o) {
+      if (tail === o) {
         // 대상 노드가 tail일 경우 tail을 새로운 노드로 교체
         this.tail = newNode;
-      } else if (table[obj].next) {
+      } else if (o.next) {
         // 새로운 노드의 next와 대상 노드next의 prev가 서로 가리키도록 설정
-        newNode.next = table[obj].next;
-        (table[obj].next as Node).prev = newNode;
+        newNode.next = o.next;
+        (o.next as Node).prev = newNode;
       }
       // 대상 노드의 next와 새로운 노드의 prev가 서로 가리키도록 설정
-      table[obj].next = newNode;
-      newNode.prev = table[obj];
+      o.next = newNode;
+      newNode.prev = o;
     }
 
     // DoublyLinkedList 길이를 증가시켜두기
@@ -150,10 +151,10 @@ export function flattenBinaryTree() {
     1,
     new TreeNode(
       2,
-      new TreeNode(4, null, null),
-      new TreeNode(5, new TreeNode(7, null, null), new TreeNode(8, null, null))
+      new TreeNode(2, null, null),
+      new TreeNode(2, new TreeNode(2, null, null), new TreeNode(2, null, null))
     ),
-    new TreeNode(3, new TreeNode(6, null, null), null)
+    new TreeNode(2, new TreeNode(2, null, null), null)
   );
   solution(tree);
 }
