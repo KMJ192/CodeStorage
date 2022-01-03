@@ -1,71 +1,92 @@
 /*
-  18:41 ~ 19:11
+ Tree 만들어보기
+*/
+#include <iostream>
+#include <queue>
 
-  i: pc 갯수 integer type -> n, connected 정보 number type 2d array
-  o: 최소 수정 갯수 integer type
-  c
-    1 <= n <= 10^5
-    1 <= connections.length <= min(n*(n-1)/2, 10^5)
-    connections[i].length == 2
-    0 <= connections[i][0], connections[i][1] < n
-    connections[i][0] != connections[i][1] -> 같은 pc는 연결 x
-    There are no repeated connections. -> unique connection
-    No two computers are connected by more than one cable.
-  e
-    n == 1 => 0 return
-  s
-    n = 6
-    connections = [[0,1],[0,2],[0,3],[1,2],[1,3]]
+using namespace std;
 
-    0 -> 1
-      -> 2
-      -> 3
-    1 -> 2
-      -> 3
-    4 5
-  vector<int> arr(6, 0);
-  [0, 0, 0, 0, 0, 0]
-  for (auto i : connections) {
-    arr[i[0]]++;
-    arr[i[1]]++;
+struct Node {
+  string value;
+  Node* left;
+  Node* right;
+  Node(): value(0), left(nullptr), right(nullptr) {}
+  Node(string x): value(x), left(nullptr), right(nullptr) {}
+  Node(string x, Node* l, Node* r): value(x), left(l), right(r) {}
+};
+
+// bfs - 너비 우선 탐색, Tree 자료구조에서 Level by level로 탐색하는 알고리즘
+void bfs(Node* root) {
+  // 선입선출 FIFO
+  queue<Node*> q;
+  q.push(root);
+  while(!q.empty()) {
+    Node* top = q.front();
+    q.pop();
+    cout << top->value << " ";
+    if (top->left != nullptr) q.push(top->left);
+    if (top->right != nullptr) q.push(top->right);
   }
-   0  1  2  3  4  5
-  [3, 2, 2, 2, 0, 0]
-  // connection 존재여부 => 2
-  // 연결 가능 여부
+}
+ 
+/*
+  dfs - 깊이우선탐색 
+  for, while 구문 쓸필요가 없음
+  재귀호출
+*/
+void recursion(Node* root) {
+  cout << root->value << " ";
+  if (root->left != nullptr) recursion(root->left); 
+  if (root->right != nullptr) recursion(root->right);
+}
 
-  // 남는 connection 갯수, 연결해야될 pc 갯수
-  list 만들어서
-  0 - 1 - 2  3
-    -1
-  connection => 돌면서 list만들고
-  list dfs => 
-  
-  s
-  t
+/*
+"""
+# Definition for a Node.
+class Node(object):
+    def __init__(self, val=None, left=None, right=None):
+        self.val = val
+        self.left = left
+        self.right = right
+"""
+
+class Solution(object):
+    def maxDepth(self, root):
+        """
+        :type root: Node
+        :rtype: int
+        """
+"""
 */
 
-
-#include <iostream>
-#include <vector>
-
-struct List {
-  int val;
-  List* next;
-  List() : val(0), next(nullptr) {}
-  List(int value) : val(value), next(nullptr) {}
-};
-
-class Solution {
-public:
-    int makeConnected(int n, vector<vector<int>>& connections) {
-
-      List* head = new List();
-    }
-};
-
 int main() {
+  Node* tree = new Node(
+    "A",
+    new Node("B", 
+      new Node("D",
+        new Node("H"),
+        new Node("I")
+      ),
+      new Node("E",
+        new Node("J"),
+        nullptr
+      )
+    ),
+    new Node("C",
+      new Node("F"),
+      new Node("G")
+    )
+  );
 
+
+  // 함수 실행
+  cout << "BFS : ";
+  bfs(tree);
+  cout << "\n";
+  cout << "DFS : ";
+  recursion(tree);
+
+  delete tree;
 
   return 0;
 }

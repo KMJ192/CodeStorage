@@ -133,6 +133,7 @@ function hoverDrawing(hoverIdx) {
 }
 
 function toolTipMaker(text, pos_x, pos_y, onOff) {
+  console.log(pos_x, pos_y);
   var hover = document.getElementById("tooltip");
   if (!onOff) {
     hover.style.display = "none";

@@ -139,52 +139,52 @@
         context.restore();
       };
 
-      // LineChart.prototype.drawLine = function (data, color, width) {
-      //   var context = this.context;
-      //   context.save();
-      //   this.transformContext();
-      //   context.lineWidth = width;
-      //   context.strokeStyle = color;
-      //   context.fillStyle = color;
-      //   context.beginPath();
-      //   context.moveTo(data[0].x * this.scaleX, data[0].y * this.scaleY);
+      LineChart.prototype.drawLine = function (data, color, width) {
+        var context = this.context;
+        context.save();
+        this.transformContext();
+        context.lineWidth = width;
+        context.strokeStyle = color;
+        context.fillStyle = color;
+        context.beginPath();
+        context.moveTo(data[0].x * this.scaleX, data[0].y * this.scaleY);
 
-      //   for (var n = 0; n < data.length; n++) {
-      //     var point = data[n];
+        for (var n = 0; n < data.length; n++) {
+          var point = data[n];
 
-      //     // draw segment
-      //     context.lineTo(point.x * this.scaleX, point.y * this.scaleY);
-      //     context.stroke();
-      //     context.closePath();
-      //     context.beginPath();
-      //     context.arc(
-      //       point.x * this.scaleX,
-      //       point.y * this.scaleY,
-      //       this.pointRadius,
-      //       0,
-      //       2 * Math.PI,
-      //       false
-      //     );
-      //     context.fill();
-      //     context.closePath();
+          // draw segment
+          context.lineTo(point.x * this.scaleX, point.y * this.scaleY);
+          context.stroke();
+          context.closePath();
+          context.beginPath();
+          context.arc(
+            point.x * this.scaleX,
+            point.y * this.scaleY,
+            this.pointRadius,
+            0,
+            2 * Math.PI,
+            false
+          );
+          context.fill();
+          context.closePath();
 
-      //     // position for next segment
-      //     context.beginPath();
-      //     context.moveTo(point.x * this.scaleX, point.y * this.scaleY);
-      //   }
-      //   context.restore();
-      // };
+          // position for next segment
+          context.beginPath();
+          context.moveTo(point.x * this.scaleX, point.y * this.scaleY);
+        }
+        context.restore();
+      };
 
-      // LineChart.prototype.transformContext = function () {
-      //   var context = this.context;
+      LineChart.prototype.transformContext = function () {
+        var context = this.context;
 
-      //   // move context to center of canvas
-      //   this.context.translate(this.x, this.y + this.height);
+        // move context to center of canvas
+        this.context.translate(this.x, this.y + this.height);
 
-      //   // invert the y scale so that that increments
-      //   // as you move upwards
-      //   context.scale(1, -1);
-      // };
+        // invert the y scale so that that increments
+        // as you move upwards
+        context.scale(1, -1);
+      };
 
       window.onload = function () {
         var myLineChart = new LineChart({
