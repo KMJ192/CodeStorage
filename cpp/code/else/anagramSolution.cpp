@@ -5,14 +5,12 @@
 
 using namespace std;
 
-// O(n)
 class KMP {
 private:
   int sLen = 0;
   int pLen = 0;
   vector<int> kmpTable;
   void makeTable (string s, string pattern, vector<int>& table) {
-    sLen = (int)s.length(), pLen = (int)pattern.length();
     for (int i = 1; i < sLen; i++) {
       int j = table[i - 1];
       while (j > 0 && s[i] != pattern[j]) { j = table[j - 1]; }
@@ -37,21 +35,22 @@ private:
       }
     }
   }
+
 public:
   vector<int> kmp (string s, string pattern) {
-    vector<int> table((int)s.length(), 0);
+    sLen = s.length(), pLen = pattern.length();
+    vector<int> table(sLen, 0);
     makeTable(s, pattern, table);
     search(s, pattern, table);
     return kmpTable;
   }
 };
 
-// O(n!)
 class Anagram {
 private:
   set<string> dictionary;
   void recursion (string s, string prefix) {
-    int sLen = (int)s.length();
+    int sLen = s.length();
     if (sLen == 0) {
       dictionary.insert(prefix);
       return;
@@ -63,7 +62,6 @@ private:
   }
 public:
   void makeAnagram(string s) {
-    if (s.length() == 0) return;
     recursion(s, "");
   }
 
@@ -73,6 +71,7 @@ public:
 };
 
 void run (string str, string pattern) {
+  if (str.length() == 0 || pattern.length() == 0) return;
   set<string> dictionary;
   vector<int> patternMatching;
 
