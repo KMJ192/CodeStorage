@@ -7,6 +7,7 @@ class Anagram {
 private:
   set<string> dictionary;
   void recursion (string s, string prefix) {
+    cout << prefix << endl;
     int sLen = (int)s.length();
     if (sLen == 0) {
       dictionary.insert(prefix);
@@ -18,29 +19,29 @@ private:
     }
   }
 public:
-  void makeAnagram(string s) {
+  void makeAnagram (string s) {
     if (s.length() == 0) return;
-    recursion (s, "");
+    recursion(s, "");
   }
-  set<string> anagramTable() {
+  
+  set<string> anagramTable () {
     return dictionary;
   }
 };
 
 int main() {
-  string object = "abcdefgh";
+  string object = "abcd";
   Anagram a;
   a.makeAnagram(object);
   set<string> dictionary = a.anagramTable();
 
-  for (
-    set<string>::iterator it = dictionary.begin(); 
-    it != dictionary.end(); 
-    it++
-  ) {
-    cout << *it << endl;
-  }
+  // for (
+  //   set<string>::iterator it = dictionary.begin(); 
+  //   it != dictionary.end(); 
+  //   it++
+  // ) {
+  //   cout << *it << endl;
+  // }
   
-
   return 0;
 }
