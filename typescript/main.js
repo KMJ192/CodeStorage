@@ -3,10 +3,12 @@
 // import { HooksTest } from "./hooks/React";
 exports.__esModule = true;
 // import dijkstra from "./base_ds_algorithm/dijkstra";
-var flattenBinaryTree_1 = require("./algoexpert/linked_list/flattenBinaryTree");
+// import { flattenBinaryTree } from "./algoexpert/linked_list/flattenBinaryTree";
+var queue_1 = require("./base_ds_algorithm/queue");
 function main() {
     // dijkstra();
     // HooksTest();
-    flattenBinaryTree_1.flattenBinaryTree();
+    // flattenBinaryTree();
+    queue_1["default"]();
 }
 main();
