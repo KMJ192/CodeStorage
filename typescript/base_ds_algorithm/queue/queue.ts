@@ -39,8 +39,9 @@ class Queue<T> {
   public pop() {
     if (!this.head) return;
     const curNode = this.head.link;
-    (this.head as Node<T>).link = null;
+    this.head.link = null;
     this.head = curNode;
+    this.size -= 1;
   }
 }
 

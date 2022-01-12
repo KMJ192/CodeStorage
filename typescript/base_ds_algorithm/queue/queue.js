@@ -35,6 +35,7 @@ var Queue = /** @class */ (function () {
         var curNode = this.head.link;
         this.head.link = null;
         this.head = curNode;
+        this.size -= 1;
     };
     return Queue;
 }());
