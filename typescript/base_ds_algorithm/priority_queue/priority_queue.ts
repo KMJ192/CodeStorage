@@ -64,11 +64,11 @@ class MaxHeap<T> extends Heap<T> {
     }
   }
 
-  public top() {
+  public top(): T {
     return this.heap[1];
   }
 
-  public length() {
+  public length(): number {
     return this.size - 1;
   }
 }
@@ -120,11 +120,11 @@ class MinHeap<T> extends Heap<T> {
     }
   }
 
-  public top() {
+  public top(): T {
     return this.heap[1];
   }
 
-  public length() {
+  public length(): number {
     return this.size - 1;
   }
 }
