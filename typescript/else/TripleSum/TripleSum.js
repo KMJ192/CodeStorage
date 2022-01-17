@@ -35,8 +35,6 @@ var Solution = /** @class */ (function () {
             return;
         // 상태 갱신
         var hap = this.input[first] + this.input[second] + this.input[third];
-        console.log(this.input[first], this.input[second], this.input[third]);
-        console.log(Math.abs(hap), Math.abs(this.target - Math.abs(hap)), Math.abs(this.target - this.closet));
         if (hap === this.target) {
             this.renewal(index);
             this.returnValue = 0;

@@ -14,13 +14,13 @@
   1. brute force
     recursion call -> 왼쪽 부터 탐색
     특정 노드가 root 노드라고 생각하고 전체를 순회하는 방법 -> back tracking
-    1
+    3
   ↙ ↘
   2     3
  ↙↘  ↙ ↘
 1   3  5     6
-      ↙↘  ↙    
-      7  8  9
+      ↙↘  ↙
+      7  8  1
 // root
 1 -> max: 31
 
@@ -37,8 +37,6 @@
 6 -> max: 20, prev: 15
 3 -> max: 31, prev: 18
 
-  2. optimal
-
 */
 class Node {
   value: number;
@@ -53,19 +51,31 @@ class Node {
 
 class Solution {
   private max: number;
-  private prev: number;
   constructor() {
     this.max = 0;
-    this.prev = 0;
   }
 
-  private backtracking(root?: Node): void {
+  private backtracking(root?: Node): number {
+    let left = 0;
+    let right = 0;
+    let data = 0;
     if (root.left) {
-      this.backtracking(root.left);
+      // left 노드의 최대값 저장
+      left = this.backtracking(root.left);
     }
     if (root.right) {
-      this.backtracking(root.right);
+      // right 노드의 최대값 저장
+      right = this.backtracking(root.right);
     }
+    if (left > right) {
+      data = left + root.value;
+    } else {
+      data = right + root.value;
+    }
+
+    // 현재 노드 기준 최대값 저장
+    this.max = Math.max(left + right + root.value, this.max);
+    return data;
   }
 
   public run(root: Node): number {
@@ -76,9 +86,9 @@ class Solution {
 
 function run() {
   const root = new Node(
-    1,
+    3,
     new Node(2, new Node(1), new Node(3)),
-    new Node(3, new Node(5, new Node(7), new Node(8)), new Node(6, new Node(9)))
+    new Node(3, new Node(5, new Node(7), new Node(8)), new Node(6, new Node(1)))
   );
   const solution = new Solution();
   console.log(solution.run(root));

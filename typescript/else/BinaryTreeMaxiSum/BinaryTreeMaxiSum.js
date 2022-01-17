@@ -53,30 +53,34 @@ var Node = /** @class */ (function () {
 var Solution = /** @class */ (function () {
     function Solution() {
         this.max = 0;
-        this.prev = 0;
     }
-    Solution.prototype.backtracking = function (l, r, root) {
-        var prevLeft = 0, prevRight = 0;
+    Solution.prototype.backtracking = function (root) {
+        var left = 0;
+        var right = 0;
+        var data = 0;
         if (root.left) {
-            prevLeft = root.left.value;
-            this.backtracking(prevLeft, prevRight, root.left);
+            left = this.backtracking(root.left);
         }
         if (root.right) {
-            prevRight = root.right.value;
-            this.backtracking(prevLeft, prevRight, root.right);
+            right = this.backtracking(root.right);
         }
-        // max
-        this.max = Math.max(root.value + l + r, this.max);
-        this.prev = Math.max(l + root.value, r + root.value);
+        if (left > right) {
+            data = left + root.value;
+        }
+        else {
+            data = right + root.value;
+        }
+        this.max = Math.max(left + right + root.value, this.max);
+        return data;
     };
     Solution.prototype.run = function (root) {
-        this.backtracking(0, 0, root);
+        this.backtracking(root);
         return this.max;
     };
     return Solution;
 }());
 function run() {
-    var root = new Node(1, new Node(2, new Node(1), new Node(3)), new Node(3, new Node(5, new Node(7), new Node(8)), new Node(6, new Node(9))));
+    var root = new Node(3, new Node(2, new Node(1), new Node(3)), new Node(3, new Node(5, new Node(7), new Node(8)), new Node(6, new Node(1))));
     var solution = new Solution();
     console.log(solution.run(root));
 }

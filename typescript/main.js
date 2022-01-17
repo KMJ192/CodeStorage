@@ -4,9 +4,7 @@ exports.__esModule = true;
 // import stack from "./base_ds_algorithm/stack";
 // import priority_queue from "./base_ds_algorithm/priority_queue";
 // import MissingPostive from "./else/MissingPostive";
-// import run from "./else/BinaryTreeMaxiSum";
-// import Appointments from "./else/Appointments";
-var TripleSum_1 = require("./else/TripleSum");
+var BinaryTreeMaxiSum_1 = require("./else/BinaryTreeMaxiSum");
 function main() {
     // dijkstra();
     // HooksTest();
@@ -14,7 +12,8 @@ function main() {
     // queue();
     // stack();
     // priority_queue();
-    TripleSum_1["default"]();
+    // tripleSum();
     // Appointments();
+    BinaryTreeMaxiSum_1["default"]();
 }
 main();
