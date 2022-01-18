@@ -30,6 +30,7 @@ class Stack<T> {
       const curNode = this.tail;
       this.tail = newNode;
       this.tail.link = curNode;
+      this.size += 1;
       return;
     }
     this.tail = newNode;
