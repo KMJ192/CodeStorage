@@ -1,19 +1,7 @@
 "use strict";
 exports.__esModule = true;
-// import queue from "./base_ds_algorithm/queue";
-// import stack from "./base_ds_algorithm/stack";
-// import priority_queue from "./base_ds_algorithm/priority_queue";
-// import MissingPostive from "./else/MissingPostive";
-var BinaryTreeMaxiSum_1 = require("./else/BinaryTreeMaxiSum");
+var DoublyLinkedList_1 = require("./base_ds_algorithm/linked_list/DoublyLinkedList");
 function main() {
-    // dijkstra();
-    // HooksTest();
-    // flattenBinaryTree();
-    // queue();
-    // stack();
-    // priority_queue();
-    // tripleSum();
-    // Appointments();
-    BinaryTreeMaxiSum_1["default"]();
+    DoublyLinkedList_1["default"]();
 }
 main();
