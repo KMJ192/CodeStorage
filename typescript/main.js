@@ -1,7 +1,7 @@
 "use strict";
 exports.__esModule = true;
-var DoublyLinkedList_1 = require("./base_ds_algorithm/linked_list/DoublyLinkedList");
+var SinglyLinkedList_1 = require("./base_ds_algorithm/linked_list/SinglyLinkedList");
 function main() {
-    DoublyLinkedList_1["default"]();
+    SinglyLinkedList_1["default"]();
 }
 main();

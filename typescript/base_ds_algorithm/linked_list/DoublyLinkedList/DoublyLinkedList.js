@@ -1,12 +1,12 @@
 "use strict";
 exports.__esModule = true;
-var DoublyLinkedListNode = /** @class */ (function () {
-    function DoublyLinkedListNode(value) {
+var Node = /** @class */ (function () {
+    function Node(value) {
         this.prev = null;
         this.value = value;
         this.next = null;
     }
-    return DoublyLinkedListNode;
+    return Node;
 }());
 var DoublyLinkedList = /** @class */ (function () {
     function DoublyLinkedList() {
@@ -15,7 +15,7 @@ var DoublyLinkedList = /** @class */ (function () {
         this.size = 0;
     }
     DoublyLinkedList.prototype.push_front = function (value) {
-        var newHead = new DoublyLinkedListNode(value);
+        var newHead = new Node(value);
         if (this.head === null) {
             this.tail = newHead;
         }
@@ -27,7 +27,7 @@ var DoublyLinkedList = /** @class */ (function () {
         this.size++;
     };
     DoublyLinkedList.prototype.push_back = function (value) {
-        var newTail = new DoublyLinkedListNode(value);
+        var newTail = new Node(value);
         if (this.tail === null) {
             this.head = newTail;
         }

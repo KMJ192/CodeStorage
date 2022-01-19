@@ -1,7 +1,7 @@
-class DoublyLinkedListNode<T> {
+class Node<T> {
   public value: T;
-  public prev: DoublyLinkedListNode<T> | null;
-  public next: DoublyLinkedListNode<T> | null;
+  public prev: Node<T> | null;
+  public next: Node<T> | null;
   constructor(value: T) {
     this.prev = null;
     this.value = value;
@@ -10,8 +10,8 @@ class DoublyLinkedListNode<T> {
 }
 
 class DoublyLinkedList<T> {
-  private head: DoublyLinkedListNode<T> | null;
-  private tail: DoublyLinkedListNode<T> | null;
+  private head: Node<T> | null;
+  private tail: Node<T> | null;
   private size: number;
   constructor() {
     this.head = null;
@@ -20,7 +20,7 @@ class DoublyLinkedList<T> {
   }
 
   public push_front(value: T): void {
-    const newHead = new DoublyLinkedListNode<T>(value);
+    const newHead = new Node<T>(value);
     if (this.head === null) {
       this.tail = newHead;
     } else {
@@ -32,7 +32,7 @@ class DoublyLinkedList<T> {
   }
 
   public push_back(value: T): void {
-    const newTail = new DoublyLinkedListNode<T>(value);
+    const newTail = new Node<T>(value);
     if (this.tail === null) {
       this.head = newTail;
     } else {
@@ -69,7 +69,7 @@ class DoublyLinkedList<T> {
     return this.size;
   }
 
-  private iterator(node: DoublyLinkedListNode<T>, type: string): void {
+  private iterator(node: Node<T>, type: string): void {
     console.log(node.value);
     if (type === "asc" && node.next) {
       this.iterator(node.next, type);
