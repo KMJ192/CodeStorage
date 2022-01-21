@@ -26,13 +26,9 @@ class Queue<T> {
 
   public push(val: T) {
     const newNode = new Node(val);
-    if (this.head) {
-      const curNode = this.head.link;
-      newNode.link = curNode;
-      this.head.link = newNode;
-      return;
-    }
+    const curNode = this.head;
     this.head = newNode;
+    this.head.link = curNode;
     this.size += 1;
   }
 
