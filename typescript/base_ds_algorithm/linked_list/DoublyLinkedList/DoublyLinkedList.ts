@@ -10,57 +10,57 @@ class Node<T> {
 }
 
 class DoublyLinkedList<T> {
-  private head: Node<T> | null;
-  private tail: Node<T> | null;
+  private front: Node<T> | null;
+  private rear: Node<T> | null;
   private size: number;
   constructor() {
-    this.head = null;
-    this.tail = null;
+    this.front = null;
+    this.rear = null;
     this.size = 0;
   }
 
   public push_front(value: T): void {
     const newHead = new Node<T>(value);
-    if (this.head === null) {
-      this.tail = newHead;
+    if (this.front === null) {
+      this.rear = newHead;
     } else {
-      this.head.prev = newHead;
-      newHead.next = this.head;
+      this.front.prev = newHead;
+      newHead.next = this.front;
     }
-    this.head = newHead;
+    this.front = newHead;
     this.size++;
   }
 
   public push_back(value: T): void {
     const newTail = new Node<T>(value);
-    if (this.tail === null) {
-      this.head = newTail;
+    if (this.rear === null) {
+      this.front = newTail;
     } else {
-      this.tail.next = newTail;
-      newTail.prev = this.tail;
+      this.rear.next = newTail;
+      newTail.prev = this.rear;
     }
-    this.tail = newTail;
+    this.rear = newTail;
     this.size++;
   }
 
   public pop_front(): void {
-    if (this.head === null) return;
-    if (this.head.next === null) {
-      this.tail = null;
+    if (this.front === null) return;
+    if (this.front.next === null) {
+      this.rear = null;
     } else {
-      this.head.next.prev = null;
-      this.head = this.head.next;
+      this.front.next.prev = null;
+      this.front = this.front.next;
     }
     this.size -= 1;
   }
 
   public pop_back(): void {
-    if (this.tail === null) return;
-    if (this.tail.prev === null) {
-      this.head = null;
+    if (this.rear === null) return;
+    if (this.rear.prev === null) {
+      this.front = null;
     } else {
-      this.tail.prev.next = null;
-      this.tail = this.tail.prev;
+      this.rear.prev.next = null;
+      this.rear = this.rear.prev;
     }
     this.size -= 1;
   }
@@ -80,11 +80,11 @@ class DoublyLinkedList<T> {
   }
 
   public display_ascending() {
-    this.iterator(this.head, "asc");
+    this.iterator(this.front, "asc");
   }
 
   public display_descending() {
-    this.iterator(this.tail, "desc");
+    this.iterator(this.rear, "desc");
   }
 }
 

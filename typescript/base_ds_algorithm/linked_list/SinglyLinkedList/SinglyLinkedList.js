@@ -9,44 +9,62 @@ var Node = /** @class */ (function () {
 }());
 var SinglyLinkedList = /** @class */ (function () {
     function SinglyLinkedList() {
-        this.tail = null;
+        this.front = null;
+        this.rear = null;
         this.size = 0;
     }
     SinglyLinkedList.prototype.top = function () {
-        return this.tail ? this.tail.value : null;
+        return this.front ? this.front.value : null;
+    };
+    SinglyLinkedList.prototype.bottom = function () {
+        return this.rear ? this.rear.value : null;
     };
     SinglyLinkedList.prototype.length = function () {
         return this.size;
     };
     SinglyLinkedList.prototype.push = function (val) {
         var newNode = new Node(val);
-        if (this.tail) {
-            var curNode = this.tail;
-            this.tail = newNode;
-            this.tail.next = curNode;
+        if (this.front === null) {
+            this.front = newNode;
+            this.rear = newNode;
             this.size += 1;
             return;
         }
-        this.tail = newNode;
+        this.rear.next = newNode;
+        this.rear = newNode;
         this.size += 1;
     };
     SinglyLinkedList.prototype.pop = function () {
-        if (!this.tail)
+        if (!this.front)
             return;
-        var curNode = this.tail.next;
-        this.tail = null;
-        this.tail = curNode;
+        var curNode = this.front.next;
+        this.front.next = null;
+        this.front = curNode;
+        if (this.front === null) {
+            this.rear = null;
+        }
         this.size -= 1;
+    };
+    SinglyLinkedList.prototype.iterator = function (node) {
+        if (node) {
+            console.log(node.value);
+            if (node.next)
+                this.iterator(node.next);
+        }
+    };
+    SinglyLinkedList.prototype.display = function () {
+        this.iterator(this.front);
     };
     return SinglyLinkedList;
 }());
 function singlyLinkedList() {
     var ssl = new SinglyLinkedList();
     ssl.push(1);
+    ssl.display();
     ssl.push(2);
-    console.log(ssl);
+    ssl.push(3);
+    ssl.display();
     ssl.pop();
-    ssl.pop();
-    console.log(ssl);
+    ssl.display();
 }
 exports["default"] = singlyLinkedList;

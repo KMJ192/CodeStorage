@@ -1,13 +1,3 @@
-/*
-  부모 노드와 자식 노드의 관계
-  root node는 idx 1번부터 시작
-  left index -> 부모노드 인덱스 * 2  
-  right index -> 부모노드 인덱스 * 2 + 1
-  부모노드의 인덱스 -> 자식노드 인덱스 / 2
-  최대 힙 -> 부모 노드의 키 값이 자식노드보다 크거나 같은 완전 이진트리
-  최소 힙 -> 부모 노드의 키 값이 자식 노드보다 작거나 같은 완전 이진 트리
-*/
-
 class Heap<T> {
   protected heap: { [key: number]: T };
   protected size: number;

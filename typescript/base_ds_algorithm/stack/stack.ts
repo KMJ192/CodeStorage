@@ -8,16 +8,16 @@ class Node<T> {
 }
 
 class Stack<T> {
-  private tail: Node<T> | null;
+  private rear: Node<T> | null;
   private size: number;
 
   constructor() {
-    this.tail = null;
+    this.rear = null;
     this.size = 0;
   }
 
   public top(): T | null {
-    return this.tail ? this.tail.value : null;
+    return this.rear ? this.rear.value : null;
   }
 
   public length(): number {
@@ -26,22 +26,22 @@ class Stack<T> {
 
   public push(val: T) {
     const newNode = new Node(val);
-    if (this.tail) {
-      const curNode = this.tail;
-      this.tail = newNode;
-      this.tail.link = curNode;
+    if (this.rear) {
+      const curNode = this.rear;
+      this.rear = newNode;
+      this.rear.link = curNode;
       this.size += 1;
       return;
     }
-    this.tail = newNode;
+    this.rear = newNode;
     this.size += 1;
   }
 
   public pop() {
-    if (!this.tail) return;
-    const curNode = this.tail.link;
-    this.tail = null;
-    this.tail = curNode;
+    if (!this.rear) return;
+    const curNode = this.rear.link;
+    this.rear = null;
+    this.rear = curNode;
     this.size -= 1;
   }
 }

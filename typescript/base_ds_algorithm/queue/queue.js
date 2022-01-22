@@ -9,56 +9,55 @@ var Node = /** @class */ (function () {
 }());
 var Queue = /** @class */ (function () {
     function Queue() {
-        this.head = null;
+        this.front = null;
+        this.rear = null;
         this.size = 0;
     }
     Queue.prototype.top = function () {
-        return this.head ? this.head.value : null;
+        return this.front ? this.front.value : null;
     };
     Queue.prototype.length = function () {
         return this.size;
     };
     Queue.prototype.push = function (val) {
         var newNode = new Node(val);
-        if (this.head) {
-            var curNode = this.head.link;
-            newNode.link = curNode;
-            this.head.link = newNode;
+        if (this.front === null) {
+            this.front = newNode;
+            this.rear = newNode;
+            this.size += 1;
             return;
         }
-        this.head = newNode;
+        this.rear.link = newNode;
+        this.rear = newNode;
         this.size += 1;
     };
     Queue.prototype.pop = function () {
-        if (!this.head)
+        if (!this.front)
             return;
-        var curNode = this.head.link;
-        this.head.link = null;
-        this.head = curNode;
+        var curNode = this.front.link;
+        this.front.link = null;
+        this.front = curNode;
+        if (this.front === null) {
+            this.rear = null;
+        }
         this.size -= 1;
+    };
+    Queue.prototype.isEmpty = function () {
+        return this.front === null;
     };
     return Queue;
 }());
 function queueTest() {
     var q = new Queue();
     q.push(1);
-    console.log(q.top()); // 1
+    console.log(q);
     q.push(2);
-    console.log(q.top()); // 1
-    q.pop();
-    console.log(q.top()); // 2
+    console.log(q);
     q.push(3);
-    console.log(q.top()); // 2
-    q.pop();
-    console.log(q.top()); // 3
-    var sq = new Queue();
-    sq.push("test");
-    console.log(sq.top());
-    sq.push("test2");
-    console.log(sq.top());
-    sq.pop();
-    console.log(sq.top());
-    sq.pop();
-    console.log(sq.top());
+    // console.log(q);
+    // q.pop();
+    // console.log(q);
+    // q.pop();
+    // console.log(q);
 }
 exports["default"] = queueTest;

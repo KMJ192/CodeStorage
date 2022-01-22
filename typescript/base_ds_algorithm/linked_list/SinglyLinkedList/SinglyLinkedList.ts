@@ -8,15 +8,21 @@ class Node<T> {
 }
 
 class SinglyLinkedList<T> {
-  private tail: Node<T> | null;
+  private front: Node<T> | null;
+  private rear: Node<T> | null;
   private size: number;
   constructor() {
-    this.tail = null;
+    this.front = null;
+    this.rear = null;
     this.size = 0;
   }
 
   public top(): T | null {
-    return this.tail ? this.tail.value : null;
+    return this.front ? this.front.value : null;
+  }
+
+  public bottom(): T | null {
+    return this.rear ? this.rear.value : null;
   }
 
   public length(): number {
@@ -25,34 +31,50 @@ class SinglyLinkedList<T> {
 
   public push(val: T) {
     const newNode = new Node(val);
-    if (this.tail) {
-      const curNode = this.tail;
-      this.tail = newNode;
-      this.tail.next = curNode;
+    if (this.front === null) {
+      this.front = newNode;
+      this.rear = newNode;
       this.size += 1;
       return;
     }
-    this.tail = newNode;
+    this.rear.next = newNode;
+    this.rear = newNode;
+
     this.size += 1;
   }
 
   public pop() {
-    if (!this.tail) return;
-    const curNode = this.tail.next;
-    this.tail = null;
-    this.tail = curNode;
+    if (!this.front) return;
+    const curNode = this.front.next;
+    this.front.next = null;
+    this.front = curNode;
+    if (this.front === null) {
+      this.rear = null;
+    }
     this.size -= 1;
+  }
+
+  private iterator(node: Node<T>) {
+    if (node) {
+      console.log(node.value);
+      if (node.next) this.iterator(node.next);
+    }
+  }
+
+  public display() {
+    this.iterator(this.front);
   }
 }
 
 function singlyLinkedList() {
   const ssl = new SinglyLinkedList();
   ssl.push(1);
+  ssl.display();
   ssl.push(2);
-  console.log(ssl);
+  ssl.push(3);
+  ssl.display();
   ssl.pop();
-  ssl.pop();
-  console.log(ssl);
+  ssl.display();
 }
 
 export default singlyLinkedList;

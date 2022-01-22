@@ -9,32 +9,33 @@ var Node = /** @class */ (function () {
 }());
 var Stack = /** @class */ (function () {
     function Stack() {
-        this.tail = null;
+        this.rear = null;
         this.size = 0;
     }
     Stack.prototype.top = function () {
-        return this.tail ? this.tail.value : null;
+        return this.rear ? this.rear.value : null;
     };
     Stack.prototype.length = function () {
         return this.size;
     };
     Stack.prototype.push = function (val) {
         var newNode = new Node(val);
-        if (this.tail) {
-            var curNode = this.tail;
-            this.tail = newNode;
-            this.tail.link = curNode;
+        if (this.rear) {
+            var curNode = this.rear;
+            this.rear = newNode;
+            this.rear.link = curNode;
+            this.size += 1;
             return;
         }
-        this.tail = newNode;
+        this.rear = newNode;
         this.size += 1;
     };
     Stack.prototype.pop = function () {
-        if (!this.tail)
+        if (!this.rear)
             return;
-        var curNode = this.tail.link;
-        this.tail = null;
-        this.tail = curNode;
+        var curNode = this.rear.link;
+        this.rear = null;
+        this.rear = curNode;
         this.size -= 1;
     };
     return Stack;

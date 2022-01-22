@@ -8,16 +8,18 @@ class Node<T> {
 }
 
 class Queue<T> {
-  private head: Node<T> | null;
+  private front: Node<T> | null;
+  private rear: Node<T> | null;
   private size: number;
 
   constructor() {
-    this.head = null;
+    this.front = null;
+    this.rear = null;
     this.size = 0;
   }
 
   public top(): T | null {
-    return this.head ? this.head.value : null;
+    return this.front ? this.front.value : null;
   }
 
   public length(): number {
@@ -26,43 +28,45 @@ class Queue<T> {
 
   public push(val: T) {
     const newNode = new Node(val);
-    const curNode = this.head;
-    this.head = newNode;
-    this.head.link = curNode;
+    if (this.front === null) {
+      this.front = newNode;
+      this.rear = newNode;
+      this.size += 1;
+      return;
+    }
+    this.rear.link = newNode;
+    this.rear = newNode;
     this.size += 1;
   }
 
   public pop() {
-    if (!this.head) return;
-    const curNode = this.head.link;
-    this.head.link = null;
-    this.head = curNode;
+    if (!this.front) return;
+    const curNode = this.front.link;
+    this.front.link = null;
+    this.front = curNode;
+    if (this.front === null) {
+      this.rear = null;
+    }
     this.size -= 1;
+  }
+
+  public isEmpty() {
+    return this.front === null;
   }
 }
 
 function queueTest() {
   const q = new Queue<number>();
   q.push(1);
-  console.log(q.top()); // 1
+  console.log(q);
   q.push(2);
-  console.log(q.top()); // 1
-  q.pop();
-  console.log(q.top()); // 2
+  console.log(q);
   q.push(3);
-  console.log(q.top()); // 2
-  q.pop();
-  console.log(q.top()); // 3
-
-  const sq = new Queue<string>();
-  sq.push("test");
-  console.log(sq.top());
-  sq.push("test2");
-  console.log(sq.top());
-  sq.pop();
-  console.log(sq.top());
-  sq.pop();
-  console.log(sq.top());
+  // console.log(q);
+  // q.pop();
+  // console.log(q);
+  // q.pop();
+  // console.log(q);
 }
 
 export default queueTest;
