@@ -44,6 +44,10 @@ class Stack<T> {
     this.rear = curNode;
     this.size -= 1;
   }
+
+  public isEmpty(): boolean {
+    return this.rear === null;
+  }
 }
 
 function stackRun() {

@@ -10,8 +10,8 @@ class Node<T> {
 }
 
 class DoublyLinkedList<T> {
-  private front: Node<T> | null;
-  private rear: Node<T> | null;
+  private front: Node<T> | null; // List의 가장 앞의 노드
+  private rear: Node<T> | null; // List의 가장 뒤의 노드
   private size: number;
   constructor() {
     this.front = null;
@@ -20,32 +20,33 @@ class DoublyLinkedList<T> {
   }
 
   public push_front(value: T): void {
-    const newHead = new Node<T>(value);
+    const newNode = new Node<T>(value);
     if (this.front === null) {
-      this.rear = newHead;
+      this.rear = newNode;
     } else {
-      this.front.prev = newHead;
-      newHead.next = this.front;
+      this.front.prev = newNode;
+      newNode.next = this.front;
     }
-    this.front = newHead;
+    this.front = newNode;
     this.size++;
   }
 
   public push_back(value: T): void {
-    const newTail = new Node<T>(value);
+    const newNode = new Node<T>(value);
     if (this.rear === null) {
-      this.front = newTail;
+      this.front = newNode;
     } else {
-      this.rear.next = newTail;
-      newTail.prev = this.rear;
+      this.rear.next = newNode;
+      newNode.prev = this.rear;
     }
-    this.rear = newTail;
+    this.rear = newNode;
     this.size++;
   }
 
   public pop_front(): void {
     if (this.front === null) return;
     if (this.front.next === null) {
+      this.front = null;
       this.rear = null;
     } else {
       this.front.next.prev = null;
@@ -58,6 +59,7 @@ class DoublyLinkedList<T> {
     if (this.rear === null) return;
     if (this.rear.prev === null) {
       this.front = null;
+      this.rear = null;
     } else {
       this.rear.prev.next = null;
       this.rear = this.rear.prev;
@@ -93,12 +95,11 @@ function doublyLinkedListRun() {
   dll.push_front(1);
   dll.push_front(2);
   dll.push_back(3);
-
-  dll.display_ascending();
-  // dll.display_descending();
-  dll.pop_back();
   dll.pop_front();
-  dll.display_ascending();
+  dll.pop_front();
+  dll.pop_front();
+
+  console.log(dll);
 }
 
 export default doublyLinkedListRun;

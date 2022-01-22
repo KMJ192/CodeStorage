@@ -1,13 +1,4 @@
 "use strict";
-/*
-  부모 노드와 자식 노드의 관계
-  root node는 idx 1번부터 시작
-  left index -> 부모노드 인덱스 * 2
-  right index -> 부모노드 인덱스 * 2 + 1
-  부모노드의 인덱스 -> 자식노드 인덱스 / 2
-  최대 힙 -> 부모 노드의 키 값이 자식노드보다 크거나 같은 완전 이진트리
-  최소 힙 -> 부모 노드의 키 값이 자식 노드보다 작거나 같은 완전 이진 트리
-*/
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = function (d, b) {
         extendStatics = Object.setPrototypeOf ||
@@ -103,11 +94,6 @@ var MinHeap = /** @class */ (function (_super) {
         this.size -= 1;
         this.heap[1] = this.heap[this.size];
         delete this.heap[this.size];
-        /*
-         3
-      4    7
-    3
-    */
         var idx = 1;
         while (this.heap[idx * 2] < this.heap[idx] ||
             this.heap[idx * 2 + 1] < this.heap[idx]) {
