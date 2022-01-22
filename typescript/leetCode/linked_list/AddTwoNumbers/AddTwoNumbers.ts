@@ -53,6 +53,7 @@ class Solution {
       l2Val = 0;
     if (l1) l1Val = l1.val;
     if (l2) l2Val = l2.val;
+
     let value: number = l1Val + l2Val + mod;
     mod = 0;
     if (value >= 10) {
