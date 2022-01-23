@@ -1,8 +1,7 @@
 "use strict";
 exports.__esModule = true;
-var DoublyLinkedList_1 = require("./base_ds_algorithm/linked_list/DoublyLinkedList");
-// import pq from "./base_ds_algorithm/priority_queue";
+var prototype_1 = require("./base_syntax/prototype");
 function main() {
-    DoublyLinkedList_1["default"]();
+    prototype_1["default"]();
 }
 main();
