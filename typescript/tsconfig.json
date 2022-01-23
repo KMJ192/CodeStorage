@@ -6,12 +6,13 @@
     "lib": ["ESNext", "ES2015", "DOM"],
     "skipLibCheck": true,
     "esModuleInterop": true,
-    "strict": false,
+    "strict": true,
     "allowJs": true,
     "allowSyntheticDefaultImports": true,
     "module": "esnext",
     "moduleResolution": "node",
-    "resolveJsonModule": true
-    // "noImplicitThis": false
+    "resolveJsonModule": true,
+    "noImplicitThis": false,
+    "noImplicitAny": false
   }
 }
