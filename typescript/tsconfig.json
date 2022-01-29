@@ -1,9 +1,8 @@
 {
   "compilerOptions": {
     "declaration": true,
-    "outDir": "dist",
     "target": "es5",
-    "lib": ["ESNext", "ES2015", "DOM"],
+    "lib": ["ESNext", "ES2015", "DOM", "ES7"],
     "skipLibCheck": true,
     "esModuleInterop": true,
     "strict": true,

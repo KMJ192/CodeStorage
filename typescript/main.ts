@@ -1,6 +1,6 @@
-import prototype from "./base_syntax/prototype";
+import async from "./syntax/async";
 
 function main() {
-  prototype();
+  async();
 }
 main();
