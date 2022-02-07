@@ -1,51 +1,16 @@
-function createStore() {
-  let state;
-  let handlers = [];
+function test() {}
 
-  function send() {
-    state = worker(state);
-    handlers.forEach((handler) => handler());
-  }
+const test2 = {
+  test1: () => {
+    console.log("test1");
+  },
+  test2: () => {
+    console.log("test2");
+  },
+};
 
-  function subscribe(handler) {
-    handlers.push(handler);
-  }
-
-  function getState() {
-    return state;
-  }
-
-  return {
-    getState,
-    subscribe,
-    send,
-  };
-}
-
-function worker(state = { count: 0 }, action) {
-  switch (action.type) {
-    case "increase":
-      return {
-        ...state,
-        count: state.count + 1,
-      };
-
-    case "decrease":
-      return {
-        ...state,
-        count: state.count - 1,
-      };
-    default:
-      return { ...state };
-  }
-}
-
-const store = createStore(worker);
-
-store.subscribe(function () {
-  console.log(store.getState());
-});
-
-store.send({ type: "increase" });
-store.send({ type: "increase" });
-store.send({ type: "decrease" });
+// console.log(typeof test);
+// console.log(typeof test2);
+const tmp = Object.keys(test2).map((value) => test2[value]);
+tmp[0]();
+tmp[1]();
