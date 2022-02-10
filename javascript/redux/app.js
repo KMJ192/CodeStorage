@@ -1,11 +1,32 @@
 // redux
 export function createStore(reducer) {
-  let state;
+  let state = {};
+  let reducers = {};
   let handlers = [];
+  for (const [key, value] of Object.entries(reducer)) {
+    reducer = {
+      ...reducer,
+      [key]: value,
+    };
+    value({ count: 0 }, "increase");
+  }
+  // Object.keys(reducer).forEach((key) => {
+  //   reducer = {
+  //     ...reducer,
+  //     [key]: reducer[key],
+  //   };
+  //   const test = reducer[key];
+  //   console.log(test());
 
-  function dispatch(action) {
-    state = reducer(state, action);
-    handlers.forEach((handler) => handler());
+  // });
+  console.log(state);
+
+  function dispatch(key, action) {
+    // state = {
+    //   [key]: reducers[key](state, action),
+    // };
+    // state[key] = reducers[key](state, action);
+    // handlers.forEach((handler) => handler());
   }
 
   function subscribe(handler) {
@@ -13,7 +34,7 @@ export function createStore(reducer) {
   }
 
   function getState() {
-    console.log(handlers);
+    // console.log(handlers);
     return state;
   }
 
@@ -25,7 +46,9 @@ export function createStore(reducer) {
 }
 
 // actionCreator
-export const actionCreator = (type) => (payload) => ({ type, payload });
+export const actionCreator = (reduxType, actionType) => (payload) => ({
+  [reduxType]: { type: actionType, payload },
+});
 
 // reducer
 const InitializeState = { count: 0 };
@@ -58,6 +81,36 @@ export function reducer(state = InitializeState, action) {
   }
 }
 
+export function reducer2(state = InitializeState, action) {
+  switch (action.type) {
+    case INCREASE:
+      return {
+        ...state,
+        count: state.count + 1,
+      };
+
+    case DECREASE:
+      return {
+        ...state,
+        count: state.count - 1,
+      };
+    case INCREASE_FIVE:
+      return {
+        ...state,
+        count: state.count + action.payload,
+      };
+    case RESET:
+      return {
+        ...state,
+        count: 0,
+      };
+    default:
+      return { ...state };
+  }
+}
+
+// redux type
+export const COUNT_REDUX = "count";
 // action-type
 export const INCREASE = "increase";
 export const DECREASE = "decrease";
@@ -65,20 +118,20 @@ export const INCREASE_FIVE = "in_fv";
 export const RESET = "reset";
 
 // actions
-export const increase = actionCreator(INCREASE);
-export const decrease = actionCreator(DECREASE);
-export const increaseFive = actionCreator(INCREASE_FIVE);
-export const reset = actionCreator(RESET);
+export const increase = actionCreator(COUNT_REDUX, INCREASE);
+export const decrease = actionCreator(COUNT_REDUX, DECREASE);
+export const increaseFive = actionCreator(COUNT_REDUX, INCREASE_FIVE);
+export const reset = actionCreator(COUNT_REDUX, RESET);
 
 // import createStre, actions
-const store = createStore(reducer);
+const store = createStore({ count: reducer, count1: reducer2 });
 
 store.subscribe(function () {
   console.log(store.getState());
 });
 
-store.dispatch(increase());
-store.dispatch(increase());
-store.dispatch(decrease());
-store.dispatch(increaseFive(5));
-store.dispatch(reset());
+store.dispatch(COUNT_REDUX, increase());
+store.dispatch(COUNT_REDUX, increase());
+store.dispatch(COUNT_REDUX, decrease());
+store.dispatch(COUNT_REDUX, increaseFive(5));
+store.dispatch(COUNT_REDUX, reset());
