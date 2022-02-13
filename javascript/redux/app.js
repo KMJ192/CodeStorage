@@ -15,7 +15,6 @@ import { logger } from "./logger.js";
 
 const aysncRouter = (jobs) => (store) => (next) => (action) => {
   const matchJob = Object.entries(jobs).find(([type]) => action.type === type);
-  // console.log(matchJob, action);
   if (matchJob) {
     matchJob[1](store, action);
   } else {
