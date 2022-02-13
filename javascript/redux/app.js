@@ -1,137 +1,69 @@
-// redux
-export function createStore(reducer) {
-  let state = {};
-  let reducers = {};
-  let handlers = [];
-  for (const [key, value] of Object.entries(reducer)) {
-    reducer = {
-      ...reducer,
-      [key]: value,
-    };
-    value({ count: 0 }, "increase");
+import { createStore } from "./redux.js";
+import {
+  increase,
+  decrease,
+  increaseFive,
+  reset,
+  setCounter,
+  asyncIncrease,
+  asyncRequest,
+  asyncResponse,
+  reducer,
+  ASYNC_INCREASE,
+} from "./reducer.js";
+import { logger } from "./logger.js";
+
+const aysncRouter = (jobs) => (store) => (next) => (action) => {
+  const matchJob = Object.entries(jobs).find(([type]) => action.type === type);
+  // console.log(matchJob, action);
+  if (matchJob) {
+    matchJob[1](store, action);
+  } else {
+    next(action);
   }
-  // Object.keys(reducer).forEach((key) => {
-  //   reducer = {
-  //     ...reducer,
-  //     [key]: reducer[key],
-  //   };
-  //   const test = reducer[key];
-  //   console.log(test());
+};
 
-  // });
-  console.log(state);
+const asyncJobs = {
+  [ASYNC_INCREASE]: (store, action) => {
+    store.dispatch(asyncRequest());
+    setTimeout(() => {
+      store.dispatch(increase(20));
+      store.dispatch(asyncResponse());
+    }, 3000);
+  },
+};
 
-  function dispatch(key, action) {
-    // state = {
-    //   [key]: reducers[key](state, action),
-    // };
-    // state[key] = reducers[key](state, action);
-    // handlers.forEach((handler) => handler());
-  }
+const store = createStore(reducer, [aysncRouter(asyncJobs)]);
 
-  function subscribe(handler) {
-    handlers.push(handler);
-  }
-
-  function getState() {
-    // console.log(handlers);
-    return state;
-  }
-
-  return {
-    getState,
-    subscribe,
-    dispatch,
-  };
-}
-
-// actionCreator
-export const actionCreator = (reduxType, actionType) => (payload) => ({
-  [reduxType]: { type: actionType, payload },
-});
-
-// reducer
-const InitializeState = { count: 0 };
-
-export function reducer(state = InitializeState, action) {
-  switch (action.type) {
-    case INCREASE:
-      return {
-        ...state,
-        count: state.count + 1,
-      };
-
-    case DECREASE:
-      return {
-        ...state,
-        count: state.count - 1,
-      };
-    case INCREASE_FIVE:
-      return {
-        ...state,
-        count: state.count + action.payload,
-      };
-    case RESET:
-      return {
-        ...state,
-        count: 0,
-      };
-    default:
-      return { ...state };
-  }
-}
-
-export function reducer2(state = InitializeState, action) {
-  switch (action.type) {
-    case INCREASE:
-      return {
-        ...state,
-        count: state.count + 1,
-      };
-
-    case DECREASE:
-      return {
-        ...state,
-        count: state.count - 1,
-      };
-    case INCREASE_FIVE:
-      return {
-        ...state,
-        count: state.count + action.payload,
-      };
-    case RESET:
-      return {
-        ...state,
-        count: 0,
-      };
-    default:
-      return { ...state };
-  }
-}
-
-// redux type
-export const COUNT_REDUX = "count";
-// action-type
-export const INCREASE = "increase";
-export const DECREASE = "decrease";
-export const INCREASE_FIVE = "in_fv";
-export const RESET = "reset";
-
-// actions
-export const increase = actionCreator(COUNT_REDUX, INCREASE);
-export const decrease = actionCreator(COUNT_REDUX, DECREASE);
-export const increaseFive = actionCreator(COUNT_REDUX, INCREASE_FIVE);
-export const reset = actionCreator(COUNT_REDUX, RESET);
-
-// import createStre, actions
-const store = createStore({ count: reducer, count1: reducer2 });
+const counterDisplay = document.querySelector("#counter");
+const loadingMessage = document.querySelector("#loading");
+const btnIncrease = document.querySelector("#btn-increase");
+const btnAsyncIncrease = document.querySelector("#btn-async-increase");
+const btnDecrease = document.querySelector("#btn-decrease");
+const btnReset = document.querySelector("#btn-reset");
 
 store.subscribe(function () {
-  console.log(store.getState());
+  const { count, request } = store.getState();
+  loadingMessage.style.visibility = request ? "visible" : "hidden";
+  counterDisplay.textContent = count;
 });
 
-store.dispatch(COUNT_REDUX, increase());
-store.dispatch(COUNT_REDUX, increase());
-store.dispatch(COUNT_REDUX, decrease());
-store.dispatch(COUNT_REDUX, increaseFive(5));
-store.dispatch(COUNT_REDUX, reset());
+const dispatch = store.dispatch;
+
+dispatch(setCounter(0));
+
+btnReset.addEventListener("click", () => {
+  dispatch(setCounter(0));
+});
+
+btnIncrease.addEventListener("click", () => {
+  dispatch(increase());
+});
+
+btnAsyncIncrease.addEventListener("click", () => {
+  dispatch(asyncIncrease({ url: "/async-increase" }));
+});
+
+btnDecrease.addEventListener("click", () => {
+  dispatch(decrease());
+});

@@ -1,16 +1,40 @@
-function test() {}
+// redux
+export function createStore(reducer, middlewares = []) {
+  let state = {};
+  let handlers = [];
 
-const test2 = {
-  test1: () => {
-    console.log("test1");
-  },
-  test2: () => {
-    console.log("test2");
-  },
-};
+  function dispatch(action) {
+    state = reducer(state, action);
+    handlers.forEach((handler) => handler());
+  }
 
-// console.log(typeof test);
-// console.log(typeof test2);
-const tmp = Object.keys(test2).map((value) => test2[value]);
-tmp[0]();
-tmp[1]();
+  function getState() {
+    return state;
+  }
+
+  function subscribe(handler) {
+    handlers.push(handler);
+  }
+
+  const store = {
+    getState,
+    subscribe,
+    dispatch,
+  };
+
+  const ms = Array.from(middlewares).reverse();
+  let lastDispatch = dispatch;
+  ms.forEach((middleware) => {
+    lastDispatch = middleware(store)(lastDispatch);
+  });
+
+  store.dispatch = lastDispatch;
+
+  return store;
+}
+
+// actionCreator
+export const actionCreator = (actionType) => (payload) => ({
+  type: actionType,
+  payload,
+});
