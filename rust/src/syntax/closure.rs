@@ -68,10 +68,12 @@ impl<T> Cacher<T> where T: Fn(u32) -> u32 {
   }
 }
 
-fn add(first: i32) -> impl Fn(i32) -> Box<dyn Fn(i32) -> i32>  {
+fn add(first: i32) -> impl Fn(i32) -> Box<dyn Fn(i32) -> Box<dyn Fn(i32) -> i32>>  {
   return move |second: i32| {
     Box::new(move |third: i32| {
-      first + second + third
+      Box::new(move |forth: i32| {
+        first + second + third + forth
+      })
     })
   }
 }
@@ -84,6 +86,9 @@ pub fn closure_run() {
   //   simulated_user_specified_value,
   //   simulated_random_number
   // );
-  let add1 = move |x: i32| add(x);
-  println!("{}", add1(1)(2)(3));
+  let add1 = add(1);
+  let add2 = add1(2);
+  let add3 = add2(3);
+  let add4 = add3(4);
+  println!("{}", add4);
 }
