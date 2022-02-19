@@ -1,5 +1,5 @@
-#[path="./syntax/closure.rs"] mod closure;
+#[path="./syntax/trait.rs"] mod trait_run;
 
 fn main() {
-  closure::closure_run();
+  trait_run::run();
 }
