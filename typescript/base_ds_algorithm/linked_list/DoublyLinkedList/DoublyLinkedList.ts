@@ -71,8 +71,8 @@ class DoublyLinkedList<T> {
     return this.size;
   }
 
-  private iterator(node: Node<T>, type: string): void {
-    console.log(node.value);
+  private iterator(node: Node<T> | null, type: string): void {
+    if (node === null) return;
     if (type === "asc" && node.next) {
       this.iterator(node.next, type);
     }
