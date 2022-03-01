@@ -46,7 +46,6 @@ public:
       cout << reverse(it) << endl;
     }
   }
-
 };
 
 int main() {
