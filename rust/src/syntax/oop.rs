@@ -64,7 +64,6 @@ impl Post {
   }
 }
 
-
 trait State {
   fn request_review(self: Box<Self>) -> Box<State> {
     Box::new(PendingReview {})
