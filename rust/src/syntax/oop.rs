@@ -43,7 +43,7 @@ impl Screen {
 }
 
 pub struct Post {
-  state: Option<Box<State>>,
+  state: Option<Box<dyn State>>,
   content: String,  
 }
 
@@ -65,7 +65,7 @@ impl Post {
 }
 
 trait State {
-  fn request_review(self: Box<Self>) -> Box<State> {
+  fn request_review(self: Box<Self>) -> Box<dyn State> {
     Box::new(PendingReview {})
   }
 }
@@ -73,7 +73,7 @@ trait State {
 struct PendingReview {}
 
 impl State for PendingReview {
-  fn request_review(self: Box<Self>) -> Box<State> {
+  fn request_review(self: Box<Self>) -> Box<dyn State> {
     self
   }
 }
