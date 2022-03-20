@@ -1,5 +1,5 @@
-#[path="./syntax/oop.rs"] mod oop;
+#[path="./syntax/oop2.rs"] mod oop2;
 
 fn main() {
-  oop::run();
+  oop2::run();
 }
