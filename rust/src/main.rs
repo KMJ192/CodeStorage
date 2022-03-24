@@ -1,5 +1,5 @@
-#[path="./syntax/cow.rs"] mod cow;
+#[path="./syntax/cow2.rs"] mod cow;
 
 fn main() {
-  cow::cow();
+  cow::cow2();
 }
