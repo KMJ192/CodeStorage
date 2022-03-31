@@ -1,5 +1,5 @@
-#[path="./syntax/inspect.rs"] mod inspect;
+#[path="./syntax/life_time.rs"] mod life_time;
 
 fn main() {
-  inspect::inspect();
+  life_time::life_time();
 }
