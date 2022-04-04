@@ -1,5 +1,5 @@
-#[path="./syntax/multiple_threads.rs"] mod mt;
+#[path="./syntax/blanket_trait_impl.rs"] mod blanket_trait_impl;
 
 fn main() {
-  mt::multiple_threads();
+  blanket_trait_impl::blanket_trait_impl();
 }
