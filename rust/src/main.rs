@@ -1,5 +1,5 @@
-#[path="./syntax/blanket_trait_impl.rs"] mod blanket_trait_impl;
+#[path="./syntax/iterator.rs"] mod iterator;
 
 fn main() {
-  blanket_trait_impl::blanket_trait_impl();
+  iterator::iterator();
 }
