@@ -1,5 +1,5 @@
-#[path="./syntax/iterator.rs"] mod iterator;
+#[path="./syntax/mutex.rs"] mod mutex;
 
 fn main() {
-  iterator::iterator();
+  mutex::mutex();
 }
