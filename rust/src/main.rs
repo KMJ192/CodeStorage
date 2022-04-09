@@ -1,5 +1,5 @@
-#[path="./syntax/mutex_with_rwlock.rs"] mod mutex_with_rwlock;
+#[path="./syntax/box.rs"] mod _box;
 
 fn main() {
-  mutex_with_rwlock::mutex_with_rwlock();
+  _box::_box();
 }
