@@ -11,6 +11,22 @@ struct User {
   active: RefCell<bool>
 }
 
+fn test() {
+  let my_cell = RefCell::new(String::from("I am a String"));
+  let reference = my_cell.borrow_mut();
+  println!("{reference:?}");
+  drop(reference);
+  *my_cell.borrow_mut() = String::from("I am not a String");
+  println!("{my_cell:?}");
+
+  // match my_cell.try_borrow() {
+  //   Ok(mut r) => *r = String::from("I am not a String"),
+  //   Err(e) => println!("We got an error: {e}")
+  // };
+  // println!("{my_cell:?}");
+  
+}
+
 pub fn ref_cell() {
   // let my_cell = Cell::new(String::from("I am a String"));
   // my_cell.set(String::from("I am a String?!?!?!?!"));
@@ -46,4 +62,6 @@ pub fn ref_cell() {
   drop(first_reference); // 빌림 해제
 
   println!("{user_1:?}"); // 빌림이 해제되었으므로 active값은 출력됨
+  println!();
+  test();
 }
