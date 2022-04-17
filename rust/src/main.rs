@@ -1,5 +1,5 @@
-#[path="./syntax/box.rs"] mod _box;
+#[path="./syntax/ref_cell.rs"] mod ref_cell;
 
 fn main() {
-  _box::_box();
+  ref_cell::ref_cell();
 }
