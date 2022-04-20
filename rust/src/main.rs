@@ -1,5 +1,5 @@
-#[path="./syntax/ref_cell.rs"] mod ref_cell;
+#[path="./syntax/rc.rs"] mod rc;
 
 fn main() {
-  ref_cell::ref_cell();
+  rc::rc();
 }
