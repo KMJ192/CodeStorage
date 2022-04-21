@@ -1,3 +1,5 @@
+// owned data on the heap
+
 struct SomeStruct {
   name: String,
   number: u8,
