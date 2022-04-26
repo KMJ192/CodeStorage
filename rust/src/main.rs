@@ -1,5 +1,5 @@
-#[path="./syntax/rc_refcell.rs"] mod rc_refcell;
+#[path="./syntax/any_trait.rs"] mod any_trait;
 
 fn main() {
-  rc_refcell::rc_refcell();
+  any_trait::any_trait();
 }
