@@ -1,7 +1,9 @@
 "use strict";
 exports.__esModule = true;
-var async_1 = require("./syntax/async");
+// import async from "./syntax/async";
+var mixin_1 = require("./base_syntax/mixin/mixin");
 function main() {
-    async_1["default"]();
+    // async();
+    (0, mixin_1["default"])();
 }
 main();
