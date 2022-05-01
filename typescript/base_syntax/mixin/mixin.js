@@ -36,12 +36,31 @@ var Component = /** @class */ (function () {
     };
     return Component;
 }());
+var A = /** @class */ (function () {
+    function A() {
+        this.name = "A";
+    }
+    A.prototype.display = function () {
+        console.log(this.name);
+    };
+    return A;
+}());
+var B = /** @class */ (function () {
+    function B() {
+        this.name = "Test2";
+    }
+    B.prototype.display = function () {
+        console.log(this.name);
+    };
+    return B;
+}());
 var Rectangle = /** @class */ (function () {
     function Rectangle(w, h) {
         this.w = w;
         this.h = h;
         this.shape = "";
         this.component = "";
+        this.name = "";
     }
     Rectangle.prototype.area = function () {
         return this.w * this.h;
@@ -52,12 +71,21 @@ var Rectangle = /** @class */ (function () {
     Rectangle.prototype.displayShape = function (name) { };
     return Rectangle;
 }());
+var Render = /** @class */ (function () {
+    function Render() {
+    }
+    Render.prototype.render = function () {
+        mixin(Rectangle, [Shape, Component, A, B]);
+        var rectangle = new Rectangle(4, 3);
+        rectangle.draw();
+        rectangle.displayComponent("component");
+        rectangle.displayShape("shape");
+        rectangle.display();
+    };
+    return Render;
+}());
 function mixinTest() {
-    mixin(Rectangle, [Shape, Component]);
-    var rectangle = new Rectangle(4, 3);
-    rectangle.draw();
-    rectangle.display();
-    rectangle.displayComponent("component");
-    rectangle.displayShape("shape");
+    var render = new Render();
+    render.render();
 }
 exports["default"] = mixinTest;

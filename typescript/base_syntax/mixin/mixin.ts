@@ -41,7 +41,29 @@ class Component {
   }
 }
 
-class Rectangle implements Shape, Component {
+class A {
+  name: string;
+  constructor() {
+    this.name = "A";
+  }
+  display() {
+    console.log(this.name);
+  }
+}
+
+class B {
+  name: string;
+  constructor() {
+    this.name = "Test2";
+  }
+
+  display() {
+    console.log(this.name);
+  }
+}
+
+class Rectangle implements Shape, A, Component, B {
+  name: string;
   shape: string;
   component: string;
 
@@ -52,6 +74,7 @@ class Rectangle implements Shape, Component {
     this.h = h;
     this.shape = "";
     this.component = "";
+    this.name = "";
   }
   area(): number {
     return this.w * this.h;
@@ -63,12 +86,18 @@ class Rectangle implements Shape, Component {
   displayShape(name: string): void {}
 }
 
-export default function mixinTest() {
-  mixin(Rectangle, [Shape, Component]);
+class Render {
+  render() {
+    mixin(Rectangle, [Shape, Component, A, B]);
+    let rectangle = new Rectangle(4, 3);
+    rectangle.draw();
+    rectangle.displayComponent("component");
+    rectangle.displayShape("shape");
+    rectangle.display();
+  }
+}
 
-  let rectangle = new Rectangle(4, 3);
-  rectangle.draw();
-  rectangle.display();
-  rectangle.displayComponent("component");
-  rectangle.displayShape("shape");
+export default function mixinTest() {
+  const render = new Render();
+  render.render();
 }
