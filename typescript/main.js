@@ -1,9 +1,9 @@
 "use strict";
 exports.__esModule = true;
 // import async from "./syntax/async";
-var mixin_1 = require("./base_syntax/mixin/mixin");
+// import mixinTest from "./base_syntax/mixin/mixin";
+var hangulExtract_1 = require("./hangulExtract/hangulExtract");
 function main() {
-    // async();
-    (0, mixin_1["default"])();
+    (0, hangulExtract_1.hangulExtract)();
 }
 main();
