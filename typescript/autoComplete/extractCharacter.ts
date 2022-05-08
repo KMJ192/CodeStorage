@@ -1,15 +1,28 @@
-// https://velog.io/@yh1120/JS-%ED%95%9C%EA%B8%80-%EC%9E%90%EC%9D%8C-%EB%B6%84%EB%A6%AC%ED%95%98%EA%B8%B0
+// type char = string;
 
-const mockingData = [
-  "한글",
-  "한길",
-  "한기러",
-  "한기렇",
-  "한기러하",
-  "한기러하다",
-];
+class Char {
+  value: string;
+  constructor(value: string) {
+    if (value.length > 1) {
+      throw new Error("not a char");
+    }
+    this.value = value;
+  }
 
-type char = string;
+  public charCodeAt = (num: number) => {
+    return this.value.charCodeAt(num);
+  };
+}
+
+function isHangul(word: Char) {
+  const code = word.charCodeAt(0) - 0xac00;
+
+  // 한글 범위 계산
+  const start = "가".charCodeAt(0) - 0xac00;
+  const end = "힣".charCodeAt(0) - 0xac00;
+
+  return code >= start && code <= end;
+}
 
 function makeDictionary(s: string) {
   const sentence = s;
@@ -91,18 +104,7 @@ function makeDictionary(s: string) {
     ],
   };
 
-  function isHangul(word: char) {
-    if (word.length > 1) return false;
-    const code = word.charCodeAt(0) - 0xac00;
-
-    // 한글 범위 계산
-    const start = "가".charCodeAt(0) - 0xac00;
-    const end = "힣".charCodeAt(0) - 0xac00;
-
-    return code >= start && code <= end;
-  }
-
-  function disassemble(c: char) {
+  function disassemble(c: Char) {
     let r: string[] = [];
     const uniVal = c.charCodeAt(0) - 0xac00;
     const cho = Math.floor(uniVal / 28 / 21);
@@ -126,7 +128,7 @@ function makeDictionary(s: string) {
 
   function make() {
     for (let i = 0; i < sentence.length; i++) {
-      const c = sentence[i];
+      const c: Char = new Char(sentence[i]);
       if (isHangul(c)) {
         const ext = disassemble(c);
         ext.forEach((d: string) => {
@@ -145,23 +147,8 @@ function makeDictionary(s: string) {
   };
 
   return {
-    isHangul,
     disassemble,
     make,
     extractResult,
   };
 }
-
-export function hangulExtract() {
-  const han = makeDictionary("abcd한글 자동완성 구현[][]");
-  console.log(han.make());
-}
-
-// 한글일 경우, 한글 + 영어일 경우, 영어일 경우
-
-/**
-  한글 
-    => 초성만 있을 경우, 중성만 있을 경우, 종성만 있을 경우 일단 고려하지 않음
-    => 한글을 칠때 종성일수도 있고, 초성일 수도 있음
-      -> 종성이 있을때, 다음 글자의 초성일 경우도 생각할것
- */

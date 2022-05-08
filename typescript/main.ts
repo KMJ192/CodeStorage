@@ -1,10 +1,6 @@
-// import async from "./syntax/async";
-// import mixinTest from "./base_syntax/mixin/mixin";
-import { hangulExtract } from "./hangulExtract/hangulExtract";
-// import { buildTrie } from "./base_ds_algorithm/trie/trie";
+import autoComplete from "./autoComplete";
 
 function main() {
-  hangulExtract();
-  // buildTrie();
+  autoComplete();
 }
 main();
