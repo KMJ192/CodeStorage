@@ -1,39 +1,56 @@
 "use strict";
 exports.__esModule = true;
-exports.TSRun = void 0;
-var Node = /** @class */ (function () {
-    function Node() {
-        this.isWord = '';
+exports.buildTrie = exports.TrieDataStructure = exports.TrieNode = void 0;
+var TrieNode = /** @class */ (function () {
+    function TrieNode() {
+        this.isWord = false;
         this.next = {};
+        this.word = "";
     }
-    return Node;
+    return TrieNode;
 }());
-var Trie = /** @class */ (function () {
-    function Trie() {
-        this.root = new Node();
-        this.end = '';
+exports.TrieNode = TrieNode;
+var TrieDataStructure = /** @class */ (function () {
+    function TrieDataStructure() {
+        this.root = new TrieNode();
     }
-    Trie.prototype.insert = function (word) {
-        var current = this.root;
+    TrieDataStructure.prototype.insert = function (word) {
+        var curNode = this.root;
         for (var i = 0; i < word.length; i++) {
-            if (!current.next[word[i]])
-                current.next = new Node();
-            current = current.next;
+            var c = word[i];
+            if (!curNode.next[c]) {
+                curNode.next[c] = new TrieNode();
+            }
+            curNode = curNode.next[c];
         }
+        curNode.word = word;
+        curNode.isWord = true;
     };
-    Trie.prototype.display = function () {
-        this.recursion(this.root);
+    TrieDataStructure.prototype.search = function (word) {
+        var curNode = this.root;
+        for (var i = 0; i < word.length; i++) {
+            curNode = curNode.next[word.charAt(i)];
+            if (!curNode)
+                return false;
+        }
+        return curNode.isWord;
     };
-    Trie.prototype.recursion = function (currNode) {
-        console.log(Object.keys(currNode));
+    TrieDataStructure.prototype.startsWith = function (prefix) {
+        var curNode = this.root;
+        for (var i = 0; i < prefix.length; i++) {
+            curNode = curNode.next[prefix.charAt(i)];
+            if (!curNode)
+                return false;
+        }
+        return true;
     };
-    return Trie;
+    return TrieDataStructure;
 }());
-function TSRun() {
-    var tr = new Trie();
-    tr.insert("test1");
-    tr.insert("sest2");
-    console.log(tr);
-    tr.display();
-}
-exports.TSRun = TSRun;
+exports.TrieDataStructure = TrieDataStructure;
+var buildTrie = function () {
+    var trie = new TrieDataStructure();
+    trie.insert("abcd");
+    console.log(trie);
+    // console.log(trie.search("b"));
+};
+exports.buildTrie = buildTrie;
