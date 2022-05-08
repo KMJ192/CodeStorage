@@ -130,11 +130,9 @@ function makeDictionary(s: string) {
       if (isHangul(c)) {
         const ext = disassemble(c);
         ext.forEach((d: string) => {
-          // result.push(d);
           result = `${result}${d}`;
         });
       } else {
-        // result.push(c);
         result = `${result}${c}`;
       }
     }
