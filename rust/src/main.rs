@@ -1,5 +1,5 @@
-#[path="./syntax/any_trait.rs"] mod any_trait;
+#[path="./syntax/async.rs"] mod async_fn;
 
 fn main() {
-  any_trait::any_trait();
+  async_fn::async_fn();
 }
